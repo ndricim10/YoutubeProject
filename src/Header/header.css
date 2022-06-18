@@ -1,0 +1,62 @@
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  padding-inline: 1.2rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  color: gray;
+  min-height: 40px;
+  padding-block: 10px;
+}
+header .search {
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  padding-inline: 0.5rem;
+  width: 50%;
+  height: 40px;
+  background-color: var(--bg-cl);
+}
+header .search input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  z-index: 9;
+}
+header .right-header {
+  justify-content: flex-end;
+  height: 40px;
+  gap: 20px;
+}
+header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+header .yt-logo {
+  max-width: 100px;
+  object-fit: contain;
+  max-height: 100px;
+  width: 100%;
+  height: auto;
+}
+header .menu-bar {
+  position: relative;
+}
+header .menu-absolute {
+  all: unset;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px red solid;
+  height: 100vh;
+}
+
+/*# sourceMappingURL=header.css.map */
