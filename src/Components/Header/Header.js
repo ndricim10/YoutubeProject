@@ -7,9 +7,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {} from '@fortawesome/fontawesome-svg-core'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import WindowSize from "../../WindowSize";
 
 export default function Header() {
   const [search, setSearch] = useState(false)
+  const { height, width } = WindowSize();
 
   
   function mainSearchBar(event) {
@@ -23,16 +25,26 @@ export default function Header() {
   function hideSearch(){
     setSearch(false)
   }
+  function resizeSearch(){
+    if(width>576){
+      setSearch(false)
+    }
+  } 
+
+  window.addEventListener('resize', ()=>{
+    if(width>576){
+      setSearch(false)
+    }
+  })
 
   return (
-    <div className="header">
+    <div className="header" >
       <div className="header_left">
         <FaBars className="header_menu" size={24} />
         <div className="header_logo">
           <AiFillYoutube color="red" size={30} />
         </div>
       </div>
-
       <form>
         <input type="search" placeholder="Search" className="input" />
         {
