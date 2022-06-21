@@ -1,9 +1,10 @@
-@import "../../base.scss";
+@import "../../index.scss";
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   background-color: $black-primary;
   padding-inline: 1rem;
   padding-block: 0px;
@@ -15,11 +16,13 @@
   right: 0;
 
   &_logo {
-    width: 100px;
-    height: 50px;
+    width: max-content;
+    height: max-content;
     object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
   &_avatar {
     width: 50px;
     height: 50px;
@@ -34,14 +37,17 @@
   }
 
   form {
-    width: 60%;
+    flex: 0.6;
     display: flex;
+    align-items: center;
     border-radius: 3px;
     border: 1.2px solid;
     background: $black-secondary;
     height: 7vh;
+    padding-inline: .5rem;
 
     input {
+      height: 100%;
       flex: 0.8;
       border: none;
       outline: none;
@@ -51,14 +57,74 @@
     }
 
     button {
+      height: 100%;
       flex: 0.2;
       background-color: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $textColor;
+      background-color: transparent;
+      color: $textColor;
       border-radius: 5px;
+      border: none;
+    }
+    .secondary-button{
+        display: none;
     }
   }
 }
+.arrow-back{
+    cursor: pointer;
+}
 
+@media (max-width: $breakpoint-small) {
+  .header {
+    form {
+      flex: 0.5;
+      z-index: 1;
+      border: none;
+      background-color: transparent;
+
+      input:not(.small-input) {
+        display: none;
+      }
+
+      button {
+        flex: 1;
+        border: none;
+        outline: none;
+        background-color: transparent;
+      }
+      .main-button{
+        display: none;
+    }
+    .secondary-button{
+        display: unset;
+    }
+
+      .small_search {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: $black-primary;
+        z-index: 999999999999999999999999999999;
+        height: 10vh;
+        padding-inline: 1rem;
+
+        button{
+            width: max-content;
+            height: max-content;
+            display: flex;
+            justify-content: flex-end;
+
+        }
+
+      }
+    }
+  }
+}
