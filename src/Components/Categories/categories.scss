@@ -1,0 +1,43 @@
+@import "../../index.scss";
+
+.categories {
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  display: flex;
+  overflow-x: scroll;
+  gap: 10px;
+  position: fixed;
+  top: 10vh;
+
+  background-color: $black-primary;
+  z-index: 99;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  scrollbar-width: none;
+
+  span {
+    background-color: $border-color;
+    padding: 0.5rem;
+    white-space: nowrap;
+    border: 1.5px solid $textColor;
+    border-radius: 999px;
+    cursor: pointer;
+
+    &.active {
+      color: white;
+      background-color: chocolate;
+      border-color: $textColor;
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .categories {
+    left: 8vh;
+    right: 8vh;
+  }
+}

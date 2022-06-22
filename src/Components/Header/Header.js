@@ -9,7 +9,7 @@ import {} from '@fortawesome/fontawesome-svg-core'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import WindowSize from "../../WindowSize";
 import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
-import Sidebar from "../Sidebar/Sidebar";
+
 
 export default function Header() {
   const [search, setSearch] = useState(false)

@@ -10,9 +10,9 @@ import {
   MdSentimentDissatisfied,
 } from "react-icons/md";
 
-export default function Sidebar({size}) {
+export default function Sidebar({size, hide}) {
   return (
-    <nav className="sidebar">
+    <nav className="sidebar"  >
       <ul className="home-ul">
         <li>
           <MdHome size={size} />
