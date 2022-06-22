@@ -45,3 +45,11 @@
     }
   }
 }
+
+@media(max-width: $breakpoint-md){
+  .toggleScreen{
+    .sidebar{
+      display: unset;
+  }
+  }
+}
