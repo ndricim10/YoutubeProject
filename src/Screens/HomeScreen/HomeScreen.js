@@ -7,14 +7,18 @@ import './app.scss'
 export default function HomeScreen() {
   return (
     <Container className="home_screen">
-      <Categories/>
-      <Row>
+      <div className="categories_absolute">
+      <Categories />
+      </div>
+     <div className="cards">
+     <Row>
         {[...new Array(200)].map((e, i) => (
           <Col lg={3} md={4} sm={6} xs={12}>
             <VideoCard />
           </Col>
         ))}
       </Row>
+     </div>
     </Container>
   );
 }
