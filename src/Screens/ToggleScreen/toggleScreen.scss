@@ -1,0 +1,31 @@
+@import "../../Components/Sidebar/sidebar.scss";
+@import "../HomeScreen/app.scss";
+@import "../../index.scss";
+
+.toggleScreen {
+  position: fixed;
+  top: 10vh;
+  height: 100vh;
+  overflow-y: scroll;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 99999999;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  //   opacity: .8;
+
+  .leftToggle {
+    opacity: 1;
+    z-index: 99;
+    background-color: $black-primary;
+  }
+  .rightToggle {
+    opacity: 0.8;
+    background-color: $black-primary;
+  }
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+  }
+}

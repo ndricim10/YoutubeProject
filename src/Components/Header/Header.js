@@ -25,11 +25,6 @@ export default function Header() {
   function hideSearch(){
     setSearch(false)
   }
-  function resizeSearch(){
-    if(width>576){
-      setSearch(false)
-    }
-  } 
 
   window.addEventListener('resize', ()=>{
     if(width>576){

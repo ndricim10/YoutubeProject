@@ -1,0 +1,41 @@
+@import '../../index.scss';
+
+.sidebar{
+    position: relative;
+    height: 100vh;
+    z-index: 9;
+   ul{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: fixed;
+        top: 12vh;
+        left: 0;
+        li{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding-inline: 10px;
+            padding-block: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+
+            &:hover{
+                background-color: $textColor;
+                color: $black-primary;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakpoint-md){
+    .sidebar{
+        display: none;
+    }
+}
