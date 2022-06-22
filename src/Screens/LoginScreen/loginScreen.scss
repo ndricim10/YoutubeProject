@@ -1,0 +1,30 @@
+@import '../../index.scss';
+
+.login {
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    height: 40px;
+    padding-inline: 1rem;
+    border-radius: 4px;
+    background-color: $textColor;
+    color: $black-primary;
+    font-weight: 600;
+
+  }
+}

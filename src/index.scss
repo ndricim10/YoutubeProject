@@ -46,3 +46,11 @@ body{
 .no-scroll{
   overflow-y: hidden;
 }
+
+@mixin line-clamp($number) {
+  overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: $number;
+            -webkit-box-orient: vertical;
+            margin-bottom: .5rem;
+}
