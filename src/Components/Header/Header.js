@@ -8,11 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {} from '@fortawesome/fontawesome-svg-core'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import WindowSize from "../../WindowSize";
+import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
+import Sidebar from "../Sidebar/Sidebar";
 
 export default function Header() {
   const [search, setSearch] = useState(false)
   const { height, width } = WindowSize();
-
+  const [sideBar, setSideBar] = useState(false)
   
   function mainSearchBar(event) {
     event.preventDefault();
@@ -22,6 +24,15 @@ export default function Header() {
     setSearch(true);
   }
  
+  function ToggleSideBar(){
+    setSideBar(prev =>!prev)
+    document.body.classList.toggle("no-scroll")
+  }
+  function hideSideBar(){
+    setSideBar(false)
+    document.body.classList.remove("no-scroll")
+  }
+
   function hideSearch(){
     setSearch(false)
   }
@@ -34,8 +45,11 @@ export default function Header() {
 
   return (
     <div className="header" >
+      {sideBar && <ToggleScreen click={hideSideBar} />}
       <div className="header_left">
+        <div className="menuBar" onClick={ToggleSideBar}>
         <FaBars className="header_menu" size={24} />
+        </div>
         <div className="header_logo">
           <AiFillYoutube color="red" size={30} />
         </div>

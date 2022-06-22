@@ -9,7 +9,7 @@ import ToggleScreen from "./Screens/ToggleScreen/ToggleScreen";
 export default function App() {
   return (
     <div className="youtube">
-      <ToggleScreen />
+      
       <Header />
       <div className="app_container">
         <Sidebar size={20} />

@@ -9,7 +9,7 @@ export default function HomeScreen() {
     <Container className="home_screen">
       <Categories/>
       <Row>
-        {[...new Array(100)].map((e, i) => (
+        {[...new Array(200)].map((e, i) => (
           <Col lg={3} md={4} sm={6}>
             <VideoCard />
           </Col>

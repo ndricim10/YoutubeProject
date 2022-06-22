@@ -1,6 +1,5 @@
 import React from "react";
 import "./sidebar.scss";
-
 import {
   MdSubscriptions,
   MdExitToApp,
@@ -14,7 +13,7 @@ import {
 export default function Sidebar({size}) {
   return (
     <nav className="sidebar">
-      <ul>
+      <ul className="home-ul">
         <li>
           <MdHome size={size} />
           <span>Home</span>
