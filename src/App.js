@@ -7,9 +7,8 @@ import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Routes,
+  Routes, Navigate
 } from "react-router-dom";
 
 function Layout({ children }) {
@@ -33,19 +32,24 @@ export default function App() {
     <>
       <Router>
         <Routes>
-        <Route path='/' element={
-          <Layout>
-          <HomeScreen />
-        </Layout>
-        } />
-        <Route path='/login' element={<LoginScreen />} />
-        <Route path='/search' element={
-          <Layout>
-          <h1>Test search</h1>
-        </Layout>
-        } />
+          <Route path="/" element={
+            <Layout>
+            <HomeScreen />
+          </Layout>
+          }/>
+            
+          <Route path="/login" element={<LoginScreen />} />
+          <Route
+            path="/search"
+            element={
+              <Layout>
+                <h1>Test search</h1>
+              </Layout>
+            }
+          />
+          <Route path="/" 
+          element={<Navigate replace to="/" />} />
         </Routes>
-          
       </Router>
     </>
   );

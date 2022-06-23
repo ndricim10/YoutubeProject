@@ -9,7 +9,7 @@ import {} from '@fortawesome/fontawesome-svg-core'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import WindowSize from "../../WindowSize";
 import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
-
+import {Link} from 'react-router-dom'
 
 export default function Header() {
   const [search, setSearch] = useState(false)
@@ -51,7 +51,9 @@ export default function Header() {
         <FaBars className="header_menu" size={24} />
         </div>
         <div className="header_logo">
+          <Link to='/' >
           <AiFillYoutube color="red" size={30} />
+          </Link>
         </div>
       </div>
       <form>

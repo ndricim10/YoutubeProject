@@ -13,7 +13,7 @@ export default function HomeScreen() {
      <div className="cards">
      <Row>
         {[...new Array(200)].map((e, i) => (
-          <Col lg={3} md={4} sm={6} xs={12}>
+          <Col lg={4} md={6}>
             <VideoCard />
           </Col>
         ))}
