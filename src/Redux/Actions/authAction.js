@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import app from '../../firebase'
 import { GoogleAuthProvider } from 'firebase/auth'
 import { getAuth, signInWithPopup } from 'firebase/auth'
 
@@ -11,5 +11,7 @@ export const login=()=>async dispatch=>{
     }
 
     
-    catch(error){}
+    catch(error){
+        console.log(error);
+    }
 }

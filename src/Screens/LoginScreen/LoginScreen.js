@@ -10,6 +10,7 @@ export default function LoginScreen() {
   const dispatch = useDispatch()
   const handleLogin=()=>{
     dispatch(login())
+    console.log('clicked');
   }
 
   return (
