@@ -14,15 +14,15 @@ import { login } from "../../Redux/Actions/authAction";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../Screens/LoginScreen/Profile";
 import { profile_toggle } from "../../Redux/Reducers/actionType";
-
+import LoginScreen from "../../Screens/LoginScreen/LoginScreen";
 
 export default function Header() {
   const [search, setSearch] = useState(false);
   const { height, width } = WindowSize();
   const [sideBar, setSideBar] = useState(false);
   const { user } = useSelector((state) => state.auth);
-  const profile_toggle1 = useSelector(state=>state.profile_toggle)
-  const dispatch = useDispatch()
+  const profile_toggle1 = useSelector((state) => state.profile_toggle);
+  const dispatch = useDispatch();
 
   function mainSearchBar(event) {
     event.preventDefault();
@@ -94,11 +94,17 @@ export default function Header() {
       <div className="header_icons">
         <MdApps size={25} />
         <MdNotifications size={25} />
-        <div className="header_relative" >
-          <img src={user.photoUrl} className="header_avatar" onClick={() => dispatch(profile_toggle())}/>
-          {
-            profile_toggle1 && <Profile />
-          }
+        <div className="header_relative">
+          {localStorage.getItem("yt-accessToken") ? (
+            <img
+              src={user.photoUrl}
+              className="header_avatar"
+              onClick={() => dispatch(profile_toggle())}
+            />
+          ) : (
+            <LoginScreen />
+          )}
+          {profile_toggle1 && <Profile />}
         </div>
       </div>
     </div>

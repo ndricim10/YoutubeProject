@@ -7,42 +7,47 @@ import {
 } from "./Reducers/actionType";
 
 const initialState = {
-  accessToken: null,
-  user: null,
+  accessToken: localStorage.getItem("yt-accessToken")
+    ? localStorage.getItem("yt-accessToken")
+    : null,
+  user: localStorage.getItem("yt-user")
+    ? JSON.parse(localStorage.getItem("yt-user"))
+    : null,
   loading: false,
 };
 
-export const authReducer = (prevState = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case Login_request:
-      return { ...prevState, loading: true };
+      return { ...state, loading: true };
     case Login_success:
       return {
-        ...prevState,
+        ...state,
         accessToken: payload,
         loading: false,
       };
-
     case Login_fail:
       return {
-        ...prevState,
+        ...state,
         accessToken: null,
         loading: false,
         error: payload,
       };
-
     case load_profile:
       return {
-        ...prevState,
+        ...state,
         user: payload,
       };
-      case Login_out:
-        return initialState
-
+    case Login_out:
+      return {
+        accessToken: null,
+        user: null,
+        loading: false,
+      };
     default:
-      return prevState;
+      return state;
   }
 };
 
@@ -50,10 +55,10 @@ export const profileToggle = (state = false, action) => {
   switch (action.type) {
     case "Toggle":
       return !state;
-      case "ProfileTrue":
+    case "ProfileTrue":
       return true;
 
-      case "ProfileFalse":
+    case "ProfileFalse":
       return false;
 
     default:

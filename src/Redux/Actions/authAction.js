@@ -11,7 +11,6 @@ export const login=()=>async dispatch=>{
         const provider = new GoogleAuthProvider()
         const auth = getAuth()
         const res = await signInWithPopup(auth, provider)
-        console.log(res);
         
         const accessToken = res.user.accessToken
         const profile = {
@@ -20,6 +19,10 @@ export const login=()=>async dispatch=>{
             photoUrl: res.user.photoURL,
             emailVerified: res.user.emailVerified
         }
+
+        localStorage.setItem("yt-accessToken", accessToken)
+        localStorage.setItem("yt-user", JSON.stringify(profile))
+
         dispatch({
             type: Login_success,
             payload: accessToken

@@ -13,16 +13,12 @@ export function profile_toggle(){
 }
 export function profile_true(){
     return {
-        type: "profileTrue"
+        type: "ProfileTrue"
     }
 }
 export function profile_false(){
     return {
-        type: "profileFalse"
+        type: "ProfileFalse"
     }
-}
-
-export function log_out(){
-    return Login_out
 }
   

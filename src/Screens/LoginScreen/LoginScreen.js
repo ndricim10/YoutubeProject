@@ -6,6 +6,7 @@ import './loginScreen.scss'
 import { useDispatch } from "react-redux/es/exports";
 import { useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom'
+import {FiLogIn} from 'react-icons/fi'
 
 export default function LoginScreen() {
   
@@ -24,13 +25,9 @@ const accessToken = useSelector(state=>state.auth.accessToken)
     }
   }, [accessToken, navigate])
   return (
-    <div className="login">
-      <div className="login_container">
-        <div className="header_logo">
-          <AiFillYoutube color="red" size={50} />
-        </div>
-        <button onClick={handleLogin}>Login with Google</button>
-      </div>
+    <div className="login" onClick={handleLogin}>
+      <FiLogIn size={25}/>
+      <button>Login</button>
     </div>
   );
 }
