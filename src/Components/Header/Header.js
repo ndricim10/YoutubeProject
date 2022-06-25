@@ -10,6 +10,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import WindowSize from "../../WindowSize";
 import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
 import {Link} from 'react-router-dom'
+import { login } from "../../Redux/Actions/authAction";
 
 export default function Header() {
   const [search, setSearch] = useState(false)
@@ -81,7 +82,7 @@ export default function Header() {
         <MdNotifications size={25} />
         <img
           className="header_avatar"
-          src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+          src=""
           alt=""
         />
       </div>

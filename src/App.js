@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Components/Header/Header";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Container } from "react-bootstrap";
@@ -8,8 +8,10 @@ import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 import {
   BrowserRouter as Router,
   Route,
-  Routes, Navigate
+  Routes,
+  useNavigate,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Layout({ children }) {
   return (
@@ -28,16 +30,25 @@ function Layout({ children }) {
 }
 
 export default function App() {
+  const { accessToken, loading } = useSelector((state) => state.auth)
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!loading && !accessToken) {
+      navigate("../login", { replace: true });
+    }
+  }, [accessToken, loading, navigate]);
+
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={
-            <Layout>
-            <HomeScreen />
-          </Layout>
-          }/>
-            
+    <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomeScreen />
+              </Layout>
+            }
+          />
+
           <Route path="/login" element={<LoginScreen />} />
           <Route
             path="/search"
@@ -47,10 +58,7 @@ export default function App() {
               </Layout>
             }
           />
-          <Route path="/" 
-          element={<Navigate replace to="/" />} />
+          <Route path="*" element={<h1>Error Page</h1>} />
         </Routes>
-      </Router>
-    </>
   );
 }

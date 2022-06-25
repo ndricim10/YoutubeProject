@@ -7,15 +7,14 @@ import {
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-const initialState = {
-  name: "Ndricim",
-  age: 21,
-};
+import { authReducer } from "../authReducer";
 
-const reducer = (initialState) => initialState;
+const reducer = combineReducers({
+  auth: authReducer
+})
 const store = createStore(
   reducer,
-  initialState,
+  {},
   composeWithDevTools(applyMiddleware(thunk))
 );
 
