@@ -32,6 +32,7 @@ function Layout({ children }) {
 export default function App() {
   const { accessToken, loading } = useSelector((state) => state.auth)
   const navigate = useNavigate();
+  
   useEffect(() => {
     if (!loading && !accessToken) {
       navigate("../login", { replace: true });

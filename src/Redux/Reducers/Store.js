@@ -7,10 +7,11 @@ import {
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { authReducer } from "../authReducer";
+import { authReducer, profileToggle } from "../Reducer";
 
 const reducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  profile_toggle: profileToggle
 })
 const store = createStore(
   reducer,

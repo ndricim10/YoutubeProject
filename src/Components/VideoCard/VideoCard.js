@@ -2,7 +2,7 @@ import React from "react";
 import "./VideoCard.scss";
 import {millify} from 'millify'
 
-export default function VideoCard() {
+export default function VideoCard({}) {
   return (
     <div className="video">
       <div className="video_top">

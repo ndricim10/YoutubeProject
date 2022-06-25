@@ -34,6 +34,10 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+
+  }
+  &_relative{
+    position: relative;
   }
 
   form {
