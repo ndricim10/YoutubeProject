@@ -70,9 +70,9 @@
   .appearance {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-right: 1.2rem;
-    gap: 20px;
+    justify-content: space-around;
+    // gap: 20px;
+    padding-inline: 1rem;
   }
 
   .select-theme {
@@ -84,14 +84,15 @@
       flex-direction: column;
       gap: 20px;
 
-      .ld{
+      .ld {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        // gap: 20px;
         align-items: center;
-        padding: .5rem;
+        padding: 0.5rem;
         padding-inline: 1rem;
 
-        span{
+        span {
           display: flex;
           justify-content: flex-end;
         }
@@ -102,4 +103,15 @@
       font-size: 0.8rem;
     }
   }
+}
+
+.threeDots{
+  position: absolute;
+  right: 100%;
+  top: 10px;
+  width: max-content;
+  z-index: 99999;
+  padding: 1rem;
+  border: 1px $black-primary solid;
+  border-radius: 3px;
 }

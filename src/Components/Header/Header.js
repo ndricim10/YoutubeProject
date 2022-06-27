@@ -12,11 +12,13 @@ import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../Screens/LoginScreen/Profile";
-import { profile_toggle } from "../../Redux/Reducers/actionType";
+import { profile_toggle, theme_false } from "../../Redux/Reducers/actionType";
 import LoginScreen from "../../Screens/LoginScreen/LoginScreen";
-import {BsThreeDotsVertical} from 'react-icons/bs'
-import {RiVideoAddFill} from 'react-icons/ri'
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { RiVideoAddFill } from "react-icons/ri";
 import Theme from "../../Screens/LoginScreen/Theme";
+import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
+import '../../Screens/LoginScreen/loginScreen.scss'
 
 export default function Header() {
   const [search, setSearch] = useState(false);
@@ -24,10 +26,10 @@ export default function Header() {
   const [sideBar, setSideBar] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const profile_toggle1 = useSelector((state) => state.profile_toggle);
-  const showTheme = useSelector(state=>state.Theme)
-  const darkMode = useSelector(state=>state.darkMode)
+  const showTheme = useSelector((state) => state.Theme);
+  const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
-
+  const [dots, setDots] = useState(false)
 
   function mainSearchBar(event) {
     event.preventDefault();
@@ -50,6 +52,11 @@ export default function Header() {
     setSearch(false);
   }
 
+  function openProfile() {
+    dispatch(profile_toggle());
+    dispatch(theme_false());
+  }
+
   window.addEventListener("resize", () => {
     if (width > 576) {
       setSearch(false);
@@ -70,9 +77,17 @@ export default function Header() {
         </div>
       </div>
       <form>
-        <input type="search" placeholder="Search" className={darkMode ? "input color-light" : "input color-dark"} />
+        <input
+          type="search"
+          placeholder="Search"
+          className={darkMode ? "input color-light" : "input color-dark"}
+        />
         {search && (
-          <div className={darkMode ? "small_search light-mode" : "small_search dark-mode"}>
+          <div
+            className={
+              darkMode ? "small_search light-mode" : "small_search dark-mode"
+            }
+          >
             <BiArrowBack
               className="arrow-back"
               size={25}
@@ -88,7 +103,13 @@ export default function Header() {
             </button>
           </div>
         )}
-        <button type="submit" className={darkMode ? "main-button color-light" : "main-button color-dark"} onClick={mainSearchBar}>
+        <button
+          type="submit"
+          className={
+            darkMode ? "main-button color-light" : "main-button color-dark"
+          }
+          onClick={mainSearchBar}
+        >
           <FontAwesomeIcon icon={faSearch} fontSize={22} />
         </button>
         <button type="submit" onClick={searchBar} className="secondary-button">
@@ -99,14 +120,25 @@ export default function Header() {
       <div className="header_icons">
         <RiVideoAddFill size={30} />
         <MdApps size={30} />
-        {localStorage.getItem("yt-accessToken") && <MdNotifications size={30} />}
-        {!localStorage.getItem("yt-accessToken") &&  <BsThreeDotsVertical size={30} />}
+        {localStorage.getItem("yt-accessToken") && (
+          <MdNotifications size={30} />
+        )}
+        <div className="dots">
+          {!localStorage.getItem("yt-accessToken") && (
+            <>
+            <BsThreeDotsVertical size={30} onClick={()=>setDots(prev=>!prev)} />
+            <div className="profile">
+            {dots && <ThreeDots click={()=>setDots(false)} />}
+            </div>
+            </>
+          )}
+        </div>
         <div className="header_relative">
           {localStorage.getItem("yt-accessToken") ? (
             <img
               src={user.photoUrl}
               className="header_avatar"
-              onClick={() => dispatch(profile_toggle())}
+              onClick={openProfile}
             />
           ) : (
             <LoginScreen />
