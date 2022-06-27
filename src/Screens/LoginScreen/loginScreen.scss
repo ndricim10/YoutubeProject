@@ -4,14 +4,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: $textColor;
   color: $black-primary;
   padding-inline: 1rem;
   border-radius: 4px;
   font-weight: 600;
   height: 40px;
+
   button {
-    color: $black-primary;
     font-weight: 600;
     height: 100%;
     border: none;
@@ -27,7 +26,7 @@
   position: absolute;
   right: 100%;
   z-index: 99999999999;
-  background-color: $black-primary;
+  // background-color: $black-primary;
   font-size: 1.1rem;
   width: max-content;
   height: max-content;
@@ -39,14 +38,14 @@
     gap: 20px;
     cursor: text;
 
-    div{
+    div {
       display: flex;
       flex-direction: column;
       gap: 3px;
 
-      .email{
-        opacity: .8;
-        font-size: .8rem;
+      .email {
+        opacity: 0.8;
+        font-size: 0.8rem;
       }
     }
   }
@@ -63,6 +62,44 @@
         background-color: $textColor;
         color: $black-primary;
       }
+    }
+  }
+}
+
+.profile {
+  .appearance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1.2rem;
+    gap: 20px;
+  }
+
+  .select-theme {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .light-dark {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .ld{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem;
+        padding-inline: 1rem;
+
+        span{
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+    .desc {
+      opacity: 0.8;
+      font-size: 0.8rem;
     }
   }
 }

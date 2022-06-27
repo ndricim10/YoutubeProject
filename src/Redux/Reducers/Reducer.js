@@ -4,7 +4,7 @@ import {
   Login_out,
   Login_request,
   Login_success,
-} from "./Reducers/actionType";
+} from "./actionType";
 
 const initialState = {
   accessToken: localStorage.getItem("yt-accessToken")
@@ -59,6 +59,30 @@ export const profileToggle = (state = false, action) => {
       return true;
 
     case "ProfileFalse":
+      return false;
+
+    default:
+      return state;
+  }
+};
+
+export const darkMode = (state = false, action) => {
+  switch (action.type) {
+    case "light":
+      return false;
+    case "dark":
+      return true;
+
+    default:
+      return state;
+  }
+};
+
+export const theme = (state = false, action) => {
+  switch (action.type) {
+    case "show":
+      return true;
+    case "hide":
       return false;
 
     default:

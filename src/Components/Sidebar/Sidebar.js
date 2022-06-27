@@ -2,15 +2,15 @@ import React from "react";
 import "./sidebar.scss";
 import {
   MdSubscriptions,
-  MdExitToApp,
   MdThumbUp,
   MdHistory,
-  MdLibraryBooks,
   MdHome,
-  MdSentimentDissatisfied,
 } from "react-icons/md";
+import {useSelector} from 'react-redux'
+import '../../index.scss'
 
-export default function Sidebar({size, hide}) {
+export default function Sidebar({size}) {
+  const darkMode = useSelector(state=>state.dar)
   return (
     <nav className="sidebar"  >
       <ul className="home-ul">

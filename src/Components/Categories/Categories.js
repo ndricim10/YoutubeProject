@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import './categories.scss'
+import {useSelector} from'react-redux'
 
 const keywords = [
   'All',
@@ -22,14 +23,9 @@ const keywords = [
   'Front end'
 ]
 
-
-
 export default function Categories() {
-
-  const [activeElement, setActiveElement] = useState('React js')
-  function handleClick(category){
-    setActiveElement(category)
-  }
+  const [activeElement, setActiveElement] = useState('All')
+  const darkMode = useSelector(state=>state.darkMode)
 
   const categoriesKeywords = keywords.map((category, i)=>{
     return <span key={i} 
@@ -39,7 +35,7 @@ export default function Categories() {
       {category}</span>
   })
   return (
-    <div className='categories'>
+    <div className={darkMode ? "categories light-mode" : "categories dark-mode"}>
       {categoriesKeywords}
     </div>
   )

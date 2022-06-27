@@ -20,7 +20,7 @@
   .leftToggle {
     opacity: 1;
     z-index: 99;
-    background-color: $black-primary;
+    // background-color: $black-primary;
   }
   .rightToggle {
     opacity: 0.8;
@@ -28,7 +28,7 @@
   }
   .sidebar {
     .home-ul {
-      background-color: $black-primary;
+      // background-color: $black-primary;
       padding: unset;
       padding-inline: .5rem;
       gap: 20px;

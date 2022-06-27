@@ -43,6 +43,16 @@ body{
     letter-spacing: .1px;
 }
 
+.light-mode{
+  background: white;
+  color: $black-primary;
+}
+.dark-mode{
+  background: $black-primary;
+  color: $textColor;
+}
+
+
 .no-scroll{
   overflow-y: hidden;
 }

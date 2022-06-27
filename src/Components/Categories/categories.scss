@@ -6,9 +6,6 @@
   display: flex;
   overflow-x: scroll;
   gap: 10px;
-  
-
-  background-color: $black-primary;
   z-index: 99;
 
   &::-webkit-scrollbar {
@@ -18,7 +15,6 @@
   scrollbar-width: none;
 
   span {
-    background-color: $border-color;
     padding: 0.5rem;
     white-space: nowrap;
     border: 1.5px solid $textColor;
@@ -32,6 +28,11 @@
       font-weight: 600;
     }
   }
+}
+.light-span{
+  background-color: #ececec;
+  color: $black-primary;
+  border: 1px $textColor solid;
 }
 
 // @media (max-width: $breakpoint-small) {

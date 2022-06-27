@@ -30,36 +30,27 @@ function Layout({ children }) {
 }
 
 export default function App() {
-  const { accessToken, loading } = useSelector((state) => state.auth)
-  const navigate = useNavigate();
-  
-  // useEffect(() => {
-  //   if (!loading && !accessToken) {
-  //     navigate("../login", { replace: true });
-  //   }
-  // }, [accessToken, loading, navigate]);
-
   return (
     <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout>
-                <HomeScreen />
-              </Layout>
-            }
-          />
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        }
+      />
 
-          <Route path="/login" element={<LoginScreen />} />
-          <Route
-            path="/search"
-            element={
-              <Layout>
-                <h1>Test search</h1>
-              </Layout>
-            }
-          />
-          <Route path="*" element={<h1>Error Page</h1>} />
-        </Routes>
+      <Route path="/login" element={<LoginScreen />} />
+      <Route
+        path="/search"
+        element={
+          <Layout>
+            <h1>Test search</h1>
+          </Layout>
+        }
+      />
+      <Route path="*" element={<h1>Error Page</h1>} />
+    </Routes>
   );
 }
