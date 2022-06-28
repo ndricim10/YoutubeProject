@@ -143,7 +143,10 @@ export default function Header() {
               onClick={openProfile}
             />
           ) : (
-            <Link to="/login"><button>Login</button></Link>
+            <div className="signInUp">
+              <Link to="/login"><button className={darkMode? "color-light" : "color-dark"}>Sign In</button></Link>
+            <Link to="/signup"><button className={darkMode? "color-light" : "color-dark"}>Sign Up</button></Link>
+            </div>
           )}
           {profile_toggle1 && <Profile />}
           {showTheme && <Theme />}

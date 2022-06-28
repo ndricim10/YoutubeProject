@@ -14,6 +14,12 @@
   left: 0;
   right: 0;
 
+  .signInUp{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .dots{
     position: relative;
   }
@@ -85,12 +91,7 @@
   cursor: pointer;
 }
 
-.color-light {
-  color: $black-primary;
-}
-.color-dark {
-  color: $textColor;
-}
+
 
 @media (max-width: $breakpoint-small) {
   .header {

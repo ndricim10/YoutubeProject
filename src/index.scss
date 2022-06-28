@@ -42,6 +42,12 @@ body{
     font-family: "Roboto", sans-serif;
     letter-spacing: .1px;
 }
+.color-light {
+  color: $black-primary;
+}
+.color-dark {
+  color: $textColor;
+}
 
 .light-mode{
   background: white;
