@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux'
 import '../../index.scss'
 import DarkMode from "../DarkModeMUI/DarkMode";
 import {AiFillYoutube} from 'react-icons/ai'
+import LoginFb from "../LoginScreen/LoginFb";
 
 export default function LoginEmail() {
   const darkMode = useSelector((state) => state.darkMode);
@@ -45,6 +46,7 @@ export default function LoginEmail() {
           <div className="other-logins">
             <span>Or Sign In using</span>
             <div className="login-icons">
+              <LoginFb />
               <LoginScreen />
             </div>
           </div>

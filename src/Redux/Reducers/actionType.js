@@ -45,4 +45,8 @@ export function theme_false(){
         type: "hide"
     }
 }
+
+export const HOME_Videos_Success="HOME_Videos_Success"
+export const HOME_Videos_Fail="HOME_Videos_Fail"
+export const HOME_Videos_Request="HOME_Videos_Request"
   

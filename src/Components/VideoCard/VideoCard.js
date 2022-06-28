@@ -1,32 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./VideoCard.scss";
-import {millify} from 'millify'
+import { millify } from "millify";
+import moment from "moment";
+import request from "../../api";
 
-export default function VideoCard({}) {
+export default function VideoCard({ video }) {
+
+  const [channelIcon, setChannelIcon] = useState(null)
+  const {
+    id,
+    contentDetails:{
+      duration
+    },
+    snippet: {
+      channelId,
+      channelTitle,
+      publishedAt,
+      thumbnails: { medium },
+      title
+    },
+    statistics:{
+      viewCount
+    }
+  } = video;
+
+  useEffect(()=>{
+    const get_video_detail = async ()=>{
+      const{
+        data:{items},
+      } = await request('/channels',{
+        params:{
+          part: "snippet",
+          id: channelId,
+        }
+      })
+      setChannelIcon(items[0].snippet.thumbnails.default)
+    }
+    get_video_detail()
+  }, [channelId])
+
+  let dur = moment.duration(duration).asSeconds()
+  let _duration = moment.utc(dur * 1000).format("mm:ss")
+  console.log(channelIcon.url);
+
   return (
     <div className="video">
       <div className="video_top">
-        <img src="https://cdn.pixabay.com/photo/2017/10/10/21/49/youtuber-2838945_960_720.jpg" />
-        <span>05:20</span>
+        <img src={medium.url} />
+        <span>{_duration}</span>
       </div>
       <div className="video_channel_title">
-        <img src="https://yt3.ggpht.com/ypqAbDWiOc718gMoxAYbhA8brU_JZN1_V2qQBW1a-DvAyZaUGd2HnxiTl2mhe_KFUl_TvGPk=s68-c-k-c0x00ffffff-no-rj" />
-        <span>
-          Video Title final project watch and learn Hello world some text some other text, some other other texts
-        </span>
+        <img src={channelIcon?.url} />
+        <span>{title}</span>
       </div>
       <div className="video_all_details">
         <div></div>
         <div>
-        <div className="video_channel">
-          <span>Ndricim</span>
-        </div>
-        <div className="video_details">
-          <span> {millify(3634446373)} views</span>
-          <li>
-            <span>5 days ago</span>
-          </li>
-        </div>
+          <div className="video_channel">
+            <span>{channelTitle}</span>
+          </div>
+          <div className="video_details">
+            <span> {millify(viewCount)} views</span>
+            <li>
+              <span>{moment(publishedAt).fromNow()}</span>
+            </li>
+          </div>
         </div>
       </div>
     </div>
