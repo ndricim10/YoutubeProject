@@ -1,6 +1,5 @@
 import app from '../../firebase'
-import { GoogleAuthProvider } from 'firebase/auth'
-import { getAuth, signInWithPopup } from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { load_profile, Login_fail, Login_request, Login_success } from '../Reducers/actionType'
 
 export const login=()=>async dispatch=>{

@@ -4,7 +4,7 @@ import Sidebar from "./Components/Sidebar/Sidebar";
 import { Container } from "react-bootstrap";
 import "./Screens/HomeScreen/app.scss";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
-import LoginScreen from "./Screens/LoginScreen/LoginScreen";
+import LoginEmail from "./Screens/LoginEmail/LoginEmail";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,6 +12,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
+import SignUp from "./Screens/SignUp/SignUp";
 
 function Layout({ children }) {
   return (
@@ -41,7 +42,8 @@ export default function App() {
         }
       />
 
-      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/login" element={<LoginEmail />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route
         path="/search"
         element={

@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux/es/exports";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
+
+import { FcGoogle } from "react-icons/fc";
 import '../../index.scss'
 
 export default function LoginScreen() {
@@ -26,8 +28,7 @@ export default function LoginScreen() {
   }, [accessToken, navigate]);
   return (
     <div className={darkMode ? "login light-mode" : "login dark-mode"} onClick={handleLogin}>
-      <FiLogIn size={25} />
-      <button className={darkMode ? "light-mode" : "dark-mode"}>Login</button>
+      <FcGoogle size={30}/>
     </div>
   );
 }

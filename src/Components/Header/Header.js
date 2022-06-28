@@ -13,12 +13,11 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../Screens/LoginScreen/Profile";
 import { profile_toggle, theme_false } from "../../Redux/Reducers/actionType";
-import LoginScreen from "../../Screens/LoginScreen/LoginScreen";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RiVideoAddFill } from "react-icons/ri";
 import Theme from "../../Screens/LoginScreen/Theme";
 import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
-import '../../Screens/LoginScreen/loginScreen.scss'
+import "../../Screens/LoginScreen/loginScreen.scss";
 
 export default function Header() {
   const [search, setSearch] = useState(false);
@@ -29,7 +28,7 @@ export default function Header() {
   const showTheme = useSelector((state) => state.Theme);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
-  const [dots, setDots] = useState(false)
+  const [dots, setDots] = useState(false);
 
   function mainSearchBar(event) {
     event.preventDefault();
@@ -126,10 +125,13 @@ export default function Header() {
         <div className="dots">
           {!localStorage.getItem("yt-accessToken") && (
             <>
-            <BsThreeDotsVertical size={30} onClick={()=>setDots(prev=>!prev)} />
-            <div className="profile">
-            {dots && <ThreeDots click={()=>setDots(false)} />}
-            </div>
+              <BsThreeDotsVertical
+                size={30}
+                onClick={() => setDots((prev) => !prev)}
+              />
+              <div className="profile">
+                {dots && <ThreeDots click={() => setDots(false)} />}
+              </div>
             </>
           )}
         </div>
@@ -141,7 +143,7 @@ export default function Header() {
               onClick={openProfile}
             />
           ) : (
-            <LoginScreen />
+            <Link to="/login"><button>Login</button></Link>
           )}
           {profile_toggle1 && <Profile />}
           {showTheme && <Theme />}
