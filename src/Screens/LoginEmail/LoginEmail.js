@@ -4,13 +4,22 @@ import LoginScreen from "../LoginScreen/LoginScreen";
 import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import '../../index.scss'
+import DarkMode from "../DarkModeMUI/DarkMode";
+import {AiFillYoutube} from 'react-icons/ai'
 
 export default function LoginEmail() {
-  
   const darkMode = useSelector((state) => state.darkMode);
   return (
     <>
       <div className="big-login">
+      <div className="yt-logo">
+        <Link to="/">
+          <AiFillYoutube color="red" size={50} />
+        </Link>
+      </div>
+        <div className="switch">
+          <DarkMode />
+        </div>
         <div className="login-email">
           <span className="loginSpan">Login</span>
           <div>

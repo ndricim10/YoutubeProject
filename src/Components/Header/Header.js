@@ -18,6 +18,7 @@ import { RiVideoAddFill } from "react-icons/ri";
 import Theme from "../../Screens/LoginScreen/Theme";
 import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
+import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
 
 export default function Header() {
   const [search, setSearch] = useState(false);
@@ -117,7 +118,8 @@ export default function Header() {
       </form>
 
       <div className="header_icons">
-        <RiVideoAddFill size={30} />
+      {localStorage.getItem("yt-accessToken") &&
+        <RiVideoAddFill size={30} />}
         <MdApps size={30} />
         {localStorage.getItem("yt-accessToken") && (
           <MdNotifications size={30} />
@@ -125,13 +127,7 @@ export default function Header() {
         <div className="dots">
           {!localStorage.getItem("yt-accessToken") && (
             <>
-              <BsThreeDotsVertical
-                size={30}
-                onClick={() => setDots((prev) => !prev)}
-              />
-              <div className="profile">
-                {dots && <ThreeDots click={() => setDots(false)} />}
-              </div>
+              <DarkMode />
             </>
           )}
         </div>
@@ -144,8 +140,8 @@ export default function Header() {
             />
           ) : (
             <div className="signInUp">
-              <Link to="/login"><button className={darkMode? "color-light" : "color-dark"}>Sign In</button></Link>
-            <Link to="/signup"><button className={darkMode? "color-light" : "color-dark"}>Sign Up</button></Link>
+              <Link to="/login"><button className={darkMode? "color-light" : "color-dark"}>Login</button></Link>
+            {/* <Link to="/signup"><button className={darkMode? "color-light" : "color-dark"}>Sign Up</button></Link> */}
             </div>
           )}
           {profile_toggle1 && <Profile />}

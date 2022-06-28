@@ -68,6 +68,8 @@ export const profileToggle = (state = false, action) => {
 
 export const darkMode = (state = true, action) => {
   switch (action.type) {
+    case "toggleMode":
+      return !state;
     case "light":
       return false;
     case "dark":

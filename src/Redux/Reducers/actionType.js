@@ -29,6 +29,11 @@ export function dark_true(){
         type: "light"
     }
 }
+export function dark_toggle(){
+    return{
+        type: "toggleMode"
+    }
+}
 
 export function theme_true(){
     return {
