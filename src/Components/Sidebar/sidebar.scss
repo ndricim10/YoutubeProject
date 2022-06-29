@@ -15,6 +15,12 @@
         left: 0;
         padding: unset;
         padding-inline: 1px;
+
+        a{
+            list-style: none;
+            text-decoration: none;
+            color: unset;
+        }
         li{
             list-style: none;
             display: flex;
