@@ -69,14 +69,23 @@ export const profileToggle = (state = false, action) => {
 export const darkMode = (state = true, action) => {
   switch (action.type) {
     case "toggleMode":
+      state
+        ? localStorage.setItem("dark", state)
+        : localStorage.removeItem("dark");
       return !state;
     case "light":
+      localStorage.setItem("dark", state);
       return false;
     case "dark":
+      localStorage.removeItem("dark");
       return true;
 
     default:
-      return state;
+      if (localStorage.getItem("dark")) {
+        return false;
+      } else {
+        return true;
+      }
   }
 };
 

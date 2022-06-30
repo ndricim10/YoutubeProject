@@ -15,7 +15,7 @@ export default function DarkMode() {
   const darkMode = useSelector((state) => state.darkMode);
 function handleChange(event){
     dispatch(dark_toggle())
-    setValue(darkMode ? "defaultChecked" : event.target.checked)
+    setValue(localStorage.getItem('dark') ? "defaultChecked" : event.target.checked)
 }
 
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({

@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import VideoTemplate from "../../Components/VideoCard/VideoTemplate";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -31,7 +32,16 @@ export default function HomeScreen() {
       <div className="categories_absolute">
         <Categories />
       </div>
-      <div className="cards">
+      <Row>
+      {[...new Array(200)].map((e, i) => (
+          <Col lg={4} md={6} >
+            <div key={i}>
+            <VideoTemplate />
+            </div>
+          </Col>
+        ))}
+      </Row>
+      {/* <div className="cards">
           <InfiniteScroll
            dataLength={videos.length}
            next={fetchData}
@@ -53,7 +63,7 @@ export default function HomeScreen() {
          ))
           }
           </InfiniteScroll>
-      </div>
+      </div> */}
     </Container>
   );
 }

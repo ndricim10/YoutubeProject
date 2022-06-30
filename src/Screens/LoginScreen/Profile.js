@@ -13,7 +13,9 @@ export default function Profile() {
 
   function logOut() {
     dispatch({ type: Login_out });
-    window.localStorage.clear();
+    // window.localStorage.clear();
+    localStorage.removeItem("yt-accessToken")
+    localStorage.removeItem("yt-user")
     dispatch(profile_false());
   }
 

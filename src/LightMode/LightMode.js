@@ -3,7 +3,7 @@ import '../index.scss'
 
 export default function LightMode() {
     const darkMode = useSelector(state=>state.darkMode)
-    if(darkMode){
+    if(!localStorage.getItem('dark')){
         document.body.classList.add('light-mode')
         document.body.classList.remove('dark-mode')
     }

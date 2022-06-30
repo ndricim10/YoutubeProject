@@ -64,7 +64,7 @@ export default function Header() {
   });
 
   return (
-    <div className={darkMode ? "header light-mode" : "header dark-mode"}>
+    <div className={!localStorage.getItem("dark") ? "header light-mode" : "header dark-mode"}>
       {sideBar && <ToggleScreen click={hideSideBar} />}
       <div className="header_left">
         <div className="menuBar" onClick={ToggleSideBar}>
