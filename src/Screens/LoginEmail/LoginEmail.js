@@ -11,7 +11,7 @@ import { auth } from "../../firebase";
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
-  signInWithEmailAndPassword, signOut
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import {
   email_fail,
@@ -20,6 +20,7 @@ import {
   load_email_profile,
   Login_request,
 } from "../../Redux/Reducers/actionType";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function LoginEmail() {
   const accessToken = useSelector((state) => state.loginEmail.accessToken);
@@ -89,7 +90,7 @@ export default function LoginEmail() {
           <div>
             <div className="username">
               <span>Email</span>
-              <div className="input">
+              <div className={!darkMode ? 'input light-mode' : 'input'}>
                 <input
                   type="email"
                   placeholder="Type your email"
@@ -101,12 +102,16 @@ export default function LoginEmail() {
           <div>
             <div className="username">
               <span>Password</span>
-              <div className="input">
+              <div className={!darkMode ? 'input light-mode' : 'input'}>
                 <input
                   type="password"
                   placeholder="Type your password"
                   onChange={(event) => setPassword(event.target.value)}
                 />
+                <div className="eye">
+                  <AiFillEye size={25}/>
+                  <AiFillEyeInvisible size={25}/>
+                </div>
               </div>
             </div>
             <span className="forgot">Forgot password?</span>
