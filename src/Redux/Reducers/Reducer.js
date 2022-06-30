@@ -4,6 +4,7 @@ import {
   Login_out,
   Login_request,
   Login_success,
+  email_fail, email_out, email_request, email_success, load_email_profile
 } from "./actionType";
 
 const initialState = {
@@ -100,3 +101,43 @@ export const theme = (state = false, action) => {
       return state;
   }
 };
+
+const initial_Email_State = {
+  accessToken: localStorage.getItem('email-accessToken')? localStorage.getItem('email-accessToken') : null,
+  user: localStorage.getItem('email-user')? JSON.parse(localStorage.getItem('email-user')) : null,
+  loading: false,
+};
+
+export const login_email = (state=initial_Email_State, action)=>{
+  const { type, payload } = action;
+  switch (type) {
+    case email_request:
+      return { ...state, loading: true };
+    case email_success:
+      return {
+        ...state,
+        accessToken: payload,
+        loading: false,
+      };
+    case email_fail:
+      return {
+        ...state,
+        accessToken: null,
+        loading: false,
+        error: payload,
+      };
+    case load_email_profile:
+      return {
+        ...state,
+        user: payload,
+      };
+    case email_out:
+      return {
+        accessToken: null,
+        user: null,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+}

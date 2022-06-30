@@ -1,5 +1,5 @@
-import app from '../../firebase'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { auth } from '../../firebase'
+import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
 import { load_profile, Login_fail, Login_request, Login_success } from '../Reducers/actionType'
 
 export const login=()=>async dispatch=>{
@@ -10,12 +10,11 @@ export const login=()=>async dispatch=>{
         const provider = new GoogleAuthProvider()
         
         provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl")
-        const auth = getAuth()
         const res = await signInWithPopup(auth, provider)
         
         const accessToken = res.user.accessToken
         const profile = {
-            name: res.user.displayName,
+            fullName: res.user.displayName,
             email: res.user.email,
             photoUrl: res.user.photoURL,
             emailVerified: res.user.emailVerified

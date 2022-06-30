@@ -20,7 +20,9 @@ import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
 import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
 
+
 export default function Header() {
+  const userEmail = useSelector(state=>state.loginEmail.user)
   const [search, setSearch] = useState(false);
   const { height, width } = WindowSize();
   const [sideBar, setSideBar] = useState(false);
@@ -52,6 +54,28 @@ export default function Header() {
     setSearch(false);
   }
 
+  const photoURL = ()=>{
+    if(user){
+     if(isNaN(user.photoURL)){
+      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
+     }
+     else{
+      return user.photoURL
+     }
+    }
+    else if(userEmail){
+      if(isNaN(userEmail.photoURL)){
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
+       }
+       else{
+        return userEmail.photoURL
+       }
+    }
+    else{
+      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
+    }
+  }
+
   function openProfile() {
     dispatch(profile_toggle());
     dispatch(theme_false());
@@ -64,7 +88,11 @@ export default function Header() {
   });
 
   return (
-    <div className={!localStorage.getItem("dark") ? "header light-mode" : "header dark-mode"}>
+    <div
+      className={
+        !localStorage.getItem("dark") ? "header light-mode" : "header dark-mode"
+      }
+    >
       {sideBar && <ToggleScreen click={hideSideBar} />}
       <div className="header_left">
         <div className="menuBar" onClick={ToggleSideBar}>
@@ -118,32 +146,36 @@ export default function Header() {
       </form>
 
       <div className="header_icons">
-      {localStorage.getItem("yt-accessToken") &&
-        <RiVideoAddFill size={30} />}
+        {localStorage.getItem("yt-accessToken") && localStorage.getItem('email-accessToken') && <RiVideoAddFill size={30} />}
         <MdApps size={30} />
-        {localStorage.getItem("yt-accessToken") && (
+        {localStorage.getItem("yt-accessToken") && localStorage.getItem('email-accessToken') && (
           <MdNotifications size={30} />
         )}
         <div className="dots">
-          {!localStorage.getItem("yt-accessToken") && (
+          {!localStorage.getItem("yt-accessToken") && !localStorage.getItem('email-accessToken') && (
             <>
               <DarkMode />
             </>
           )}
         </div>
         <div className="header_relative">
-          {localStorage.getItem("yt-accessToken") ? (
+          {localStorage.getItem("yt-accessToken") || localStorage.getItem('email-accessToken') ? (
             <img
-              src={user.photoUrl}
+              src={photoURL()}
               className="header_avatar"
               onClick={openProfile}
             />
           ) : (
             <div className="signInUp">
-              <Link to="/login"><button className={darkMode? "color-light" : "color-dark"}>Login</button></Link>
-            {/* <Link to="/signup"><button className={darkMode? "color-light" : "color-dark"}>Sign Up</button></Link> */}
+              <Link to="/login">
+                <button className={darkMode ? "color-light" : "color-dark"}>
+                  Login
+                </button>
+              </Link>
+              {/* <Link to="/signup"><button className={darkMode? "color-light" : "color-dark"}>Sign Up</button></Link> */}
             </div>
           )}
+
           {profile_toggle1 && <Profile />}
           {showTheme && <Theme />}
         </div>
