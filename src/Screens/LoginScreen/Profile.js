@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./loginScreen.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { profile_false, Login_out } from "../../Redux/Reducers/actionType";
+import { profile_false, Login_out, email_out } from "../../Redux/Reducers/actionType";
 import ChangeLightMode from "../lightMode/lightMode";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.auth);
@@ -13,16 +15,16 @@ export default function Profile() {
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
-  console.log(userEmail);
 
   function logOut() {
     dispatch({ type: Login_out });
-    // window.localStorage.clear();
+    dispatch({ type: email_out });
     localStorage.removeItem("yt-accessToken")
     localStorage.removeItem("yt-user")
     localStorage.removeItem("email-accessToken")
     localStorage.removeItem("email-user")
     dispatch(profile_false());
+    // signOut(auth)
   }
 
   const photoURL = ()=>{
@@ -47,7 +49,6 @@ export default function Profile() {
     }
   }
 
-
   const fullName = ()=>{
     if(user){
       return user.fullName
@@ -71,8 +72,6 @@ export default function Profile() {
       return "default email"
     }
   }
-
-  console.log(userEmail);
 
   return (localStorage.getItem("yt-accessToken") || localStorage.getItem('email-user')) && (
     <div className={darkMode ? "profile light-mode" : "profile dark-mode"}>

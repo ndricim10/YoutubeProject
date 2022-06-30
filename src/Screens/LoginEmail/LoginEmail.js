@@ -11,9 +11,10 @@ import { auth } from "../../firebase";
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword, signOut
 } from "firebase/auth";
 import {
+  email_fail,
   email_request,
   email_success,
   load_email_profile,
@@ -66,7 +67,6 @@ export default function LoginEmail() {
   };
 
   let navigate = useNavigate();
-
   useEffect(() => {
     if (accessToken) {
       navigate("../", { replace: true });
