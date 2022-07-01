@@ -10,6 +10,10 @@
   padding-block: 1rem;
   padding-top: 3rem;
 
+  a{
+    text-decoration: none;
+  }
+
   .login-email {
     display: flex;
     flex-direction: column;
@@ -46,22 +50,8 @@
       color: white;
       cursor: pointer;
 
-      &:hover {
-        background-color: white;
-        color: rgb(255, 0, 0);
-        border: rgb(255, 0, 0) 2px solid;
-        border-radius: 5px;
-      }
       &:disabled {
-        opacity: 0.5;
-        background-color: unset;
         cursor: auto;
-
-        &:hover {
-          background-color: unset;
-          color: unset;
-          border: unset;
-        }
       }
     }
   }
@@ -80,6 +70,7 @@
   flex-direction: column;
   gap: 3px;
   border-bottom: 1px rgb(177, 171, 171) solid;
+  padding-inline: 0.2rem;
 
   .input {
     display: flex;
@@ -97,8 +88,8 @@
       outline: none;
       border: none;
       height: 100%;
-      width: 90%;
-      padding-left: 1.2rem;
+      padding-left: 1rem;
+      padding-block: 0.5rem;
       background-color: transparent;
       &::placeholder {
         font-size: 0.8rem;
@@ -118,6 +109,9 @@ button {
   border-radius: 4px;
   font-weight: 700;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:disabled {
     opacity: 0.5;

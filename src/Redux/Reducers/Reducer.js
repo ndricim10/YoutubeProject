@@ -9,6 +9,11 @@ import {
   email_request,
   email_success,
   load_email_profile,
+  sign_success,
+  sign_request,
+  sign_fail,
+  load_sign_profile,
+  sign_out,
 } from "./actionType";
 
 const initialState = {
@@ -90,6 +95,46 @@ export const login_email = (state = initial_Email_State, action) => {
         user: payload,
       };
     case email_out:
+      return {
+        accessToken: null,
+        user: null,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+const initial_sign_State = {
+  accessToken: null,
+  user: null,
+  loading: false,
+};
+
+export const _sign_Up_email = (state = initial_sign_State, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case sign_request:
+      return { ...state, loading: true };
+    case sign_success:
+      return {
+        ...state,
+        accessToken: payload,
+        loading: false,
+      };
+    case sign_fail:
+      return {
+        ...state,
+        accessToken: null,
+        loading: false,
+        error: payload,
+      };
+    case load_sign_profile:
+      return {
+        ...state,
+        user: payload,
+      };
+    case sign_out:
       return {
         accessToken: null,
         user: null,

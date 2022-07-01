@@ -10,6 +10,12 @@ export  const email_request = "email_request"
 export  const email_out = "email_out"
 export  const load_email_profile = "load_email_profile"
 
+export  const sign_success = "sign_success"
+export  const sign_fail = "sign_fail"
+export  const sign_request = "sign_request"
+export  const sign_out = "sign_out"
+export  const load_sign_profile = "load_sign_profile"
+
 export function profile_toggle(){
     return {
         type: "Toggle"

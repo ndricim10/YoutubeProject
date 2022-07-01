@@ -56,7 +56,6 @@ export default function LoginEmail() {
         email: res.user.email,
         photoUrl: res.user.photoURL,
       };
-      console.log(res.user);
       provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
       const accessToken = res.user.accessToken;
 
@@ -214,6 +213,7 @@ export default function LoginEmail() {
     } else {
       setBtn(false);
     }
+    console.log('click');
   });
   return (
     <>
@@ -247,15 +247,15 @@ export default function LoginEmail() {
                 </div>
               </div>
               <div>
-                <div className="username">
+                <div className="username" onFocus={checkTrue}
+                      onBlur={checkFalse}>
                   <span>Password</span>
                   <div className={!darkMode ? "input light-mode" : "input"}>
                     <input
                       type={!toggleVisibility ? "text" : "password"}
                       placeholder="Type your password"
                       onChange={handleVisible}
-                      onFocus={checkTrue}
-                      onBlur={checkFalse}
+                      
                     />
                     <div className="eye" onClick={changeVisibility}>
                       {visibility && toggleVisibility ? (
@@ -270,11 +270,8 @@ export default function LoginEmail() {
                 {check && <Checked />}
                 <span className="forgot">Forgot password?</span>
               </div>
-
               {error && <span className="error">Error email or password</span>}
-              <button disabled={!btn} onClick={() => dispatch(login())}>
-                Login
-              </button>
+              <button disabled={!btn} onClick={() => dispatch(login())}>Login</button>
 
               <div className="other-logins">
                 <span>Or Sign In using</span>
