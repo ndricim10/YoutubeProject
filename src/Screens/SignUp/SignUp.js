@@ -67,11 +67,9 @@ export default function SignUp() {
     if(register.password.length>0){
       setVisibility(true)
       setToggleVisibility(true)
-      console.log(visibility, toggleVisibility);
     }
     else {
       setVisibility(false)
-      console.log(visibility, toggleVisibility);
     }
   }, [register.password.length])
 
@@ -79,11 +77,9 @@ export default function SignUp() {
     if(register.confirmPass.length>0){
       setVisibilityConfirm(true)
       setToggleVisibilityConfirm(true)
-      console.log(visibility, toggleVisibility);
     }
     else {
       setVisibilityConfirm(false)
-      console.log(visibility, toggleVisibility);
     }
   }, [register.confirmPass.length])
 
@@ -95,6 +91,15 @@ export default function SignUp() {
     setToggleVisibilityConfirm(prev=>!prev)
     console.log(toggleVisibilityConfirm);
   }
+
+  useEffect(()=>{
+    if(register.password === register.confirmPass){
+      console.log('true');
+    }
+    else{
+      console.log('false');
+    }
+  },[register.password.length, register.confirmPass.length])
 
   return (
     <div className="signUp">
