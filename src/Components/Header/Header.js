@@ -20,9 +20,8 @@ import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
 import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
 
-
 export default function Header() {
-  const userEmail = useSelector(state=>state.loginEmail.user)
+  const userEmail = useSelector((state) => state.loginEmail.user);
   const [search, setSearch] = useState(false);
   const { height, width } = WindowSize();
   const [sideBar, setSideBar] = useState(false);
@@ -54,27 +53,23 @@ export default function Header() {
     setSearch(false);
   }
 
-  const photoURL = ()=>{
-    if(user){
-     if(isNaN(user.photoURL)){
-      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
-     }
-     else{
-      return user.photoURL
-     }
+  const photoURL = () => {
+    if (user) {
+      if (isNaN(user.photoURL)) {
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+      } else {
+        return user.photoURL;
+      }
+    } else if (userEmail) {
+      if (isNaN(userEmail.photoURL)) {
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+      } else {
+        return userEmail.photoURL;
+      }
+    } else {
+      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
     }
-    else if(userEmail){
-      if(isNaN(userEmail.photoURL)){
-        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
-       }
-       else{
-        return userEmail.photoURL
-       }
-    }
-    else{
-      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png"
-    }
-  }
+  };
 
   function openProfile() {
     dispatch(profile_toggle());
@@ -86,6 +81,10 @@ export default function Header() {
       setSearch(false);
     }
   });
+
+  function handleSearch() {
+    console.log("searching");
+  }
 
   return (
     <div
@@ -127,7 +126,12 @@ export default function Header() {
               onClick={searchBar}
               className="secondary-button"
             >
-              <FontAwesomeIcon icon={faSearch} fontSize={22} className="test" />
+              <FontAwesomeIcon
+            onClick={handleSearch}
+                icon={faSearch}
+                fontSize={22}
+                className={darkMode ? "test color-light" : "test color-dark"}
+              />
             </button>
           </div>
         )}
@@ -138,28 +142,50 @@ export default function Header() {
           }
           onClick={mainSearchBar}
         >
-          <FontAwesomeIcon icon={faSearch} fontSize={22} />
+          <FontAwesomeIcon
+            icon={faSearch}
+            fontSize={22}
+            className={darkMode ? "color-light" : "color-dark"}
+          />
         </button>
-        <button type="submit" onClick={searchBar} className="secondary-button">
-          <FontAwesomeIcon icon={faSearch} fontSize={22} />
+        <button
+          type="submit"
+          onClick={searchBar}
+          className={
+            darkMode
+              ? "secondary-button color-light"
+              : "secondary-button color-dark"
+          }
+        >
+          <FontAwesomeIcon
+            onClick={handleSearch}
+            icon={faSearch}
+            fontSize={22}
+          />
         </button>
       </form>
 
       <div className="header_icons">
-        {localStorage.getItem("yt-accessToken") || localStorage.getItem('email-accessToken') && <RiVideoAddFill size={30} />}
+        {localStorage.getItem("yt-accessToken") ||
+          (localStorage.getItem("email-accessToken") && (
+            <RiVideoAddFill size={30} />
+          ))}
         <MdApps size={30} />
-        {localStorage.getItem("yt-accessToken") || localStorage.getItem('email-accessToken') && (
-          <MdNotifications size={30} />
-        )}
+        {localStorage.getItem("yt-accessToken") ||
+          (localStorage.getItem("email-accessToken") && (
+            <MdNotifications size={30} />
+          ))}
         <div className="dots">
-          {!localStorage.getItem("yt-accessToken") && !localStorage.getItem('email-accessToken') && (
-            <>
-              <DarkMode />
-            </>
-          )}
+          {!localStorage.getItem("yt-accessToken") &&
+            !localStorage.getItem("email-accessToken") && (
+              <>
+                <DarkMode />
+              </>
+            )}
         </div>
         <div className="header_relative">
-          {localStorage.getItem("yt-accessToken") || localStorage.getItem('email-accessToken') ? (
+          {localStorage.getItem("yt-accessToken") ||
+          localStorage.getItem("email-accessToken") ? (
             <img
               src={photoURL()}
               className="header_avatar"

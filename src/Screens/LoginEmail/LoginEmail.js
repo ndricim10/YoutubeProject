@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactLoading from "react-loading";
 import "./LoginEmail.scss";
 import LoginScreen from "../LoginScreen/LoginScreen";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,12 +24,15 @@ import {
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function LoginEmail() {
-  const accessToken = useSelector((state) => state.loginEmail.accessToken);
+  const { accessToken, loading } = useSelector((state) => state.loginEmail);
   const [error, setError] = useState(false);
   const darkMode = useSelector((state) => state.darkMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
+  const [visibility, setVisibility] = useState(false);
+  const [toggleVisibility, setToggleVisibility] = useState(false);
 
   const login = async () => {
     try {
@@ -74,70 +78,105 @@ export default function LoginEmail() {
     }
   }, [accessToken, navigate]);
 
+  function handleVisible(event) {
+    setPassword(event.target.value);
+    
+  }
+
+  useEffect(()=>{
+    if(password.length>0){
+      setVisibility(true)
+      setToggleVisibility(true)
+      console.log(visibility, toggleVisibility);
+    }
+    else {
+      setVisibility(false)
+      console.log(visibility, toggleVisibility);
+    }
+  }, [password.length])
+
+  function changeVisibility(){
+    setToggleVisibility(prev=>!prev)
+  }
+
   return (
     <>
-      <div className="big-login">
-        <div className="yt-logo">
-          <Link to="/">
-            <AiFillYoutube color="red" size={50} />
-          </Link>
+      {loading ? (
+        <div className="loader">
+          <ReactLoading type="bars" height={200} width={175} />
         </div>
-        <div className="switch">
-          <DarkMode />
-        </div>
-        <div className="login-email">
-          <span className="loginSpan">Login</span>
-          <div>
-            <div className="username">
-              <span>Email</span>
-              <div className={!darkMode ? 'input light-mode' : 'input'}>
-                <input
-                  type="email"
-                  placeholder="Type your email"
-                  onChange={(event) => setEmail(event.target.value)}
-                />
-              </div>
+      ) : (
+        <>
+          <div className="big-login">
+            <div className="yt-logo">
+              <Link to="/">
+                <AiFillYoutube color="red" size={50} />
+              </Link>
             </div>
-          </div>
-          <div>
-            <div className="username">
-              <span>Password</span>
-              <div className={!darkMode ? 'input light-mode' : 'input'}>
-                <input
-                  type="password"
-                  placeholder="Type your password"
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-                <div className="eye">
-                  <AiFillEye size={25}/>
-                  <AiFillEyeInvisible size={25}/>
+            <div className="switch">
+              <DarkMode />
+            </div>
+            <div className="login-email">
+              <span className="loginSpan">Login</span>
+              <div>
+                <div className="username">
+                  <span>Email</span>
+                  <div className={!darkMode ? "input light-mode" : "input"}>
+                    <input
+                      type="email"
+                      placeholder="Type your email"
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="username">
+                  <span>Password</span>
+                  <div className={!darkMode ? "input light-mode" : "input"}>
+                    <input
+                      type={!toggleVisibility ? "text" : "password"}
+                      placeholder="Type your password"
+                      onChange={handleVisible}
+                    />
+                    <div className="eye">
+                      {visibility && toggleVisibility ? (
+                        <AiFillEye size={25} onClick={changeVisibility}  />
+                      ) : null}
+                      {visibility && !toggleVisibility ? (
+                        <AiFillEyeInvisible
+                          size={25} onClick={changeVisibility}
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <span className="forgot">Forgot password?</span>
+              </div>
+
+              {error && <span className="error">Error email or password</span>}
+              <button onClick={() => dispatch(login())}>Login</button>
+
+              <div className="other-logins">
+                <span>Or Sign In using</span>
+                <div className="login-icons">
+                  <LoginFb />
+                  <LoginScreen />
                 </div>
               </div>
             </div>
-            <span className="forgot">Forgot password?</span>
-          </div>
 
-          {error && <span className="error">Error email or password</span>}
-          <button onClick={() => dispatch(login())}>Login</button>
-
-          <div className="other-logins">
-            <span>Or Sign In using</span>
-            <div className="login-icons">
-              <LoginFb />
-              <LoginScreen />
+            <div className="sign-up">
+              Or Sign Up Using
+              <Link to="/signup">
+                <button className={darkMode ? "color-light" : "color-dark"}>
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
-        </div>
-
-        <div className="sign-up">
-          Or Sign Up Using
-          <Link to="/signup">
-            <button className={darkMode ? "color-light" : "color-dark"}>
-              Sign Up
-            </button>
-          </Link>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }

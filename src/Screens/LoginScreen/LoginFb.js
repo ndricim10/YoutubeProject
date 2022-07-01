@@ -5,7 +5,7 @@ import { fbLogin } from '../../Redux/Actions/fbAction'
 export default function LoginFb() {
   return (
     <>
-    <div className='fb'n>
+    <div className='fb'>
     <AiFillFacebook size={30} color="blue"/>
     </div>
     </>

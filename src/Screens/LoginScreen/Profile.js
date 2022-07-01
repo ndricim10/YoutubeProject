@@ -7,6 +7,7 @@ import { profile_false, Login_out, email_out } from "../../Redux/Reducers/action
 import ChangeLightMode from "../lightMode/lightMode";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.auth);
@@ -15,6 +16,7 @@ export default function Profile() {
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate()
 
   function logOut() {
     dispatch({ type: Login_out });
@@ -24,7 +26,6 @@ export default function Profile() {
     localStorage.removeItem("email-accessToken")
     localStorage.removeItem("email-user")
     dispatch(profile_false());
-    // signOut(auth)
   }
 
   const photoURL = ()=>{
