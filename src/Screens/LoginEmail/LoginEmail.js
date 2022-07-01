@@ -50,7 +50,7 @@ export default function LoginEmail() {
 
       const provider = new GoogleAuthProvider();
       const res = await signInWithEmailAndPassword(auth, email, password);
-
+      console.log(res);
       const profile = {
         fullName: res.user.displayName,
         email: res.user.email,

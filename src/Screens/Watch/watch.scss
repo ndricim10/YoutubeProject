@@ -1,0 +1,53 @@
+@import "../../index.scss";
+
+.watch {
+//   &_comments {
+//   }
+
+  &_video {
+    img {
+      width: 100%;
+    }
+  }
+
+  &_related {
+    .related_template {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .video {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 5px;
+
+      &_top {
+        img {
+          height: 100%;
+        }
+      }
+
+      &_channel_title {
+        grid-template-columns: 1fr;
+      }
+      &_all_details {
+        grid-template-columns: 1fr;
+      }
+      .video_channel_title {
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 990px) {
+  .watch {
+    &_related {
+      .related_template {
+        margin-top: 20px;
+      }
+    }
+  }
+}

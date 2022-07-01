@@ -3,6 +3,7 @@ import "./VideoCard.scss";
 import moment from "moment";
 import request from "../../api";
 import numeral from 'numeral'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function VideoCard({ video }) {
   const [views, setViews] = useState(null);
@@ -60,11 +61,11 @@ export default function VideoCard({ video }) {
   return (
     <div className="video">
       <div className="video_top">
-        <img src={medium.url} />
+        <LazyLoadImage effect="blur" src={medium.url} />
         <span>{_duration}</span>
       </div>
       <div className="video_channel_title">
-        <img src={channelIcon?.url} />
+        <LazyLoadImage effect="blur" src={channelIcon?.url} />
         <span>{title}</span>
       </div>
       <div className="video_all_details">

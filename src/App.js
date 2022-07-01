@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SignUp from "./Screens/SignUp/SignUp";
+import Watch from "./Screens/Watch/Watch";
 
 function Layout({ children }) {
   return (
@@ -49,6 +50,14 @@ export default function App() {
         element={
           <Layout>
             <h1>Test search</h1>
+          </Layout>
+        }
+      />
+       <Route
+        path="/watch"
+        element={
+          <Layout>
+            <Watch />
           </Layout>
         }
       />

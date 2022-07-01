@@ -167,14 +167,13 @@ export default function Header() {
 
       <div className="header_icons">
         {localStorage.getItem("yt-accessToken") ||
-          (localStorage.getItem("email-accessToken") && (
-            <RiVideoAddFill size={30} />
-          ))}
+          localStorage.getItem("email-accessToken") ? 
+            <RiVideoAddFill size={30} /> : null
+          }
         <MdApps size={30} />
         {localStorage.getItem("yt-accessToken") ||
-          (localStorage.getItem("email-accessToken") && (
-            <MdNotifications size={30} />
-          ))}
+          (localStorage.getItem("email-accessToken")) ? 
+            <MdNotifications size={30} /> : null}
         <div className="dots">
           {!localStorage.getItem("yt-accessToken") &&
             !localStorage.getItem("email-accessToken") && (

@@ -18,19 +18,19 @@ import {
 } from "../../Redux/Reducers/actionType";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import ReactLoading from "react-loading";
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const {accessToken} = useSelector(state=>state.loginEmail)
+  const { accessToken } = useSelector((state) => state.loginEmail);
   const darkMode = useSelector((state) => state.darkMode);
-  const [error, setError] = useState(false)
-  const {loading} = useSelector(state=>state._sign_up)
+  const [error, setError] = useState(false);
+  const { loading } = useSelector((state) => state._sign_up);
+  let navigate = useNavigate();
 
   const signup = async () => {
     try {
-
       dispatch({
         type: sign_request,
       });
@@ -39,7 +39,6 @@ export default function SignUp() {
         register.email,
         register.password
       );
-      console.log(res);
 
       dispatch({
         type: sign_success,
@@ -49,8 +48,8 @@ export default function SignUp() {
         type: load_sign_profile,
         payload: res,
       });
-      
       setError(false);
+      navigate("../login", { replace: true });
     } catch (error) {
       dispatch({
         type: sign_fail,
@@ -66,7 +65,7 @@ export default function SignUp() {
     password: "",
     confirmPass: "",
   });
-  
+
   const [visibility, setVisibility] = useState(false);
   const [toggleVisibility, setToggleVisibility] = useState(false);
   const [visibilityConfirm, setVisibilityConfirm] = useState(false);
@@ -180,46 +179,46 @@ export default function SignUp() {
     );
   };
 
-  let navigate = useNavigate();
   useEffect(() => {
-    if (accessToken) {
-      navigate("../", { replace: true });
+    if (register.password.length > 0) {
+      setVisibility(true);
+      setToggleVisibility(true);
+    } else {
+      setVisibility(false);
     }
-  }, [accessToken, navigate]);
-
-  useEffect(()=>{
-    if(register.password.length>0){
-      setVisibility(true)
-      setToggleVisibility(true)
-    }
-    else {
-      setVisibility(false)
-    }
-  }, [register.password.length])
-
-  useEffect(()=>{
-    if(register.confirmPass.length>0){
-      setVisibilityConfirm(true)
-      setToggleVisibilityConfirm(true)
-    }
-    else {
-      setVisibilityConfirm(false)
-    }
-  }, [register.confirmPass.length])
+  }, [register.password.length]);
 
   useEffect(() => {
-    if (lower && upper && number && special && eight && register.email.length > 5 && register.email.includes("@") && register.confirmPass===register.password) {
+    if (register.confirmPass.length > 0) {
+      setVisibilityConfirm(true);
+      setToggleVisibilityConfirm(true);
+    } else {
+      setVisibilityConfirm(false);
+    }
+  }, [register.confirmPass.length]);
+
+  useEffect(() => {
+    if (
+      lower &&
+      upper &&
+      number &&
+      special &&
+      eight &&
+      register.email.length > 5 &&
+      register.email.includes("@") &&
+      register.confirmPass === register.password
+    ) {
       setBtn(true);
     } else {
       setBtn(false);
     }
   });
-  function changeVisibility(){
-    setToggleVisibility(prev=>!prev)
+  function changeVisibility() {
+    setToggleVisibility((prev) => !prev);
   }
 
-  function changeVisibilityConfirm(){
-    setToggleVisibilityConfirm(prev=>!prev)
+  function changeVisibilityConfirm() {
+    setToggleVisibilityConfirm((prev) => !prev);
   }
 
   function checkTrue() {
@@ -229,91 +228,92 @@ export default function SignUp() {
     setCheck(false);
   }
 
-
   return (
-    <>{loading ? (
-      <div className="loader">
-        <ReactLoading type="bars" height={200} width={175} />
-      </div>
-    ) :
-    (<div className="signUp">
-      <div className="yt-logo">
-        <Link to="/">
-          <AiFillYoutube color="red" size={50} />
-        </Link>
-      </div>
-      <div className="switch">
-        <DarkMode />
-      </div>
-      <span className="loginSpan">Sign Up</span>
-      
-      <div className="username">
-        <span>Email</span>
-        <div className={!darkMode ? "input light-mode" : "input"}>
-          <input
-            type="email"
-            placeholder="Type your email"
-            onChange={handleChange}
-            name="email"
-          />
+    <>
+      {loading ? (
+        <div className="loader">
+          <ReactLoading type="bars" height={200} width={175} />
         </div>
-      </div>
-      <div className="username" onFocus={checkTrue} onBlur={checkFalse}>
-        <span>Password</span>
-        <div className={!darkMode ? "input light-mode" : "input"}>
-          <input
-            type={!toggleVisibility ? "text" : "password"}
-            placeholder="Type your password"
-            onChange={handleChange}
-            name="password"
-          />
-          <div className="eye">
-                      {visibility && toggleVisibility ? (
-                        <AiFillEye size={25} onClick={changeVisibility}  />
-                      ) : null}
-                      {visibility && !toggleVisibility ? (
-                        <AiFillEyeInvisible
-                          size={25} onClick={changeVisibility}
-                        />
-                      ) : null}
-                    </div>
-        </div>
-      </div>
-      {check && <Checked />}
-      <div className="username">
-        <span>Confirm Password</span>
-        <div className={!darkMode ? "input light-mode" : "input"}>
-          <input
-            type={!toggleVisibilityConfirm ? "text" : "password"}
-            placeholder="Confirm your password"
-            onChange={handleChange}
-            name="confirmPass"
-          />
-          <div className="eye">
-                      {visibilityConfirm && toggleVisibilityConfirm ? (
-                        <AiFillEye size={25} onClick={changeVisibilityConfirm}  />
-                      ) : null}
-                      {visibilityConfirm && !toggleVisibilityConfirm ? (
-                        <AiFillEyeInvisible
-                          size={25} onClick={changeVisibilityConfirm}
-                        />
-                      ) : null}
-                    </div>
-        </div>
-      </div>
-      {error && <span className="error">This account already exists</span>}
-      <div className="btn">
-      <button disabled={!btn} onClick={signup}>Sign Up</button>
-      </div>
-      
+      ) : (
+        <div className="signUp">
+          <div className="yt-logo">
+            <Link to="/">
+              <AiFillYoutube color="red" size={50} />
+            </Link>
+          </div>
+          <div className="switch">
+            <DarkMode />
+          </div>
+          <span className="loginSpan">Sign Up</span>
 
-      <div className="have-account">
-        <span>You already have an account?</span>
-        <Link to="/login">
-          <span>Sign in</span>
-        </Link>
-      </div>
-    </div>)}
+          <div className="username">
+            <span>Email</span>
+            <div className={!darkMode ? "input light-mode" : "input"}>
+              <input
+                type="email"
+                placeholder="Type your email"
+                onChange={handleChange}
+                name="email"
+              />
+            </div>
+          </div>
+          <div className="username" onFocus={checkTrue} onBlur={checkFalse}>
+            <span>Password</span>
+            <div className={!darkMode ? "input light-mode" : "input"}>
+              <input
+                type={!toggleVisibility ? "text" : "password"}
+                placeholder="Type your password"
+                onChange={handleChange}
+                name="password"
+              />
+              <div className="eye">
+                {visibility && toggleVisibility ? (
+                  <AiFillEye size={25} onClick={changeVisibility} />
+                ) : null}
+                {visibility && !toggleVisibility ? (
+                  <AiFillEyeInvisible size={25} onClick={changeVisibility} />
+                ) : null}
+              </div>
+            </div>
+          </div>
+          {check && <Checked />}
+          <div className="username">
+            <span>Confirm Password</span>
+            <div className={!darkMode ? "input light-mode" : "input"}>
+              <input
+                type={!toggleVisibilityConfirm ? "text" : "password"}
+                placeholder="Confirm your password"
+                onChange={handleChange}
+                name="confirmPass"
+              />
+              <div className="eye">
+                {visibilityConfirm && toggleVisibilityConfirm ? (
+                  <AiFillEye size={25} onClick={changeVisibilityConfirm} />
+                ) : null}
+                {visibilityConfirm && !toggleVisibilityConfirm ? (
+                  <AiFillEyeInvisible
+                    size={25}
+                    onClick={changeVisibilityConfirm}
+                  />
+                ) : null}
+              </div>
+            </div>
+          </div>
+          {error && <span className="error">This account already exists</span>}
+          <div className="btn">
+            <button disabled={!btn} onClick={signup}>
+              Sign Up
+            </button>
+          </div>
+
+          <div className="have-account">
+            <span>You already have an account?</span>
+            <Link to="/login">
+              <span>Sign in</span>
+            </Link>
+          </div>
+        </div>
+      )}
     </>
   );
 }
