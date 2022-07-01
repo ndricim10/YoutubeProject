@@ -14,10 +14,12 @@ import {
 } from "../../Redux/Reducers/actionType";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
 
 export default function SignUp() {
   const dispatch = useDispatch();
   const {accessToken} = useSelector(state=>state.loginEmail)
+  const darkMode = useSelector((state) => state.darkMode);
 
   const signup = async () => {
     console.log(register);
@@ -39,6 +41,11 @@ export default function SignUp() {
     password: "",
     confirmPass: "",
   });
+  
+  const [visibility, setVisibility] = useState(false);
+  const [toggleVisibility, setToggleVisibility] = useState(false);
+  const [visibilityConfirm, setVisibilityConfirm] = useState(false);
+  const [toggleVisibilityConfirm, setToggleVisibilityConfirm] = useState(false);
 
   function handleChange(event) {
     setRegister((prevFormData) => {
@@ -56,6 +63,39 @@ export default function SignUp() {
     }
   }, [accessToken, navigate]);
 
+  useEffect(()=>{
+    if(register.password.length>0){
+      setVisibility(true)
+      setToggleVisibility(true)
+      console.log(visibility, toggleVisibility);
+    }
+    else {
+      setVisibility(false)
+      console.log(visibility, toggleVisibility);
+    }
+  }, [register.password.length])
+
+  useEffect(()=>{
+    if(register.confirmPass.length>0){
+      setVisibilityConfirm(true)
+      setToggleVisibilityConfirm(true)
+      console.log(visibility, toggleVisibility);
+    }
+    else {
+      setVisibilityConfirm(false)
+      console.log(visibility, toggleVisibility);
+    }
+  }, [register.confirmPass.length])
+
+  function changeVisibility(){
+    setToggleVisibility(prev=>!prev)
+  }
+
+  function changeVisibilityConfirm(){
+    setToggleVisibilityConfirm(prev=>!prev)
+    console.log(toggleVisibilityConfirm);
+  }
+
   return (
     <div className="signUp">
       <div className="yt-logo">
@@ -67,20 +107,10 @@ export default function SignUp() {
         <DarkMode />
       </div>
       <span className="loginSpan">Sign Up</span>
-      <div className="username">
-        <span>Full Name</span>
-        <div className="input">
-          <input
-            type="text"
-            placeholder="Type your username"
-            onChange={handleChange}
-            name="fullName"
-          />
-        </div>
-      </div>
+      
       <div className="username">
         <span>Email</span>
-        <div className="input">
+        <div className={!darkMode ? "input light-mode" : "input"}>
           <input
             type="email"
             placeholder="Type your email"
@@ -91,24 +121,44 @@ export default function SignUp() {
       </div>
       <div className="username">
         <span>Password</span>
-        <div className="input">
+        <div className={!darkMode ? "input light-mode" : "input"}>
           <input
-            type="password"
+            type={!toggleVisibility ? "text" : "password"}
             placeholder="Type your password"
             onChange={handleChange}
             name="password"
           />
+          <div className="eye">
+                      {visibility && toggleVisibility ? (
+                        <AiFillEye size={25} onClick={changeVisibility}  />
+                      ) : null}
+                      {visibility && !toggleVisibility ? (
+                        <AiFillEyeInvisible
+                          size={25} onClick={changeVisibility}
+                        />
+                      ) : null}
+                    </div>
         </div>
       </div>
       <div className="username">
         <span>Confirm Password</span>
-        <div className="input">
+        <div className={!darkMode ? "input light-mode" : "input"}>
           <input
-            type="password"
-            placeholder="Type your password"
+            type={!toggleVisibilityConfirm ? "text" : "password"}
+            placeholder="Confirm your password"
             onChange={handleChange}
             name="confirmPass"
           />
+          <div className="eye">
+                      {visibilityConfirm && toggleVisibilityConfirm ? (
+                        <AiFillEye size={25} onClick={changeVisibilityConfirm}  />
+                      ) : null}
+                      {visibilityConfirm && !toggleVisibilityConfirm ? (
+                        <AiFillEyeInvisible
+                          size={25} onClick={changeVisibilityConfirm}
+                        />
+                      ) : null}
+                    </div>
         </div>
       </div>
 
