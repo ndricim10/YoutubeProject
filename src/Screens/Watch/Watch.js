@@ -3,26 +3,34 @@ import "./watch.scss";
 import { Container, Row, Col } from "react-bootstrap";
 import VideoTemplate from "../../Components/VideoCard/VideoTemplate";
 import VideoWatch from "./VideoWatch";
-import Categories from '../../Components/Categories/Categories'
+import VideoMetaData from "./VideoMetaData/VideoMetaData";
+import Comments from "./Comments/Comments";
+import VideoHorizontal from "./VideoHorizontal/VideoHorizontal";
 
 export default function Watch() {
   return (
     <Container fluid className="watch">
       <Row>
-        <Col className="watch_comments" lg={7} xs={12}>
+        <Col lg={7} xs={12}>
+          <div className="watch_comments">
           <VideoWatch />
+          <VideoMetaData />
+          {
+           [...Array(20)].map(()=><Comments />)
+          }
+          </div>
         </Col>
 
         {/* Related videos */}
         <Col className="watch_related" lg={5} xs={12}>
         {/* <Categories /> */}
           <Row className="related_template">
-            {[...new Array(200)].map((e, i) => (
+            {[...new Array(20)].map((e, i) => (
               <Col xs={12}>
                 <>
                 
                 <div key={i}>
-                  <VideoTemplate />
+                  <VideoHorizontal />
                 </div>
                 </>
               </Col>

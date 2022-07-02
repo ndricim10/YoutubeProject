@@ -1,0 +1,30 @@
+@import "../../../index.scss";
+
+.videoMetaData {
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-inline: .3rem;
+    @include line-clamp(2);
+  }
+  &_more{
+    font-weight: 700;
+    cursor: pointer;
+    padding-inline: .2rem;
+  }
+  
+  .video_likes{
+    display: flex;
+    gap: 1rem;
+    height: max-content;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .views_date{
+    font-weight: 700;
+    .date{
+      padding-inline: 5px;
+    }
+  }
+}

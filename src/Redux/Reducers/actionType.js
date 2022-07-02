@@ -58,6 +58,28 @@ export function theme_false(){
     }
 }
 
+export function Like_True(){
+    return {
+        type: "Like"
+    }
+}
+export function Like_False(){
+    return {
+        type: "LikeFalse"
+    }
+}
+
+export function DisLike_True(){
+    return {
+        type: "DisLike"
+    }
+}
+export function DisLike_False(){
+    return {
+        type: "DisLikeFalse"
+    }
+}
+
 export const HOME_Videos_Success="HOME_Videos_Success"
 export const HOME_Videos_Fail="HOME_Videos_Fail"
 export const HOME_Videos_Request="HOME_Videos_Request"

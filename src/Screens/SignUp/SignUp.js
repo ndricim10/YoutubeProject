@@ -55,7 +55,6 @@ export default function SignUp() {
         type: sign_fail,
         payload: error.message,
       });
-      console.log(error.message);
       setError(true);
     }
   };

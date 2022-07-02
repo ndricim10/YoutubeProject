@@ -14,13 +14,20 @@
   left: 0;
   right: 0;
 
-  .signInUp{
+  .link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .signInUp {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .dots{
+  .dots {
     position: relative;
   }
 
@@ -91,8 +98,6 @@
   cursor: pointer;
 }
 
-
-
 @media (max-width: $breakpoint-small) {
   .header {
     form {
@@ -142,7 +147,15 @@
     &_icons {
       padding-inline: unset;
     }
+  }
+}
 
-    
+@media (max-width: 320px) {
+  .header {
+    .link {
+      div {
+        display: none;
+      }
+    }
   }
 }

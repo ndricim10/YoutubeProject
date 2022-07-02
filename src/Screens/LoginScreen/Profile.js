@@ -26,6 +26,7 @@ export default function Profile() {
     localStorage.removeItem("email-accessToken")
     localStorage.removeItem("email-user")
     dispatch(profile_false());
+    navigate("../login", { replace: true });
   }
 
   const photoURL = ()=>{

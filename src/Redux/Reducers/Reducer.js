@@ -195,3 +195,48 @@ export const theme = (state = false, action) => {
   }
 };
 
+const initialLikes = {
+  Like: false,
+  LikeCounter: 100,
+};
+const initialDisLikes = {
+  DisLike: false,
+  DisLikeCounter: 100,
+};
+
+export const LikeVideo = (state = initialLikes, action) => {
+  const { type} = action;
+  switch (type) {
+    case "Like":
+      return {
+        Like: !state.Like,
+        LikeCounter: !state.Like ? state.LikeCounter + 1 : state.LikeCounter - 1,
+      };
+    case "LikeFalse":
+      return {
+        LikeCounter: state.Like ? state.LikeCounter - 1 : state.LikeCounter ,
+        Like: false,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const DisLikeVideo = (state = initialDisLikes, action) => {
+  const { type} = action;
+  switch (type) {
+    case "DisLike":
+      return {
+        DisLike: !state.DisLike,
+        DisLikeCounter: !state.DisLike ? state.DisLikeCounter + 1 : state.DisLikeCounter - 1,
+      };
+      case "DisLikeFalse":
+        return {
+          DisLikeCounter: state.DisLike ? state.DisLikeCounter - 1 : state.DisLikeCounter,
+          Like: false
+        }
+    default:
+      return state;
+  }
+};

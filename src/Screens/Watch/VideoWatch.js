@@ -4,7 +4,12 @@ export default function VideoWatch() {
   return (
     <>
       <div className="watch_video">
-        <img src="https://cdn.pixabay.com/photo/2017/10/10/21/49/youtuber-2838945_960_720.jpg" />
+        <iframe
+          width="100%"
+          title="My Video"
+          height="100%"
+          src="https://www.youtube.com/embed/tgbNymZ7vqY"
+        ></iframe>
       </div>
     </>
   );

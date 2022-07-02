@@ -19,6 +19,7 @@ import Theme from "../../Screens/LoginScreen/Theme";
 import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
 import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
+import {FiLogIn} from 'react-icons/fi'
 
 export default function Header() {
   const userEmail = useSelector((state) => state.loginEmail.user);
@@ -192,7 +193,8 @@ export default function Header() {
             />
           ) : (
             <div className="signInUp">
-              <Link to="/login">
+              <Link to="/login" className="link">
+                <div><FiLogIn size={20} /></div>
                 <button className={darkMode ? "color-light" : "color-dark"}>
                   Login
                 </button>

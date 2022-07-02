@@ -54,7 +54,7 @@ export default function App() {
         }
       />
        <Route
-        path="/watch"
+        path="/watch/:id"
         element={
           <Layout>
             <Watch />

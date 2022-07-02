@@ -84,3 +84,16 @@
         }
     }
 }
+
+@media(max-width: 350px){
+    .video{
+        &_channel_title{
+            span{
+                font-size: 1rem;
+            }
+        }
+        &_details{
+            font-size: .85rem;
+        }
+    }
+}
