@@ -24,14 +24,13 @@ import {FiLogIn} from 'react-icons/fi'
 export default function Header() {
   const userEmail = useSelector((state) => state.loginEmail.user);
   const [search, setSearch] = useState(false);
-  const { height, width } = WindowSize();
+  const {width } = WindowSize();
   const [sideBar, setSideBar] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const profile_toggle1 = useSelector((state) => state.profile_toggle);
   const showTheme = useSelector((state) => state.Theme);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
-  const [dots, setDots] = useState(false);
 
   function mainSearchBar(event) {
     event.preventDefault();

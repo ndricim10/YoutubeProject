@@ -12,7 +12,15 @@
     cursor: pointer;
     padding-inline: .2rem;
   }
-  
+  .threeDotsRelative{
+    position: relative;
+  }
+  .ThreeDotsAbsolute{
+    position: absolute;
+    left: 100%;
+    border: 1px red solid;
+  }
+
   .video_likes{
     display: flex;
     gap: 1rem;

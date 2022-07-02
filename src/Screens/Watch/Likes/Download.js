@@ -3,14 +3,14 @@ import "./Likes.scss";
 import { BsDownload } from "react-icons/bs";
 import { BiCut } from "react-icons/bi";
 
-export default function Download() {
+export default function Download({size}) {
   return (
     <div className="likes">
       <div className="like_element">
-        <BsDownload size={25} />
+        <BsDownload size={size} />
       </div>
       <div className="like_element">
-        <BiCut size={25} />
+        <BiCut size={size} />
       </div>
     </div>
   );
