@@ -4,32 +4,33 @@
   .title {
     font-size: 1.5rem;
     font-weight: 700;
-    padding-inline: .3rem;
+    padding-inline: 0.3rem;
     @include line-clamp(2);
   }
-  &_more{
+  &_more {
     font-weight: 700;
     cursor: pointer;
-    padding-inline: .2rem;
+    padding-inline: 0.2rem;
   }
-  .threeDotsRelative{
+  .threeDotsRelative {
     position: relative;
   }
-  .ThreeDotsAbsolute{
-    position: absolute;
-    left: 100%;
+  .ThreeDotsAbsolute {
     border: 1px solid;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 20px;
     font-weight: 600;
-    z-index: 999999999999;
-    background-color: red;
     border-radius: 5px;
   }
+  .ThreeDotsAbsolute1 {
+    position: absolute;
+    left: 100%;
+    z-index: 999999999999;
+  }
 
-  .video_likes{
+  .video_likes {
     display: flex;
     gap: 1rem;
     height: max-content;
@@ -37,9 +38,9 @@
     cursor: pointer;
   }
 
-  .views_date{
+  .views_date {
     font-weight: 700;
-    .date{
+    .date {
       padding-inline: 5px;
     }
   }

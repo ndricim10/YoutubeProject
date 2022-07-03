@@ -6,7 +6,8 @@ import Download from "../Likes/Download";
 import { BsThreeDots } from "react-icons/bs";
 import ThreeDotsAbsolute from "../Likes/ThreeDotsAbsolute";
 import WindowSize from "../../../WindowSize";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
+import "../../../index.scss";
 
 export default function VideoMetaData() {
   const paragraph = ` 3 Musketjerët koncert live në Pallatin e Kongreseve, 15 Maj 2017, shoqëruar nga Orkestra Simfonike e RTSH.
@@ -23,6 +24,10 @@ export default function VideoMetaData() {
 
   function showMore() {
     setMore((prev) => !prev);
+    setFullLikes(false)
+  }
+  function showFullLikes() {
+    setFullLikes(prev=>!prev)
   }
 
   return (
@@ -57,12 +62,19 @@ export default function VideoMetaData() {
             {more && <Download size={!more ? 20 : 25} />}
             {!more && (
               <>
-                <div className="threeDotsRelative">
+                <div className="threeDotsRelative" onClick={showFullLikes}>
                   <BsThreeDots size={!more ? 20 : 25} />
-                  <ThreeDotsAbsolute
-                    size={!more ? 20 : 25}
-                    className={darkMode ? "ThreeDotsAbsolute light-mode" : "ThreeDotsAbsolute dark-mode"}
-                  />
+                  {fullLikes && (
+                    <div
+                      className={
+                        darkMode
+                          ? "ThreeDotsAbsolute1 light-mode"
+                          : "ThreeDotsAbsolute1 dark-mode"
+                      }
+                    >
+                      <ThreeDotsAbsolute size={!more ? 20 : 25} />
+                    </div>
+                  )}
                 </div>
               </>
             )}
