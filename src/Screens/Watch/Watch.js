@@ -13,25 +13,25 @@ export default function Watch() {
       <Row>
         <Col lg={7} xs={12}>
           <div className="watch_comments">
-          <VideoWatch />
-          <VideoMetaData />
-          {
-           [...Array(20)].map(()=><Comments />)
-          }
+            <VideoWatch />
+            <VideoMetaData />
+            
+            <div className="video_comments">
+              <Comments />
+            </div>
           </div>
         </Col>
 
         {/* Related videos */}
         <Col className="watch_related" lg={5} xs={12}>
-        {/* <Categories /> */}
+          {/* <Categories /> */}
           <Row className="related_template">
             {[...new Array(20)].map((e, i) => (
               <Col xs={12}>
                 <>
-                
-                <div key={i}>
-                  <VideoHorizontal />
-                </div>
+                  <div key={i}>
+                    <VideoHorizontal />
+                  </div>
                 </>
               </Col>
             ))}

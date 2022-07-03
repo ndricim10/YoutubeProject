@@ -1,0 +1,77 @@
+@import "../../../index.scss";
+
+.all-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .number-comments {
+    font-weight: 600;
+  }
+  .comment_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    cursor: pointer;
+  }
+
+  .comments {
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+    display: flex;
+    gap: 10px;
+
+    &_profile {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+
+      &_details {
+        display: flex;
+        gap: 3px;
+        &_second {
+          opacity: 0.8;
+          font-size: .8rem;
+        }
+        &_first {
+          font-weight: 700;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+  .firstComment {
+    cursor: pointer;
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    padding: 0.5rem;
+
+    .span-comment {
+      @include line-clamp(1);
+    }
+
+    .border-comments {
+      border: 1px solid;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .firstChild {
+        font-weight: 700;
+        border-right: 2px solid;
+        padding-right: 0.5rem;
+      }
+    }
+    .arrows {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}

@@ -1,8 +1,6 @@
 @import "../../index.scss";
 
 .watch {
-  
-
   &_video {
     height: 60vh;
     width: 100%;
@@ -32,6 +30,11 @@
       }
     }
   }
+
+  .video_comments {
+    margin-top: 40px;
+  }
+  
 }
 
 @media (max-width: 990px) {

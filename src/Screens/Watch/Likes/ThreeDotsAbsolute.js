@@ -8,7 +8,7 @@ export default function ThreeDotsAbsolute() {
   return (
     <div className='ThreeDotsAbsolute'>
       <div className="like_element">
-        <BsDownload size={25} /> <span>Clip</span>
+        <BsDownload size={25} /> <span>Download</span>
       </div>
       <div className="like_element">
         <BiCut size={25} /> <span>Clip</span>
