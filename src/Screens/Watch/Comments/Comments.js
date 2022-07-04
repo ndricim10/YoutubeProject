@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Comments.scss";
+import "../Subscribe/subscribe.scss";
 import {
   IoIosArrowUp,
   IoIosArrowDown,
@@ -262,11 +263,9 @@ export default function Comments() {
   const firstComment = allComments.map((c, i) => {
     if (i == 0) {
       return (
-        <div  key={i} className="comments">
+        <div key={i} className="comments">
           <img src={c.photoUrl} />
-          <span className="span-comment">
-            {c.comment}
-          </span>
+          <span className="span-comment">{c.comment}</span>
         </div>
       );
     }
@@ -274,6 +273,9 @@ export default function Comments() {
 
   const { width } = WindowSize();
   const [showComments, setShowComments] = useState(false);
+  const [comment, setComment] = useState(false);
+  const [buttons, setButtons] = useState(false);
+  const [text, setText] = useState(false);
 
   function trueComments() {
     setShowComments(true);
@@ -281,6 +283,25 @@ export default function Comments() {
   function falseComments() {
     setShowComments(false);
   }
+
+  function handleText(event) {
+    setText(event.target.value);
+  }
+
+  function trueButtons() {
+    setButtons(true);
+  }
+  function falseButtons() {
+    setButtons(false);
+  }
+
+  useEffect(() => {
+    if (text.length > 0) {
+      setComment(true);
+    } else {
+      setComment(false);
+    }
+  }, [text]);
 
   return (
     <div className="all-comments">
@@ -307,7 +328,38 @@ export default function Comments() {
       {width > 992 && (
         <span className="number-comments">{allComments.length} Comments</span>
       )}
-      {width > 992 || showComments ? displayComments : null}
+
+      {width > 992 || !showComments ? (
+        <>
+          <div className="create-comment">
+            <div className="comments">
+              <img src="https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png" />
+              <input
+                type="text"
+                onChange={handleText}
+                onFocus={trueButtons}
+                placeholder="Add a comment..."
+              />
+            </div>
+            {buttons && (
+              <div className="add-buttons">
+                <button onClick={falseButtons}>Cancel</button>
+                <button
+                  className={
+                    comment
+                      ? "add-comment-btn blue-bg"
+                      : "add-comment-btn black-bg"
+                  }
+                >
+                  Comment
+                </button>
+              </div>
+            )}
+          </div>
+
+          {displayComments}
+        </>
+      ) : null}
     </div>
   );
 }

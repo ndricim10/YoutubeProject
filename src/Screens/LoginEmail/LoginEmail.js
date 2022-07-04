@@ -61,7 +61,6 @@ export default function LoginEmail() {
 
       localStorage.setItem("email-user", JSON.stringify(profile));
       localStorage.setItem("email-accessToken", accessToken);
-      console.log(profile);
 
       dispatch({
         type: email_success,
@@ -213,7 +212,6 @@ export default function LoginEmail() {
     } else {
       setBtn(false);
     }
-    console.log('click');
   });
   return (
     <>

@@ -16,7 +16,6 @@
     cursor: pointer;
   }
 
-  
   .firstComment {
     cursor: pointer;
     display: flex;
@@ -24,7 +23,7 @@
     padding: 0.5rem;
 
     .span-comment {
-      @include line-clamp(1);
+      @include margin-clamp(1, 0.7rem);
     }
 
     .border-comments {
@@ -66,12 +65,53 @@
       gap: 3px;
       &_second {
         opacity: 0.8;
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
       &_first {
         font-weight: 700;
         font-size: 1.1rem;
       }
+    }
+  }
+}
+
+.create-comment {
+  input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+
+    &:focus {
+      border-bottom: 2px solid;
+      transition: 200ms ease-out;
+    }
+  }
+  .add-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline: 0.5rem;
+    margin-top: 5px;
+
+    button {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      padding-block: 1.5rem;
+      padding-inline: 1rem;
+      border-radius: 5px;
+    }
+    .add-comment-btn {
+      cursor: unset;
+    }
+    .black-bg {
+      background-color: rgb(71, 70, 70);
+      color: $textColor;
+    }
+    .blue-bg {
+      background-color: #3ea6ff;
+      color: white;
+      cursor: pointer;
     }
   }
 }
