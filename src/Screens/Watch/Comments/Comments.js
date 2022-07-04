@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Comments.scss";
-import "../Subscribe/subscribe.scss";
+import '../../../index.scss'
 import {
   IoIosArrowUp,
   IoIosArrowDown,
   IoMdRemoveCircleOutline,
 } from "react-icons/io";
 import WindowSize from "../../../WindowSize";
+import {useSelector} from 'react-redux'
 
 export default function Comments() {
   const allComments = [
@@ -245,6 +246,8 @@ export default function Comments() {
     },
   ];
 
+  const darkMode = useSelector(state=>state.darkMode)
+
   const displayComments = allComments.map((c, i) => {
     return (
       <div className="comments" key={i}>
@@ -329,13 +332,14 @@ export default function Comments() {
         <span className="number-comments">{allComments.length} Comments</span>
       )}
 
-      {width > 992 || !showComments ? (
+      {width > 992 || showComments ? (
         <>
           <div className="create-comment">
             <div className="comments">
               <img src="https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png" />
               <input
                 type="text"
+                className={darkMode ? "light-mode" : "dark-mode"}
                 onChange={handleText}
                 onFocus={trueButtons}
                 placeholder="Add a comment..."
@@ -343,7 +347,7 @@ export default function Comments() {
             </div>
             {buttons && (
               <div className="add-buttons">
-                <button onClick={falseButtons}>Cancel</button>
+                <button onClick={falseButtons} className={darkMode ? "light-mode" : "dark-mode"}>Cancel</button>
                 <button
                   className={
                     comment
