@@ -6,6 +6,7 @@ import VideoWatch from "./VideoWatch";
 import VideoMetaData from "./VideoMetaData/VideoMetaData";
 import Comments from "./Comments/Comments";
 import VideoHorizontal from "./VideoHorizontal/VideoHorizontal";
+import Subscribe from "./Subscribe/Subscribe";
 
 export default function Watch() {
   return (
@@ -15,7 +16,7 @@ export default function Watch() {
           <div className="watch_comments">
             <VideoWatch />
             <VideoMetaData />
-            
+            <Subscribe />
             <div className="video_comments">
               <Comments />
             </div>

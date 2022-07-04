@@ -1,0 +1,29 @@
+@import '../../../index.scss';
+
+.subscribe{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    border: 1px solid;
+    padding: .5rem;
+
+    button{
+        padding-inline: 1rem;
+        padding-block: .5rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        word-spacing: .5px;
+    }
+
+    .red-bg{
+        background-color: #FF0000;
+        color: white;
+    }
+    .black-bg{
+        background-color: rgb(71, 70, 70);
+        color: $textColor;
+    }
+
+
+}

@@ -262,9 +262,12 @@ export default function Comments() {
   const firstComment = allComments.map((c, i) => {
     if (i == 0) {
       return (
-        <span className="span-comment" key={i}>
-          {c.comment}
-        </span>
+        <div  key={i} className="comments">
+          <img src={c.photoUrl} />
+          <span className="span-comment">
+            {c.comment}
+          </span>
+        </div>
       );
     }
   });
