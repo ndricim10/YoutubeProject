@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Likes from "../Likes/Likes";
 import "./VideoMetaData.scss";
@@ -6,21 +6,27 @@ import Download from "../Likes/Download";
 import { BsThreeDots } from "react-icons/bs";
 import ThreeDotsAbsolute from "../Likes/ThreeDotsAbsolute";
 import WindowSize from "../../../WindowSize";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../../index.scss";
+import { useParams } from "react-router-dom";
+import { getVideoById } from "../../../Redux/Actions/videosAction";
+import moment from "moment";
 
-export default function VideoMetaData() {
-  const paragraph = ` 3 Musketjerët koncert live në Pallatin e Kongreseve, 15 Maj 2017, shoqëruar nga Orkestra Simfonike e RTSH.
+export default function VideoMetaData({video, videoId}) {
 
-  Follow 3 Musketjeret!
-  Facebook: https://www.facebook.com/3musketjeret...
-  
-  Official music video by 3 Musketjerët performing "Ditë Dimri." (C) 2017, 3 Musketjeret - Connext - URA`;
+  const paragraph = ` 3 Musketjerët koncert live në Pallatin e Kongreseve, 15 Maj 2017, shoqëruar nga Orkestra Simfonike e RTSH`
 
   const [more, setMore] = useState(false);
   const { width } = WindowSize();
   const [fullLikes, setFullLikes] = useState(false);
   const darkMode = useSelector((state) => state.darkMode);
+
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getVideoById(videoId))
+  }, [dispatch, videoId])
 
   function showMore() {
     setMore((prev) => !prev);
@@ -33,16 +39,18 @@ export default function VideoMetaData() {
   return (
     <div className="videoMetaData">
       <span className="title">
-        Titles have either quotation marks for shorter works or italics for
-        longer works, but never both. Examples of longer works are the titles of
-        books or plays, while shorter works include the titles of poems or
-        songs.
+        {video?.snippet?.title} 
       </span>
       <Row>
         <Col lg={more ? 12 : 5} className="videoMetaData_details">
           <span className="views_date">
-            <span className="views">1,253 views</span>
-            <span className="date">Jul 2, 2022</span>
+            <span className="views">
+              {/* {statistics.viewCount} */}
+             1000 views</span>
+            <span className="date">
+              {/* {moment(snippet?.publishedAt).format('ll')} */}
+              march 29
+            </span>
           </span>
           <span className="videoDescription">
             {paragraph.length < 100 && !more

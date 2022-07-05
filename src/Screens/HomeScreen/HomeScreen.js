@@ -4,12 +4,16 @@ import Categories from "../../Components/Categories/Categories";
 import VideoCard from "../../Components/VideoCard/VideoCard";
 import "./app.scss";
 import { useDispatch } from "react-redux";
-import { getCategoryVideos, getPopularVideos } from "../../Redux/Actions/videosAction";
+import {
+  getCategoryVideos,
+  getPopularVideos,
+} from "../../Redux/Actions/videosAction";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import VideoTemplate from "../../Components/VideoCard/VideoTemplate";
+import { Link } from "react-router-dom";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -18,13 +22,14 @@ export default function HomeScreen() {
     dispatch(getPopularVideos());
   }, [dispatch]);
 
-  const { videos, activeCategory, loading } = useSelector((state) => state.HomeVideos);
+  const { videos, activeCategory, loading } = useSelector(
+    (state) => state.HomeVideos
+  );
   function fetchData() {
-    if(activeCategory==='All'){
-      dispatch(getPopularVideos())
-    }
-    else{
-      dispatch(getCategoryVideos(activeCategory))
+    if (activeCategory === "All") {
+      dispatch(getPopularVideos());
+    } else {
+      dispatch(getCategoryVideos(activeCategory));
     }
   }
   return (
@@ -32,16 +37,18 @@ export default function HomeScreen() {
       <div className="categories_absolute">
         <Categories />
       </div>
-      <Row>
-      {[...new Array(200)].map((e, i) => (
-          <Col lg={4} md={6} >
+      {/* <Row>
+        {[...new Array(200)].map((e, i) => (
+          <Col lg={4} md={6}>
             <div key={i}>
-            <VideoTemplate />
+              <Link to="watch/someId" className="a">
+                <VideoTemplate />
+              </Link>
             </div>
           </Col>
         ))}
-      </Row>
-      {/* <div className="cards">
+      </Row> */}
+      <div className="cards">
           <InfiniteScroll
            dataLength={videos.length}
            next={fetchData}
@@ -63,7 +70,7 @@ export default function HomeScreen() {
          ))
           }
           </InfiniteScroll>
-      </div> */}
+      </div>
     </Container>
   );
 }

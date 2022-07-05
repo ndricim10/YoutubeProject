@@ -3,6 +3,7 @@
 .youtube {
   position: relative;
 }
+
 .app_container {
   display: grid;
   grid-template-columns: 1fr 10fr;
@@ -14,7 +15,7 @@
 }
 .home_screen {
   position: relative;
-
+  
   .categories_absolute {
     position: fixed;
     width: 100%;

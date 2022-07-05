@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./VideoCard.scss";
 import moment from "moment";
 import request from "../../api";
-import numeral from 'numeral'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import numeral from "numeral";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 
 export default function VideoCard({ video }) {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
+  const navigate = useNavigate();
 
   const {
     id,
@@ -21,8 +23,6 @@ export default function VideoCard({ video }) {
     },
     contentDetails,
   } = video;
-
-  
 
   useEffect(() => {
     const get_video_detail = async () => {
@@ -58,14 +58,19 @@ export default function VideoCard({ video }) {
     };
     get_video_details();
   }, [_videoId]);
+
+  function handleVideoClick(){
+    navigate(`../watch/${_videoId}`, { replace: true });
+  }
+
   return (
-    <div className="video">
+    <div className="video" onClick={handleVideoClick}>
       <div className="video_top">
-        <LazyLoadImage effect="blur" src={medium.url} />
+        <img src={medium.url} />
         <span>{_duration}</span>
       </div>
       <div className="video_channel_title">
-        <LazyLoadImage effect="blur" src={channelIcon?.url} />
+        <img src={channelIcon?.url} />
         <span>{title}</span>
       </div>
       <div className="video_all_details">
@@ -75,7 +80,7 @@ export default function VideoCard({ video }) {
             <span>{channelTitle}</span>
           </div>
           <div className="video_details">
-            <span> {numeral(views).format('0.a')} views</span>
+            <span> {numeral(views).format("0.a")} views</span>
             <li>
               <span>{moment(publishedAt).fromNow()}</span>
             </li>

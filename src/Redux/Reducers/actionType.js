@@ -95,3 +95,7 @@ export function logout_email(){
         type: "logout"
     }
 }
+
+export const selected_Video_Request = "selected_Video_Request"
+export const selected_Video_Success = "selected_Video_Success"
+export const selected_Video_Fail = "selected_Video_Fail"

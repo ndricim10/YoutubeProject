@@ -5,7 +5,7 @@ import {
 } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { homeVideosReducers } from "./homeVideosReducers";
+import { homeVideosReducers, selectedVideoReducer } from "./homeVideosReducers";
 import { authReducer, profileToggle, darkMode, theme, login_email, _sign_Up_email, LikeVideo, DisLikeVideo  } from "./Reducer";
 
 const reducer = combineReducers({
@@ -17,7 +17,8 @@ const reducer = combineReducers({
   loginEmail: login_email,
   _sign_up: _sign_Up_email,
   Like: LikeVideo,
-  DisLike: DisLikeVideo
+  DisLike: DisLikeVideo,
+  videoById: selectedVideoReducer
 })
 const store = createStore(
   reducer,

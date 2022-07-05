@@ -45,6 +45,15 @@ body{
 a{
   text-decoration: none;
 }
+.a{
+  list-style: none;
+  text-decoration: none;
+  color: unset;
+  &:hover{
+    color: unset;
+    opacity: unset;
+  }
+}
 .color-light {
   color: $black-primary;
 }
