@@ -90,7 +90,6 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
             type: selected_Video_Fail,
             payload: error.message
         })
-        console.log(error.message);
     }
   }
 

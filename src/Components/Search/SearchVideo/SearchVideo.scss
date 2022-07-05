@@ -1,0 +1,69 @@
+@import '../../../index.scss';
+
+.search_video {
+  .video {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    // max-height: 200px;
+
+    &_channel_title {
+      display: unset;
+
+      span {
+        all: unset;
+        @include margin-clamp(2, 0rem);
+        font-weight: 600;
+        font-size: 1.3rem;
+      }
+    }
+    &_right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: .5rem;
+    }
+
+    &_top{
+
+        img{
+            height: 100%;
+        }
+    }
+    &_description{
+        @include margin-clamp(2, 0rem)
+    }
+
+    &_details {
+        span{
+            font-size: .85rem;
+        }
+    }
+    &_channel {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@media(max-width: 900px){
+    .search_video{
+        .video{
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media(max-width: 600px){
+    .search_video{
+        .video{
+            grid-template-columns: 1fr;
+        }
+    }
+}
