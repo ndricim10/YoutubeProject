@@ -42,7 +42,7 @@ export const homeVideosReducers = (
 };
 
 export const selectedVideoReducer =(state={
-  loading: true,
+  loading: false,
   video: null
 }, action) =>{
   const {payload, type} = action

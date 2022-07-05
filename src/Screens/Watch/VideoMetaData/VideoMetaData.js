@@ -13,15 +13,10 @@ import { getVideoById } from "../../../Redux/Actions/videosAction";
 import moment from "moment";
 
 export default function VideoMetaData({video, videoId}) {
-
-  const paragraph = ` 3 Musketjerët koncert live në Pallatin e Kongreseve, 15 Maj 2017, shoqëruar nga Orkestra Simfonike e RTSH`
-
   const [more, setMore] = useState(false);
   const { width } = WindowSize();
   const [fullLikes, setFullLikes] = useState(false);
   const darkMode = useSelector((state) => state.darkMode);
-
-
   const dispatch = useDispatch()
 
   useEffect(()=>{
