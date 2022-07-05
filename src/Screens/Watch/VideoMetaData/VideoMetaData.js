@@ -48,12 +48,12 @@ export default function VideoMetaData({video, videoId}) {
             </span>
           </span>
           <span className="videoDescription">
-            {paragraph.length < 100 && !more
-              ? paragraph
-              : paragraph.substring(0, 100)}
+          {video?.snippet?.description?.length < 100 && !more
+              ? video?.snippet?.description
+              : video?.snippet?.description?.substring(0, 100)}
           </span>
-          <span className="videoDescription">{more && paragraph}</span>
-          {paragraph.length >= 100 && (
+          <span className="videoDescription">{more && video?.snippet?.description}</span>
+          {video?.snippet?.description?.length >= 100 && (
             <span className="videoMetaData_more" onClick={showMore}>
               {more ? "Show less" : "Show more"}
             </span>
