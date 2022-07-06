@@ -8,6 +8,7 @@ export default function PageNotFound() {
     const darkMode = useSelector(state=>state.darkMode)
   return (
     <>
+      <div className="pageNotFound">
       <a>
         <header className="top-header"></header>
         <div>
@@ -43,6 +44,7 @@ export default function PageNotFound() {
           </div>
         </section>
       </a>
+      </div>
     </>
   );
 }
