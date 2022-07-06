@@ -12,23 +12,21 @@ import { useParams } from "react-router-dom";
 import { getVideoById } from "../../Redux/Actions/videosAction";
 
 export default function Watch() {
-  const dispatch = useDispatch()
-  const {id} = useParams()
-  const {video, loading} = useSelector(state=>state.videoById)
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { video, loading } = useSelector((state) => state.videoById);
 
-
-  useEffect(()=>{
-    dispatch(getVideoById(id))
-  }, [dispatch, id])
+  useEffect(() => {
+    dispatch(getVideoById(id));
+  }, [dispatch, id]);
 
   return (
     <Container fluid className="watch">
       <Row>
         <Col lg={7} xs={12}>
           <div className="watch_comments">
-            <VideoWatch />
-            {!loading && <VideoMetaData video={video}
-             videoId={id} />}
+            <VideoWatch videoId={id} />
+            <VideoMetaData video={video} videoId={id} />
             <Subscribe />
             <div className="video_comments">
               <Comments />

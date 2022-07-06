@@ -62,11 +62,11 @@ export const authReducer = (state = initialState, action) => {
 };
 
 const initial_Email_State = {
-  accessToken: localStorage.getItem("email-accessToken")
-    ? localStorage.getItem("email-accessToken")
+  accessToken: localStorage.getItem("yt-accessToken")
+    ? localStorage.getItem("yt-accessToken")
     : null,
-  user: localStorage.getItem("email-user")
-    ? JSON.parse(localStorage.getItem("email-user"))
+  user: localStorage.getItem("yt-user")
+    ? JSON.parse(localStorage.getItem("yt-user"))
     : null,
   loading: false,
 };
@@ -197,7 +197,8 @@ export const theme = (state = false, action) => {
 
 const initialLikes = {
   Like: false,
-  LikeCounter: 100,
+  // localStorage.getItem('viewCount') ? localStorage.getItem('viewCount') : 
+  LikeCounter: 100
 };
 const initialDisLikes = {
   DisLike: false,

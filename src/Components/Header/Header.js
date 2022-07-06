@@ -55,19 +55,14 @@ export default function Header() {
 
   const photoURL = () => {
     if (user) {
-      if (isNaN(user.photoURL)) {
-        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
-      } else {
+      if (user.photoURL) {
         return user.photoURL;
       }
-    } else if (userEmail) {
-      if (isNaN(userEmail.photoURL)) {
-        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+      else if(user.photoUrl){
+        return user.photoUrl;
       } else {
-        return userEmail.photoURL;
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
       }
-    } else {
-      return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
     }
   };
 

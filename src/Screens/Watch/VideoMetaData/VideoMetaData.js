@@ -31,29 +31,34 @@ export default function VideoMetaData({video, videoId}) {
     setFullLikes(prev=>!prev)
   }
 
+  // localStorage.setItem('likeCount', video?.statistics?.likeCount)
+  // localStorage.setItem('viewCount', video?.statistics?.viewCount)
+
   return (
     <div className="videoMetaData">
       <span className="title">
-        {video?.snippet?.title} 
+        {video ? video?.snippet?.title : 'title'} 
       </span>
       <Row>
         <Col lg={more ? 12 : 5} className="videoMetaData_details">
           <span className="views_date">
             <span className="views">
-              {/* {statistics.viewCount} */}
-             1000 views</span>
+              {
+                video ? video?.statistics?.viewCount : '1000'} views</span>
             <span className="date">
-              {/* {moment(snippet?.publishedAt).format('ll')} */}
-              march 29
+              {
+              video ?
+              moment(video?.snippet?.publishedAt).format('ll')
+            : 'march 29'}
             </span>
           </span>
           <span className="videoDescription">
-          {video?.snippet?.description?.length < 100 && !more
+          {video?.snippet?.description.length < 100 && !more
               ? video?.snippet?.description
-              : video?.snippet?.description?.substring(0, 100)}
+              : video?.snippet?.description.substring(0, 100)}
           </span>
           <span className="videoDescription">{more && video?.snippet?.description}</span>
-          {video?.snippet?.description?.length >= 100 && (
+          {video?.snippet?.description.length >= 100 && (
             <span className="videoMetaData_more" onClick={showMore}>
               {more ? "Show less" : "Show more"}
             </span>

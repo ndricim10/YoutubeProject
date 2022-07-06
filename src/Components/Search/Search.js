@@ -6,7 +6,7 @@ export default function Search() {
   return (
     <div className="search_results">
         {
-            [...new Array(10)].map((e, i) => (
+            [...new Array(100)].map((e, i) => (
                 <SearchVideo />  
             ))
         }

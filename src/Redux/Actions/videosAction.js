@@ -67,7 +67,7 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
     }
   };
 
-  export const getVideoById = (id) =>  async (dispatch, getState) => {
+  export const getVideoById = (id) =>  async (dispatch) => {
     try{
         dispatch({
             type: selected_Video_Request

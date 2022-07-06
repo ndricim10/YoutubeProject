@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Comments.scss";
-import '../../../index.scss'
+import "../../../index.scss";
 import {
   IoIosArrowUp,
   IoIosArrowDown,
   IoMdRemoveCircleOutline,
 } from "react-icons/io";
 import WindowSize from "../../../WindowSize";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Comments() {
   const allComments = [
@@ -246,8 +247,8 @@ export default function Comments() {
     },
   ];
 
-  const darkMode = useSelector(state=>state.darkMode)
-
+  const darkMode = useSelector((state) => state.darkMode);
+  const navigate = useNavigate()
   const displayComments = allComments.map((c, i) => {
     return (
       <div className="comments" key={i}>
@@ -278,7 +279,7 @@ export default function Comments() {
   const [showComments, setShowComments] = useState(false);
   const [comment, setComment] = useState(false);
   const [buttons, setButtons] = useState(false);
-  const [text, setText] = useState(false);
+  const [text, setText] = useState('');
 
   function trueComments() {
     setShowComments(true);
@@ -292,7 +293,11 @@ export default function Comments() {
   }
 
   function trueButtons() {
-    setButtons(true);
+    if (!localStorage.getItem("yt-accessToken")) {
+      navigate("../login", { replace: true });
+    } else {
+      setButtons(true);
+    }
   }
   function falseButtons() {
     setButtons(false);
@@ -347,7 +352,12 @@ export default function Comments() {
             </div>
             {buttons && (
               <div className="add-buttons">
-                <button onClick={falseButtons} className={darkMode ? "light-mode" : "dark-mode"}>Cancel</button>
+                <button
+                  onClick={falseButtons}
+                  className={darkMode ? "light-mode" : "dark-mode"}
+                >
+                  Cancel
+                </button>
                 <button
                   className={
                     comment

@@ -33,14 +33,12 @@ export default function LoginEmail() {
 
   const [visibility, setVisibility] = useState(false);
   const [toggleVisibility, setToggleVisibility] = useState(false);
-  const [check, setCheck] = useState(false);
 
   const [eight, setEight] = useState(false);
   const [lower, setLower] = useState(false);
   const [upper, setUpper] = useState(false);
   const [special, setSpecial] = useState(false);
   const [number, setNumber] = useState(false);
-  const [btn, setBtn] = useState(false);
 
   const login = async () => {
     try {
@@ -59,8 +57,8 @@ export default function LoginEmail() {
       provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
       const accessToken = res.user.accessToken;
 
-      localStorage.setItem("email-user", JSON.stringify(profile));
-      localStorage.setItem("email-accessToken", accessToken);
+      localStorage.setItem("yt-user", JSON.stringify(profile));
+      localStorage.setItem("yt-accessToken", accessToken);
 
       dispatch({
         type: email_success,
@@ -78,30 +76,6 @@ export default function LoginEmail() {
       });
       setError(true);
     }
-  };
-
-  const Checked = () => {
-    return (
-      <>
-        <div className="checking">
-          <ul>
-            <li className={lower ? "halfOpacity" : ""}>
-              One lowercase character
-            </li>
-            <li className={upper ? "halfOpacity" : ""}>
-              One uppercase character
-            </li>
-            <li className={number ? "halfOpacity" : ""}>One number</li>
-          </ul>
-          <ul>
-            <li className={special ? "halfOpacity" : ""}>
-              One special character
-            </li>
-            <li className={eight ? "halfOpacity" : ""}>8 characters minimum</li>
-          </ul>
-        </div>
-      </>
-    );
   };
 
   let navigate = useNavigate();
@@ -127,92 +101,8 @@ export default function LoginEmail() {
 
   function changeVisibility() {
     setToggleVisibility((prev) => !prev);
-    setCheck(true);
   }
 
-  function checkTrue() {
-    setCheck(true);
-  }
-  function checkFalse() {
-    setCheck(false);
-  }
-
-  // Check password's conditions
-  useEffect(() => {
-    // at least 8 characters
-    if (password.length >= 0) {
-      if (password.length >= 8) {
-        setEight(true);
-      } else {
-        setEight(false);
-      }
-    }
-    // a lower character
-    if (password.length >= 0) {
-      if (/[a-z]/.test(password)) {
-        setLower(true);
-      } else {
-        setLower(false);
-      }
-    }
-    // an upper character
-    if (password.length >= 0) {
-      if (/[A-Z]/.test(password)) {
-        setUpper(true);
-      } else {
-        setUpper(false);
-      }
-    }
-    // a special character
-    if (password.length >= 0) {
-      if (
-        password.includes(".") ||
-        password.includes("~") ||
-        password.includes("`") ||
-        password.includes("!") ||
-        password.includes("@") ||
-        password.includes("#") ||
-        password.includes("$") ||
-        password.includes("%") ||
-        password.includes("^") ||
-        password.includes("&") ||
-        password.includes("*") ||
-        password.includes("(") ||
-        password.includes(")") ||
-        password.includes("_") ||
-        password.includes("-") ||
-        password.includes("+") ||
-        password.includes("=") ||
-        password.includes("|") ||
-        password.includes(";") ||
-        password.includes("<") ||
-        password.includes(">") ||
-        password.includes(",") ||
-        password.includes("?")
-      ) {
-        setSpecial(true);
-      } else {
-        setSpecial(false);
-      }
-    }
-    // a number
-    if (password.length >= 0) {
-      if (/\d/.test(password)) {
-        setNumber(true);
-      } else {
-        setNumber(false);
-      }
-    }
-  }, [password.length]);
-
-  // Unable the button
-  useEffect(() => {
-    if (lower && upper && number && special && eight && email.length > 5 && email.includes("@")) {
-      setBtn(true);
-    } else {
-      setBtn(false);
-    }
-  });
   return (
     <>
       {loading ? (
@@ -245,8 +135,7 @@ export default function LoginEmail() {
                 </div>
               </div>
               <div>
-                <div className="username" onFocus={checkTrue}
-                      onBlur={checkFalse}>
+                <div className="username" >
                   <span>Password</span>
                   <div className={!darkMode ? "input light-mode" : "input"}>
                     <input
@@ -265,11 +154,10 @@ export default function LoginEmail() {
                     </div>
                   </div>
                 </div>
-                {check && <Checked />}
                 <span className="forgot">Forgot password?</span>
               </div>
               {error && <span className="error">Error email or password</span>}
-              <button disabled={!btn} onClick={() => dispatch(login())}>Login</button>
+              <button onClick={() => dispatch(login())}>Login</button>
 
               <div className="other-logins">
                 <span>Or Sign In using</span>

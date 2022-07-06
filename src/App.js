@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import SignUp from "./Screens/SignUp/SignUp";
 import Watch from "./Screens/Watch/Watch";
 import Search from "./Components/Search/Search";
+import PageNotFound from "./Components/PageNotFound/PageNotFound";
 
 function Layout({ children }) {
   return (
@@ -54,7 +55,7 @@ export default function App() {
           </Layout>
         }
       />
-       <Route
+      <Route
         path="/watch/:id"
         element={
           <Layout>
@@ -62,7 +63,14 @@ export default function App() {
           </Layout>
         }
       />
-      <Route path="*" element={<h1>Error Page</h1>} />
+      <Route
+        path="*"
+        element={
+          <Layout>
+            <PageNotFound />
+          </Layout>
+        }
+      />
     </Routes>
   );
 }
