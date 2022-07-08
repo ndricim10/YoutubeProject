@@ -6,17 +6,13 @@ import "../../../index.scss";
 import { useNavigate } from "react-router-dom";
 import numeral from "numeral";
 
-export default function Subscribe({video}) {
-  const [subscribed, setSubscribed] = useState(false);
+export default function Subscribe({video, subscribed}) {
   const navigate = useNavigate();
   
   function handleSubscribe() {
     if (!localStorage.getItem("yt-accessToken")) {
       navigate("../login", { replace: true });
-    } else {
-      setSubscribed((prev) => !prev);
-      console.log(video)
-    }
+    } 
   }
 
   return (

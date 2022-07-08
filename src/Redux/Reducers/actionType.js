@@ -104,5 +104,13 @@ export const selected_Channel_Request = "selected_Channel_Request"
 export const selected_Channel_Success = "selected_Channel_Success"
 export const selected_Channel_Fail = "selected_Channel_Fail"
 
+export const selected_Subscription_Request = "selected_Subscription_Request"
+export const selected_Subscription_Success = "selected_Subscription_Success"
+export const selected_Subscription_Fail = "selected_Subscription_Fail"
+
+export const selected_Comments_Request = "selected_Comments_Request"
+export const selected_Comments_Success = "selected_Comments_Success"
+export const selected_Comments_Fail = "selected_Comments_Fail"
+
 export const Subscribe_handle="subscribe_handle"
 export const Subscribe_false="subscribe_false"

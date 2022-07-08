@@ -9,267 +9,45 @@ import {
 import WindowSize from "../../../WindowSize";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import numeral from "numeral";
+
 
 export default function Comments() {
-  const allComments = [
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment:
-        "second comment second comment second comment second comment second comment second comment second comment second comment second comment second comment second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment:
-        "second comment second comment second comment second comment second comment second comment second comment second comment second comment second comment second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-    {
-      profile: "Ndricim Jahaj",
-      time: "a year ago",
-      comment: "second comment",
-      photoUrl:
-        "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png",
-    },
-  ];
+  const { comments } = useSelector((state) => state.commentsById);
+  const { video } = useSelector((state) => state.videoById);
 
   const darkMode = useSelector((state) => state.darkMode);
-  const navigate = useNavigate()
-  const displayComments = allComments.map((c, i) => {
+  const navigate = useNavigate();
+  const displayComments = comments.map((c, i) => {
     return (
       <div className="comments" key={i}>
-        <img src={c.photoUrl} />
+        <img src={c.snippet?.topLevelComment?.snippet?.authorProfileImageUrl} />
         <div className="comments_profile">
           <div className="comments_profile_details">
-            <span className="comments_profile_details_first">{c.profile}</span>
-            <span comments_profile_details_second>{c.time}</span>
+            <span className="comments_profile_details_first">
+              {c.snippet?.topLevelComment?.snippet?.authorDisplayName}
+            </span>
+            <span comments_profile_details_second>
+              {moment(c.snippet?.topLevelComment?.snippet?.publishedAt)
+                .startOf("day")
+                .fromNow()}
+            </span>
           </div>
-          <span>{c.comment}</span>
+          <span>{c.snippet?.topLevelComment?.snippet?.textOriginal}</span>
         </div>
       </div>
     );
   });
 
-  const firstComment = allComments.map((c, i) => {
+  const firstComment = comments.map((c, i) => {
     if (i == 0) {
       return (
         <div key={i} className="comments">
-          <img src={c.photoUrl} />
-          <span className="span-comment">{c.comment}</span>
+          <img
+            src={c.snippet?.topLevelComment?.snippet?.authorProfileImageUrl}
+          />
+          <span>{c.snippet?.topLevelComment?.snippet?.textOriginal}</span>
         </div>
       );
     }
@@ -279,7 +57,7 @@ export default function Comments() {
   const [showComments, setShowComments] = useState(false);
   const [comment, setComment] = useState(false);
   const [buttons, setButtons] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   function trueComments() {
     setShowComments(true);
@@ -317,7 +95,9 @@ export default function Comments() {
         <div className="firstComment" onClick={trueComments}>
           {/* <div className="border-comments">Comments</div> */}
           <div className="border-comments">
-            <span className="firstChild">Comments {allComments.length}</span>{" "}
+            <span className="firstChild">
+              Comments {video?.statistics?.commentCount}
+            </span>{" "}
             {firstComment}
             <div className="arrows">
               <IoIosArrowUp />
@@ -329,12 +109,16 @@ export default function Comments() {
 
       {width <= 992 && showComments ? (
         <div className="comment_section" onClick={falseComments}>
-          <span className="number-comments">{allComments.length} Comments</span>
+          <span className="number-comments">
+            {video?.statistics?.commentCount} Comments
+          </span>
           <IoMdRemoveCircleOutline size={30} />
         </div>
       ) : null}
       {width > 992 && (
-        <span className="number-comments">{allComments.length} Comments</span>
+        <span className="number-comments">
+          {video?.statistics?.commentCount} Comments
+        </span>
       )}
 
       {width > 992 || showComments ? (
@@ -373,6 +157,15 @@ export default function Comments() {
 
           {displayComments}
         </>
+      ) : null}
+
+      {width <= 992 && showComments ? (
+        <div className="comment_section" onClick={falseComments}>
+          <span className="number-comments">
+            {video?.statistics?.commentCount} Comments
+          </span>
+          <IoMdRemoveCircleOutline size={30} />
+        </div>
       ) : null}
     </div>
   );

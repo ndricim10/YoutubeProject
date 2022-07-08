@@ -1,4 +1,4 @@
-import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, selected_Channel_Fail, selected_Channel_Request, selected_Channel_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "../Reducers/actionType";
+import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, selected_Channel_Fail, selected_Channel_Request, selected_Channel_Success, selected_Comments_Request, selected_Comments_Success, selected_Subscription_Fail, selected_Subscription_Request, selected_Subscription_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "../Reducers/actionType";
 import request from "../../api";
 
 export const getPopularVideos = () => async (dispatch, getState) => {
@@ -108,6 +108,55 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
         dispatch({
             type: selected_Channel_Success,
             payload: data.items[0]
+        })
+    }
+
+    catch(error){
+        dispatch({
+            type: selected_Channel_Fail,
+            payload: error.response.data
+        })
+    }
+  }
+
+  export const checkSubscriptionStatus = id => async (dispatch, getState) => {
+    try {
+       const { data } = await request('/subscriptions', {
+          params: {
+             part: 'snippet',
+             forChannelId: id,
+             mine: true,
+          },
+          headers: {
+             Authorization: `Bearer ${getState().auth.accessToken}`,
+          },
+       })
+       dispatch({
+          type: selected_Subscription_Success,
+          payload: data.items.length !== 0,
+       })
+    } catch (error) {
+       console.log(error)
+    }
+ }
+
+  export const getCommentsById = (id) =>  async (dispatch) => {
+    try{
+        dispatch({
+            type: selected_Comments_Request
+        })
+        const {data} = await request(`commentThreads/`,{
+            params:{
+                part: 'snippet,replies',
+                videoId: id
+            }
+        })
+
+        
+
+        dispatch({
+            type: selected_Comments_Success,
+            payload: data.items
         })
     }
 

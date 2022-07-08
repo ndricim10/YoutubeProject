@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./watch.scss";
 import { Container, Row, Col } from "react-bootstrap";
-import VideoTemplate from "../../Components/VideoCard/VideoTemplate";
 import VideoWatch from "./VideoWatch";
 import VideoMetaData from "./VideoMetaData/VideoMetaData";
 import Comments from "./Comments/Comments";
@@ -9,17 +8,19 @@ import VideoHorizontal from "./VideoHorizontal/VideoHorizontal";
 import Subscribe from "./Subscribe/Subscribe";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getChannelById, getVideoById } from "../../Redux/Actions/videosAction";
+import { checkSubscriptionStatus, getChannelById, getCommentsById, getVideoById } from "../../Redux/Actions/videosAction";
 
 export default function Watch() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { video, loading } = useSelector((state) => state.videoById);
-  const { channel, loadingChannel } = useSelector((state) => state.channelById);
-
+  const { channel, loadingChannel, subscriptionStatus } = useSelector((state) => state.channelById);
+  
   useEffect(() => {
     dispatch(getVideoById(id));
-    dispatch(getChannelById(video.snippet.channelId))
+    dispatch(getChannelById(video?.snippet?.channelId))
+    dispatch(getCommentsById(id))
+    dispatch(checkSubscriptionStatus(video?.snippet?.channelId))
   }, [dispatch, id]);
 
   return (
@@ -29,9 +30,9 @@ export default function Watch() {
           <div className="watch_comments">
             <VideoWatch videoId={id} />
             <VideoMetaData video={video} videoId={id} />
-            <Subscribe video={channel}/>
+            <Subscribe video={channel} subscribed={subscriptionStatus}/>
             <div className="video_comments">
-              <Comments video={video} videoId={id} />
+              <Comments video={video} videoId={id}  />
             </div>
           </div>
         </Col>
