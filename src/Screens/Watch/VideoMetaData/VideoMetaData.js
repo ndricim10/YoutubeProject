@@ -8,9 +8,9 @@ import ThreeDotsAbsolute from "../Likes/ThreeDotsAbsolute";
 import WindowSize from "../../../WindowSize";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../index.scss";
-import { useParams } from "react-router-dom";
-import { getVideoById } from "../../../Redux/Actions/videosAction";
+import { getChannelById, getVideoById } from "../../../Redux/Actions/videosAction";
 import moment from "moment";
+import numeral from "numeral";
 
 export default function VideoMetaData({video, videoId}) {
   const [more, setMore] = useState(false);
@@ -32,7 +32,6 @@ export default function VideoMetaData({video, videoId}) {
   }
 
   // localStorage.setItem('likeCount', video?.statistics?.likeCount)
-  // localStorage.setItem('viewCount', video?.statistics?.viewCount)
 
   return (
     <div className="videoMetaData">
@@ -44,7 +43,7 @@ export default function VideoMetaData({video, videoId}) {
           <span className="views_date">
             <span className="views">
               {
-                video ? video?.statistics?.viewCount : '1000'} views</span>
+                numeral(video?.statistics?.viewCount).format('0.a')} views</span>
             <span className="date">
               {
               video ?
@@ -66,7 +65,7 @@ export default function VideoMetaData({video, videoId}) {
         </Col>
         {width > 992 && (
           <Col lg={more ? 12 : 7} className="video_likes">
-            <Likes size={!more ? 20 : 25} />
+            <Likes video={video} videoId={videoId} size={!more ? 20 : 25} />
             {more && <Download size={!more ? 20 : 25} />}
             {!more && (
               <>

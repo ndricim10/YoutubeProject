@@ -37,18 +37,8 @@ export default function HomeScreen() {
       <div className="categories_absolute">
         <Categories />
       </div>
-      {/* <Row>
-        {[...new Array(200)].map((e, i) => (
-          <Col lg={4} md={6}>
-            <div key={i}>
-              <Link to="watch/someId" className="a">
-                <VideoTemplate />
-              </Link>
-            </div>
-          </Col>
-        ))}
-      </Row> */}
-      <div className="cards">
+      
+      {/* <div className="cards">
           <InfiniteScroll
            dataLength={videos.length}
            next={fetchData}
@@ -70,7 +60,7 @@ export default function HomeScreen() {
          ))
           }
           </InfiniteScroll>
-      </div>
+      </div> */}
     </Container>
   );
 }

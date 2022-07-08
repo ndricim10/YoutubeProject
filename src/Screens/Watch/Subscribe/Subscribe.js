@@ -1,14 +1,15 @@
 import millify from "millify";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Comments/Comments.scss";
 import "./subscribe.scss";
 import "../../../index.scss";
 import { useNavigate } from "react-router-dom";
+import numeral from "numeral";
 
-export default function Subscribe() {
+export default function Subscribe({video, videoId}) {
   const [subscribed, setSubscribed] = useState(false);
   const navigate = useNavigate();
-
+  
   function handleSubscribe() {
     if (!localStorage.getItem("yt-accessToken")) {
       navigate("../login", { replace: true });
@@ -24,9 +25,9 @@ export default function Subscribe() {
           <img src="https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png" />
           <div className="comments_profile">
             <span className="comments_profile_details_first">
-              Europe official
+              {video?.snippet?.title}
             </span>
-            <span>{millify(1837272)} subscribers</span>
+            <span>{numeral(video?.statistics?.subscriberCount).format('0.a')} subscribers</span>
           </div>
         </div>
         <button

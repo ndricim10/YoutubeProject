@@ -1,4 +1,4 @@
-import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "./actionType";
+import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, selected_Channel_Fail, selected_Channel_Request, selected_Channel_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "./actionType";
 
 export const homeVideosReducers = (
   state = {
@@ -63,6 +63,36 @@ export const selectedVideoReducer =(state={
       ...state,
       loading: false,
       video: null,
+      error: payload
+    }
+
+    default:
+      return state
+  }
+}
+
+export const selectedChannelReducer = (state={
+  loading: false,
+  channel: {}
+}, action) =>{
+  const {payload, type} = action
+  switch(type){
+    case selected_Channel_Request:
+    return {
+      ...state,
+      loading: true
+    }
+    case selected_Channel_Success:
+    return {
+      ...state,
+      loading: false,
+      channel: payload
+    }
+    case selected_Channel_Fail:
+    return {
+      ...state,
+      loading: false,
+      channel: null,
       error: payload
     }
 

@@ -9,7 +9,7 @@ import VideoHorizontal from "./VideoHorizontal/VideoHorizontal";
 import Subscribe from "./Subscribe/Subscribe";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getVideoById } from "../../Redux/Actions/videosAction";
+import { getChannelById, getVideoById } from "../../Redux/Actions/videosAction";
 
 export default function Watch() {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ export default function Watch() {
 
   useEffect(() => {
     dispatch(getVideoById(id));
+    dispatch(getChannelById(video.snippet.channelId))
   }, [dispatch, id]);
 
   return (
@@ -27,9 +28,9 @@ export default function Watch() {
           <div className="watch_comments">
             <VideoWatch videoId={id} />
             <VideoMetaData video={video} videoId={id} />
-            <Subscribe />
+            <Subscribe video={video} videoId={id}/>
             <div className="video_comments">
-              <Comments />
+              <Comments video={video} videoId={id} />
             </div>
           </div>
         </Col>

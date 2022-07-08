@@ -17,7 +17,7 @@ import {
 } from "../../../Redux/Reducers/actionType";
 import { useNavigate } from "react-router-dom";
 
-export default function Likes({ size }) {
+export default function Likes({ size, video, videoId }) {
   const dispatch = useDispatch();
   const { Like, LikeCounter } = useSelector((state) => state.Like);
   const { DisLike, DisLikeCounter } = useSelector((state) => state.DisLike);
