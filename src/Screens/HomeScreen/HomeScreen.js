@@ -37,7 +37,6 @@ export default function HomeScreen() {
       <div className="categories_absolute">
         <Categories />
       </div>
-      
       {/* <div className="cards">
           <InfiniteScroll
            dataLength={videos.length}

@@ -112,5 +112,9 @@ export const selected_Comments_Request = "selected_Comments_Request"
 export const selected_Comments_Success = "selected_Comments_Success"
 export const selected_Comments_Fail = "selected_Comments_Fail"
 
+export const selected_Related_Request = "selected_Related_Request"
+export const selected_Related_Success = "selected_Related_Success"
+export const selected_Related_Fail = "selected_Related_Fail"
+
 export const Subscribe_handle="subscribe_handle"
 export const Subscribe_false="subscribe_false"

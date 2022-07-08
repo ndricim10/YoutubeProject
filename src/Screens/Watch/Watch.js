@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./watch.scss";
 import { Container, Row, Col } from "react-bootstrap";
 import VideoWatch from "./VideoWatch";
@@ -8,20 +8,27 @@ import VideoHorizontal from "./VideoHorizontal/VideoHorizontal";
 import Subscribe from "./Subscribe/Subscribe";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { checkSubscriptionStatus, getChannelById, getCommentsById, getVideoById } from "../../Redux/Actions/videosAction";
+import { checkSubscriptionStatus, getChannelById, getCommentsById, getRelatedVideosById, getVideoById } from "../../Redux/Actions/videosAction";
+import moment from "moment";
 
 export default function Watch() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { video, loading } = useSelector((state) => state.videoById);
-  const { channel, loadingChannel, subscriptionStatus } = useSelector((state) => state.channelById);
+  const { channel, subscriptionStatus } = useSelector((state) => state.channelById);
+  const { videos} = useSelector((state) => state.relatedVideos);
   
   useEffect(() => {
     dispatch(getVideoById(id));
     dispatch(getChannelById(video?.snippet?.channelId))
     dispatch(getCommentsById(id))
     dispatch(checkSubscriptionStatus(video?.snippet?.channelId))
+    dispatch(getRelatedVideosById(id))
   }, [dispatch, id]);
+
+  const [duration, setDuration] = useState('')
+  const [views, setViews] = useState('')
+
 
   return (
     <Container fluid className="watch">
@@ -39,17 +46,21 @@ export default function Watch() {
 
         {/* Related videos */}
         <Col className="watch_related" lg={5} xs={12}>
-          {/* <Categories /> */}
+          <h2>Next video:</h2>
           <Row className="related_template">
-            {[...new Array(20)].map((e, i) => (
-              <Col xs={12}>
-                <>
-                  <div key={i}>
-                    <VideoHorizontal />
-                  </div>
-                </>
-              </Col>
-            ))}
+            {
+              videos.map((v, i)=>{
+                return(
+                  <VideoHorizontal
+                  video={v}
+                   imgUrl={v.snippet?.thumbnails?.default?.url}
+                    channelTitle={v.snippet?.channelTitle}
+                    title={v.snippet?.title}
+                    published={moment(v.snippet?.publishedAt).startOf("day").fromNow()}
+                    />
+                )
+              })
+            }
           </Row>
         </Col>
       </Row>

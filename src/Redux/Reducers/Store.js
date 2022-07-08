@@ -6,7 +6,7 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { getSubscriptionStatus } from "../Actions/videosAction";
-import { homeVideosReducers, selectedChannelReducer, selectedCommentsReducer, selectedVideoReducer } from "./homeVideosReducers";
+import { homeVideosReducers, RelatedVideosReducer, selectedChannelReducer, selectedCommentsReducer, selectedVideoReducer } from "./homeVideosReducers";
 import { authReducer, profileToggle, darkMode, theme, login_email, _sign_Up_email, LikeVideo, DisLikeVideo  } from "./Reducer";
 
 const reducer = combineReducers({
@@ -21,7 +21,8 @@ const reducer = combineReducers({
   DisLike: DisLikeVideo,
   videoById: selectedVideoReducer,
   channelById: selectedChannelReducer,
-  commentsById: selectedCommentsReducer
+  commentsById: selectedCommentsReducer,
+  relatedVideos: RelatedVideosReducer
 })
 const store = createStore(
   reducer,

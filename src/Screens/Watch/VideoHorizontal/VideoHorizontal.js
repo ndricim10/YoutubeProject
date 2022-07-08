@@ -1,37 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../Components/VideoCard/VideoCard.scss";
-import { millify } from "millify";
+import numeral from "numeral";
+import request from '../../../api'
+import moment from "moment";
+import '../../../index.scss'
+import {Link} from 'react-router-dom'
 
-export default function VideoHorizontal({}) {
+export default function VideoHorizontal({
+  video,
+  imgUrl,
+  durationVideo,
+  channelTitle,
+  title,
+  published
+}) {
+
+
+  const [views, setViews] = useState(null);
+  const [duration, setDuration] = useState(null);
+  const {
+    id,
+    contentDetails,
+  } = video;
+
+  const _videoId = id?.videoId || contentDetails?.videoId || id;
+  useEffect(() => {
+    const get_video_details = async () => {
+      const {
+        data: { items },
+      } = await request("/videos", {
+        params: {
+          part: "contentDetails,statistics",
+          id: _videoId,
+        },
+      });
+      setDuration(items[0].contentDetails.duration);
+      setViews(items[0].statistics.viewCount);
+    };
+    get_video_details();
+  }, [_videoId]);
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+
   return (
-    <div className="video">
+    <Link to={`/watch/${_videoId}`} className='a'>
+      <div className="video">
       <div className="video_top">
-        <img src="https://cdn.pixabay.com/photo/2017/10/10/21/49/youtuber-2838945_960_720.jpg" />
-        <span>05:20</span>
+        <img src={imgUrl} />
+        <span>{_duration}</span>
       </div>
       <div>
         <div className="video_channel_title">
-          <img src="https://yt3.ggpht.com/ypqAbDWiOc718gMoxAYbhA8brU_JZN1_V2qQBW1a-DvAyZaUGd2HnxiTl2mhe_KFUl_TvGPk=s68-c-k-c0x00ffffff-no-rj" />
-          <span>
-            Video Title final project watch and learn Hello world some text some
-            other text, some other other texts
-          </span>
+          <span>{title}</span>
         </div>
         <div className="video_all_details">
           <div></div>
           <div>
             <div className="video_channel">
-              <span>Ndricim</span>
+              <span>{channelTitle}</span>
             </div>
             <div className="video_details">
-              <span> {millify(3634446373)} views</span>
+              <span> {numeral(views).format("0.a")} views</span>
               <li>
-                <span>5 days ago</span>
+                <span>{published}</span>
               </li>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </Link>
   );
 }
