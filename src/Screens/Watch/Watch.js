@@ -15,6 +15,7 @@ export default function Watch() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { video, loading } = useSelector((state) => state.videoById);
+  const { channel, loadingChannel } = useSelector((state) => state.channelById);
 
   useEffect(() => {
     dispatch(getVideoById(id));
@@ -28,7 +29,7 @@ export default function Watch() {
           <div className="watch_comments">
             <VideoWatch videoId={id} />
             <VideoMetaData video={video} videoId={id} />
-            <Subscribe video={video} videoId={id}/>
+            <Subscribe video={channel}/>
             <div className="video_comments">
               <Comments video={video} videoId={id} />
             </div>

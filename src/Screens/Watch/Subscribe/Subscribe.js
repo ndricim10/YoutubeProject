@@ -6,7 +6,7 @@ import "../../../index.scss";
 import { useNavigate } from "react-router-dom";
 import numeral from "numeral";
 
-export default function Subscribe({video, videoId}) {
+export default function Subscribe({video}) {
   const [subscribed, setSubscribed] = useState(false);
   const navigate = useNavigate();
   
@@ -15,6 +15,7 @@ export default function Subscribe({video, videoId}) {
       navigate("../login", { replace: true });
     } else {
       setSubscribed((prev) => !prev);
+      console.log(video)
     }
   }
 
@@ -22,7 +23,7 @@ export default function Subscribe({video, videoId}) {
     <>
       <div className="subscribe">
         <div className="comments">
-          <img src="https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png" />
+          <img src={video?.snippet?.thumbnails?.default?.url} />
           <div className="comments_profile">
             <span className="comments_profile_details_first">
               {video?.snippet?.title}
