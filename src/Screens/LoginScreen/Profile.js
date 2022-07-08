@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const { user } = useSelector((state) => state.auth);
   const userEmail = useSelector((state) => state.loginEmail.user);
-  const mail = useSelector((state) => state.loginEmail);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
@@ -38,9 +37,12 @@ export default function Profile() {
       if (user.photoURL) {
         return user.photoURL;
       }
-      else if(user.photoUrl){
-        return user.photoUrl;
-      } else {
+      else if(userEmail){
+        if(user.photoUrl){
+          return user.photoUrl;
+        }
+      }
+       else {
         return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
       }
     }

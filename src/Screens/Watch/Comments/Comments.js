@@ -17,6 +17,25 @@ export default function Comments() {
   const { comments } = useSelector((state) => state.commentsById);
   const { video } = useSelector((state) => state.videoById);
 
+  const { user } = useSelector((state) => state.auth);
+  const userEmail = useSelector((state) => state.loginEmail.user);
+
+  const photoURL = () => {
+    if (user) {
+      if (user.photoURL) {
+        return user.photoURL;
+      }
+      else if(userEmail){
+        if(user.photoUrl){
+          return user.photoUrl;
+        }
+      }
+       else {
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+      }
+    }
+  };
+
   const darkMode = useSelector((state) => state.darkMode);
   const navigate = useNavigate();
   const displayComments = comments.map((c, i) => {
@@ -125,7 +144,7 @@ export default function Comments() {
         <>
           <div className="create-comment">
             <div className="comments">
-              <img src="https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png" />
+              <img src={photoURL()} />
               <input
                 type="text"
                 className={darkMode ? "light-mode" : "dark-mode"}

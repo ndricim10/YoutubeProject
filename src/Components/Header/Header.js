@@ -58,9 +58,12 @@ export default function Header() {
       if (user.photoURL) {
         return user.photoURL;
       }
-      else if(user.photoUrl){
-        return user.photoUrl;
-      } else {
+      else if(userEmail){
+        if(user.photoUrl){
+          return user.photoUrl;
+        }
+      }
+       else {
         return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
       }
     }
