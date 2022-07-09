@@ -17,17 +17,15 @@ export default function Watch() {
   const { video, loading } = useSelector((state) => state.videoById);
   const { channel, subscriptionStatus } = useSelector((state) => state.channelById);
   const { videos} = useSelector((state) => state.relatedVideos);
+  const {channelId} = useParams()
   
   useEffect(() => {
     dispatch(getVideoById(id));
-    dispatch(getChannelById(video.snippet.channelId))
+    dispatch(getChannelById(video?.snippet?.channelId))
     dispatch(getCommentsById(id))
-    dispatch(checkSubscriptionStatus(video.snippet.channelId))
+    dispatch(checkSubscriptionStatus(video?.snippet?.channelId))
     dispatch(getRelatedVideosById(id))
   }, [dispatch, id]);
-
-  const [duration, setDuration] = useState('')
-  const [views, setViews] = useState('')
 
 
   return (
@@ -37,7 +35,7 @@ export default function Watch() {
           <div className="watch_comments">
             <VideoWatch videoId={id} />
             <VideoMetaData video={video} videoId={id} />
-            <Subscribe video={channel} subscribed={subscriptionStatus}/>
+            <Subscribe video={channel} subscribed={subscriptionStatus} />
             <div className="video_comments">
               <Comments video={video} videoId={id}  />
             </div>

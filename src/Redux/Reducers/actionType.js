@@ -104,6 +104,10 @@ export const selected_Channel_Request = "selected_Channel_Request"
 export const selected_Channel_Success = "selected_Channel_Success"
 export const selected_Channel_Fail = "selected_Channel_Fail"
 
+export const selected_VideoChannel_Request = "selected_VideoChannel_Request"
+export const selected_VideoChannel_Success = "selected_VideoChannel_Success"
+export const selected_VideoChannel_Fail = "selected_VideoChannel_Fail"
+
 export const selected_Subscription_Request = "selected_Subscription_Request"
 export const selected_Subscription_Success = "selected_Subscription_Success"
 export const selected_Subscription_Fail = "selected_Subscription_Fail"

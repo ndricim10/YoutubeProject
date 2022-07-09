@@ -6,7 +6,7 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { getSubscriptionStatus } from "../Actions/videosAction";
-import { homeVideosReducers, RelatedVideosReducer, SearchVideosReducer, selectedChannelReducer, selectedCommentsReducer, selectedVideoReducer } from "./homeVideosReducers";
+import { channelVideosReducer, homeVideosReducers, RelatedVideosReducer, SearchVideosReducer, selectedChannelReducer, selectedCommentsReducer, selectedVideoReducer } from "./homeVideosReducers";
 import { authReducer, profileToggle, darkMode, theme, login_email, _sign_Up_email, LikeVideo, DisLikeVideo  } from "./Reducer";
 
 const reducer = combineReducers({
@@ -23,7 +23,8 @@ const reducer = combineReducers({
   channelById: selectedChannelReducer,
   commentsById: selectedCommentsReducer,
   relatedVideos: RelatedVideosReducer,
-  searchVideo: SearchVideosReducer
+  searchVideo: SearchVideosReducer,
+  videosByChannel: channelVideosReducer
 })
 const store = createStore(
   reducer,

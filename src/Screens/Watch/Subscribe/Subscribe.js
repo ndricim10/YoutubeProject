@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import "../Comments/Comments.scss";
 import "./subscribe.scss";
 import "../../../index.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import numeral from "numeral";
 
-export default function Subscribe({video, subscribed}) {
+export default function Subscribe({video, subscribed, channelId}) {
   const navigate = useNavigate();
   
   function handleSubscribe() {
@@ -17,6 +17,7 @@ export default function Subscribe({video, subscribed}) {
 
   return (
     <>
+      <Link to={`/channels/${video?.id}`} className='a'>
       <div className="subscribe">
         <div className="comments">
           <img src={video?.snippet?.thumbnails?.default?.url} />
@@ -34,6 +35,7 @@ export default function Subscribe({video, subscribed}) {
           {subscribed ? "Subscribed" : "Subscribe"}
         </button>
       </div>
+      </Link>
     </>
   );
 }
