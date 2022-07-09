@@ -116,5 +116,9 @@ export const selected_Related_Request = "selected_Related_Request"
 export const selected_Related_Success = "selected_Related_Success"
 export const selected_Related_Fail = "selected_Related_Fail"
 
+export const Search_Request = "Search_Request"
+export const Search_Success = "Search_Success"
+export const Search_Fail = "Search_Fail"
+
 export const Subscribe_handle="subscribe_handle"
 export const Subscribe_false="subscribe_false"

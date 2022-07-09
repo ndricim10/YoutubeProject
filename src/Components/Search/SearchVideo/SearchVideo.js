@@ -5,7 +5,7 @@ import "../../VideoCard/VideoCard.scss";
 import millify from "millify";
 
 
-export default function SearchVideo() {
+export default function SearchVideo({title}) {
   return (
     <div className="search_video">
       <div className="video">
@@ -16,8 +16,7 @@ export default function SearchVideo() {
         <div className="video_right">
           <div className="video_channel_title">
             <span>
-              Video Title final project watch and learn Hello world some text
-              some other text, some other other texts
+              {title}
             </span>
             <div className="video_details">
               <span> {millify(3634446373)} views</span>

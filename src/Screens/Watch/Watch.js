@@ -46,7 +46,7 @@ export default function Watch() {
 
         {/* Related videos */}
         <Col className="watch_related" lg={5} xs={12}>
-          <h2>Next video:</h2>
+          <h3>Up next:</h3>
           <Row className="related_template">
             {
               videos.map((v, i)=>{

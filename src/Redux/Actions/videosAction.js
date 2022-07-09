@@ -1,4 +1,4 @@
-import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, selected_Channel_Fail, selected_Channel_Request, selected_Channel_Success, selected_Comments_Request, selected_Comments_Success, selected_Related_Fail, selected_Related_Request, selected_Related_Success, selected_Subscription_Fail, selected_Subscription_Request, selected_Subscription_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "../Reducers/actionType";
+import { HOME_Videos_Fail, HOME_Videos_Request, HOME_Videos_Success, Search_Fail, Search_Request, Search_Success, selected_Channel_Fail, selected_Channel_Request, selected_Channel_Success, selected_Comments_Request, selected_Comments_Success, selected_Related_Fail, selected_Related_Request, selected_Related_Success, selected_Subscription_Fail, selected_Subscription_Request, selected_Subscription_Success, selected_Video_Fail, selected_Video_Request, selected_Video_Success } from "../Reducers/actionType";
 import request from "../../api";
 
 export const getPopularVideos = () => async (dispatch, getState) => {
@@ -193,6 +193,35 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
     catch(error){
         dispatch({
             type: selected_Related_Fail,
+            payload: console.log(error)
+        })
+    }
+  }
+
+  export const getSearchedVideos = (keyword) =>  async (dispatch) => {
+    try{
+        dispatch({
+            type: Search_Request
+        })
+        const {data} = await request(`search/`,{
+            params:{
+                part: 'snippet',
+                q: keyword,
+                maxResults: 100
+            }
+        })
+
+        
+
+        dispatch({
+            type: Search_Success,
+            payload: data.items
+        })
+    }
+
+    catch(error){
+        dispatch({
+            type: Search_Fail,
             payload: console.log(error)
         })
     }

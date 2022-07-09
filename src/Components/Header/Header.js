@@ -9,7 +9,7 @@ import {} from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import WindowSize from "../../WindowSize";
 import ToggleScreen from "../../Screens/ToggleScreen/ToggleScreen";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../Screens/LoginScreen/Profile";
 import { profile_toggle, theme_false } from "../../Redux/Reducers/actionType";
@@ -31,13 +31,24 @@ export default function Header() {
   const showTheme = useSelector((state) => state.Theme);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const [input, setInput] = useState('')
 
   function mainSearchBar(event) {
     event.preventDefault();
+    if(input.length>0){
+      navigate(`../search/${input}`, {replace: true})
+    }
   }
   function searchBar(event) {
     event.preventDefault();
     setSearch(true);
+
+    if(input.length>0){
+      navigate(`../search/${input}`, {replace: true})
+    }
+
   }
 
   function ToggleSideBar() {
@@ -84,6 +95,13 @@ export default function Header() {
     console.log("searching");
   }
 
+  function handleSubmit(event){
+    event.preventDefault()
+    if(input.length>0){
+      navigate(`../search/${input}`, {replace: true})
+    }
+  }
+
   return (
     <div
       className={
@@ -101,10 +119,11 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="search"
           placeholder="Search"
+          onChange={(e)=>setInput(e.target.value)}
           className={darkMode ? "input color-light" : "input color-dark"}
         />
         {search && (
@@ -118,14 +137,14 @@ export default function Header() {
               size={25}
               onClick={hideSearch}
             />
-            <input type="search" placeholder="Search" className="small-input" />
+            <input type="search" placeholder="Search" className="small-input" onChange={(e)=>setInput(e.target.value)} />
             <button
               type="submit"
               onClick={searchBar}
               className="secondary-button"
             >
               <FontAwesomeIcon
-            onClick={handleSearch}
+            onClick={handleSubmit}
                 icon={faSearch}
                 fontSize={22}
                 className={darkMode ? "test color-light" : "test color-dark"}

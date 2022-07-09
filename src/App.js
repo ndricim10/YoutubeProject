@@ -48,7 +48,7 @@ export default function App() {
       <Route path="/login" element={<LoginEmail />} />
       <Route path="/signup" element={<SignUp />} />
       <Route
-        path="/search"
+        path="/search/:query"
         element={
           <Layout>
             <Search />

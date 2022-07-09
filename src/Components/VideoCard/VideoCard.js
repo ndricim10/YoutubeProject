@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./VideoCard.scss";
+import '../../index.scss'
 import moment from "moment";
 import request from "../../api";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function VideoCard({ video }) {
   const [views, setViews] = useState(null);
@@ -59,12 +60,9 @@ export default function VideoCard({ video }) {
     get_video_details();
   }, [_videoId]);
 
-  function handleVideoClick(){
-    navigate(`../watch/${_videoId}`, { replace: true });
-  }
-
   return (
-    <div className="video" onClick={handleVideoClick}>
+    <Link to={`watch/${_videoId}`}>
+    <div className="video" >
       <div className="video_top">
         <img src={medium.url} />
         <span>{_duration}</span>
@@ -88,5 +86,6 @@ export default function VideoCard({ video }) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
