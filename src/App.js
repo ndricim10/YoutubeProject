@@ -16,6 +16,7 @@ import SignUp from "./Screens/SignUp/SignUp";
 import Watch from "./Screens/Watch/Watch";
 import Search from "./Components/Search/Search";
 import PageNotFound from "./Components/PageNotFound/PageNotFound";
+import Channels from "./Components/Channels/Channels";
 
 function Layout({ children }) {
   return (
@@ -63,6 +64,16 @@ export default function App() {
           </Layout>
         }
       />
+
+<Route
+        path="/channels/:channelId"
+        element={
+          <Layout>
+            <Channels />
+          </Layout>
+        }
+      />
+
       <Route
         path="*"
         element={
