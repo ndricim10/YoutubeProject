@@ -17,6 +17,7 @@ import Watch from "./Screens/Watch/Watch";
 import Search from "./Components/Search/Search";
 import PageNotFound from "./Components/PageNotFound/PageNotFound";
 import Channels from "./Components/Channels/Channels";
+import Subscriptions from "./Components/Subscriptions/Subscriptions";
 
 function Layout({ children }) {
   return (
@@ -53,6 +54,14 @@ export default function App() {
         element={
           <Layout>
             <Search />
+          </Layout>
+        }
+      />
+      <Route
+        path="/subscriptions"
+        element={
+          <Layout>
+            <Subscriptions />
           </Layout>
         }
       />
