@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./VideoCard.scss";
-import '../../index.scss'
+import "../../index.scss";
 import moment from "moment";
 import request from "../../api";
 import numeral from "numeral";
@@ -61,31 +61,35 @@ export default function VideoCard({ video }) {
   }, [_videoId]);
 
   return (
-    <Link to={`watch/${_videoId}`}>
-    <div className="video" >
-      <div className="video_top">
-        <img src={medium.url} />
-        <span>{_duration}</span>
-      </div>
-      <div className="video_channel_title">
-        <img src={channelIcon?.url} />
-        <span>{title}</span>
-      </div>
-      <div className="video_all_details">
-        <div></div>
-        <div>
-          <div className="video_channel">
-            <span>{channelTitle}</span>
-          </div>
-          <div className="video_details">
-            <span> {numeral(views).format("0.a")} views</span>
-            <li>
-              <span>{moment(publishedAt).fromNow()}</span>
-            </li>
+    <Link className="a" to={`watch/${_videoId}`}>
+      <div className="video">
+        <div className="video_top">
+          <img src={medium.url} />
+          <span>{_duration}</span>
+        </div>
+        <div className="video_channel_title">
+          <Link className="a" to={`/channels/${channelId}`}>
+            <img src={channelIcon?.url} />
+          </Link>
+          <span>{title}</span>
+        </div>
+        <div className="video_all_details">
+          <div></div>
+          <div>
+            <Link className="a" to={`/channels/${channelId}`}>
+              <div className="video_channel">
+                <span>{channelTitle}</span>
+              </div>
+            </Link>
+            <div className="video_details">
+              <span> {numeral(views).format("0.a")} views</span>
+              <li>
+                <span>{moment(publishedAt).fromNow()}</span>
+              </li>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </Link>
   );
 }

@@ -37,7 +37,7 @@ export default function HomeScreen() {
       <div className="categories_absolute">
         <Categories />
       </div>
-      {/* <div className="cards">
+      <div className="cards">
           <InfiniteScroll
            dataLength={videos.length}
            next={fetchData}
@@ -59,7 +59,7 @@ export default function HomeScreen() {
          ))
           }
           </InfiniteScroll>
-      </div> */}
+      </div>
     </Container>
   );
 }

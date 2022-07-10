@@ -197,7 +197,7 @@ export const theme = (state = false, action) => {
 
 const initialLikes = {
   Like: false,
-  LikeCounter: 100
+  LikeCounter: localStorage.getItem('likeVideos') ? localStorage.getItem('likeVideos') : 100
 };
 const initialDisLikes = {
   DisLike: false,

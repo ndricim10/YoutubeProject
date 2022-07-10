@@ -83,6 +83,8 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
             type: selected_Video_Success,
             payload: data.items[0]
         })
+
+        localStorage.setItem('likeVideos', data.items[0].statistics.likeCount)
     }
 
     catch(error){

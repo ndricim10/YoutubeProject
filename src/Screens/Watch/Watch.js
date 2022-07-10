@@ -21,9 +21,9 @@ export default function Watch() {
   
   useEffect(() => {
     dispatch(getVideoById(id));
-    dispatch(getChannelById(video.snippet.channelId))
+    dispatch(getChannelById(video?.snippet?.channelId))
     dispatch(getCommentsById(id))
-    dispatch(checkSubscriptionStatus(video.snippet.channelId))
+    dispatch(checkSubscriptionStatus(video?.snippet?.channelId))
     dispatch(getRelatedVideosById(id))
   }, [dispatch, id]);
 

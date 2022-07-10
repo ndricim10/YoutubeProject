@@ -28,7 +28,7 @@ export default function Channels() {
         <Subscribe video={channel} />
       </div>
 
-      {/* <Row>
+      <Row>
         {videos.map((video) => {
           return (
             <Col sm={6} md={4} lg={3} className="channels_videos">
@@ -36,7 +36,7 @@ export default function Channels() {
             </Col>
           );
         })}
-      </Row> */}
+      </Row>
     </div>
   );
 }
