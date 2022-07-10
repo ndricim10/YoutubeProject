@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Subscriptions.scss";
 import "../../index.scss";
 import { Row, Col } from "react-bootstrap";
 import numeral from "numeral";
+import {useDispatch, useSelector} from 'react-redux'
+import { getMyChannels } from "../../Redux/Actions/videosAction";
 
 export default function Subscriptions() {
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getMyChannels())
+  }, [dispatch])
   return (
     <>
       <Row className="subscriptions">

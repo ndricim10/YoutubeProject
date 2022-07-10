@@ -137,7 +137,8 @@ export default function Header() {
               size={25}
               onClick={hideSearch}
             />
-            <input type="search" placeholder="Search" className="small-input" onChange={(e)=>setInput(e.target.value)} />
+            <input type="search" placeholder="Search" className={darkMode ? "small-input color-light" : "small-input color-dark"}
+             onChange={(e)=>setInput(e.target.value)} />
             <button
               type="submit"
               onClick={searchBar}

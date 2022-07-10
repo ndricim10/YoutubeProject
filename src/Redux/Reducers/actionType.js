@@ -124,5 +124,9 @@ export const Search_Request = "Search_Request"
 export const Search_Success = "Search_Success"
 export const Search_Fail = "Search_Fail"
 
+export const Subscribers_Request = "Subscribers_Request"
+export const Subscribers_Success = "Subscribers_Success"
+export const Subscribers_Fail = "Subscribers_Fail"
+
 export const Subscribe_handle="subscribe_handle"
 export const Subscribe_false="subscribe_false"
