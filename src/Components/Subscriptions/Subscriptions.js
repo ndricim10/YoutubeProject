@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import numeral from "numeral";
 import {useDispatch, useSelector} from 'react-redux'
 import { getMyChannels } from "../../Redux/Actions/videosAction";
+import ReactLoading from "react-loading";
 
 export default function Subscriptions() {
 
@@ -13,9 +14,16 @@ export default function Subscriptions() {
   useEffect(()=>{
     dispatch(getMyChannels())
   }, [dispatch])
+
+  const {loading} = useSelector(state=>state.myChannels)
+
   return (
     <>
-      <Row className="subscriptions">
+      {
+        loading ? <div className="loader">
+        <ReactLoading type="bars" height={200} width={175} />
+      </div> : (
+          <Row className="subscriptions">
         <Col sm={4} className="image">
           <img src="https://yt3.ggpht.com/ZjcQii3sVKaPcGK3rIm8vot-qwdmm7KAHsWCjlQLsDLa_tm2kykM-Lgmty1IwQWehj7nEzXPUA=s176-c-k-c0x00ffffff-no-rj" />
         </Col>
@@ -30,6 +38,8 @@ export default function Subscriptions() {
           </div>
         </Col>
       </Row>
+        )
+      }
     </>
   );
 }

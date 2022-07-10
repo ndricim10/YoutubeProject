@@ -9,12 +9,13 @@ import {
   getVideoChannelsById,
 } from "../../Redux/Actions/videosAction";
 import Subscribe from '../../Screens/Watch/Subscribe/Subscribe'
+import ReactLoading from "react-loading";
 
 export default function Channels() {
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const { channelId } = useParams();
   const dispatch = useDispatch();
-  const {videos} = useSelector(state=>state.videosByChannel)
+  const {videos, loading} = useSelector(state=>state.videosByChannel)
   const { channel } = useSelector((state) => state.channelById);
 
   useEffect(() => {
@@ -23,7 +24,9 @@ export default function Channels() {
   }, [channelId]);
 
   return (
-    <div className="channels">
+    <>
+    {
+      !loading ? (<div className="channels">
       <div className="channel_details">
         <Subscribe video={channel} />
       </div>
@@ -37,6 +40,10 @@ export default function Channels() {
           );
         })}
       </Row>
-    </div>
+    </div>) : <div className="loader">
+          <ReactLoading type="bars" height={200} width={175} />
+        </div>
+    }
+    </>
   );
 }

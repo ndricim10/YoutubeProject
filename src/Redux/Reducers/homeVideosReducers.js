@@ -26,7 +26,7 @@ export const homeVideosReducers = (
       case HOME_Videos_Fail:
         return {
           ...state,
-          loading: false,
+          loading: true,
           error: payload
         };
         case HOME_Videos_Request:
@@ -61,7 +61,7 @@ export const selectedVideoReducer =(state={
     case selected_Video_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       video: null,
       error: payload
     }
@@ -92,7 +92,7 @@ export const selectedChannelReducer = (state={
     case selected_Channel_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       channel: null,
       error: payload
     }
@@ -127,7 +127,7 @@ export const selectedCommentsReducer = (state={
     case selected_Comments_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       comments: null,
       error: payload
     }
@@ -157,7 +157,7 @@ export const RelatedVideosReducer = (state={
     case selected_Related_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       videos: null,
       error: payload
     }
@@ -187,7 +187,7 @@ export const SearchVideosReducer = (state={
     case Search_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       results: null,
       error: payload
     }
@@ -217,7 +217,7 @@ export const channelVideosReducer = (state={
     case selected_VideoChannel_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       videos: null,
       error: payload
     }
@@ -247,7 +247,7 @@ export const SubscribersReducer = (state={
     case Subscribers_Fail:
     return {
       ...state,
-      loading: false,
+      loading: true,
       channels: null,
       error: payload
     }

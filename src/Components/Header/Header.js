@@ -19,36 +19,35 @@ import Theme from "../../Screens/LoginScreen/Theme";
 import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
 import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
-import {FiLogIn} from 'react-icons/fi'
+import { FiLogIn } from "react-icons/fi";
 
 export default function Header() {
   const userEmail = useSelector((state) => state.loginEmail.user);
   const [search, setSearch] = useState(false);
-  const {width } = WindowSize();
+  const { width } = WindowSize();
   const [sideBar, setSideBar] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const profile_toggle1 = useSelector((state) => state.profile_toggle);
   const showTheme = useSelector((state) => state.Theme);
   const darkMode = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
 
   function mainSearchBar(event) {
     event.preventDefault();
-    if(input.length>0){
-      navigate(`../search/${input}`, {replace: true})
+    if (input.length > 0) {
+      navigate(`../search/${input}`, { replace: true });
     }
   }
   function searchBar(event) {
     event.preventDefault();
     setSearch(true);
 
-    if(input.length>0){
-      navigate(`../search/${input}`, {replace: true})
+    if (input.length > 0) {
+      navigate(`../search/${input}`, { replace: true });
     }
-
   }
 
   function ToggleSideBar() {
@@ -68,13 +67,11 @@ export default function Header() {
     if (user) {
       if (user.photoURL) {
         return user.photoURL;
-      }
-      else if(userEmail){
-        if(user.photoUrl){
+      } else if (userEmail) {
+        if (user.photoUrl) {
           return user.photoUrl;
         }
-      }
-       else {
+      } else {
         return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
       }
     }
@@ -91,14 +88,11 @@ export default function Header() {
     }
   });
 
-  function handleSearch() {
-    console.log("searching");
-  }
 
-  function handleSubmit(event){
-    event.preventDefault()
-    if(input.length>0){
-      navigate(`../search/${input}`, {replace: true})
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (input.length > 0) {
+      navigate(`../search/${input}`, { replace: true });
     }
   }
 
@@ -123,7 +117,7 @@ export default function Header() {
         <input
           type="search"
           placeholder="Search"
-          onChange={(e)=>setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           className={darkMode ? "input color-light" : "input color-dark"}
         />
         {search && (
@@ -137,15 +131,21 @@ export default function Header() {
               size={25}
               onClick={hideSearch}
             />
-            <input type="search" placeholder="Search" className={darkMode ? "small-input color-light" : "small-input color-dark"}
-             onChange={(e)=>setInput(e.target.value)} />
+            <input
+              type="search"
+              placeholder="Search"
+              className={
+                darkMode ? "small-input color-light" : "small-input color-dark"
+              }
+              onChange={(e) => setInput(e.target.value)}
+            />
             <button
               type="submit"
               onClick={searchBar}
               className="secondary-button"
             >
               <FontAwesomeIcon
-            onClick={handleSubmit}
+                onClick={handleSubmit}
                 icon={faSearch}
                 fontSize={22}
                 className={darkMode ? "test color-light" : "test color-dark"}
@@ -176,7 +176,6 @@ export default function Header() {
           }
         >
           <FontAwesomeIcon
-            onClick={handleSearch}
             icon={faSearch}
             fontSize={22}
           />
@@ -185,13 +184,14 @@ export default function Header() {
 
       <div className="header_icons">
         {localStorage.getItem("yt-accessToken") ||
-          localStorage.getItem("email-accessToken") ? 
-            <RiVideoAddFill size={30} /> : null
-          }
+        localStorage.getItem("email-accessToken") ? (
+          <RiVideoAddFill size={30} />
+        ) : null}
         <MdApps size={30} />
         {localStorage.getItem("yt-accessToken") ||
-          (localStorage.getItem("email-accessToken")) ? 
-            <MdNotifications size={30} /> : null}
+        localStorage.getItem("email-accessToken") ? (
+          <MdNotifications size={30} />
+        ) : null}
         <div className="dots">
           {!localStorage.getItem("yt-accessToken") &&
             !localStorage.getItem("email-accessToken") && (
@@ -211,7 +211,9 @@ export default function Header() {
           ) : (
             <div className="signInUp">
               <Link to="/login" className="link">
-                <div><FiLogIn size={20} /></div>
+                <div>
+                  <FiLogIn size={20} />
+                </div>
                 <button className={darkMode ? "color-light" : "color-dark"}>
                   Login
                 </button>
