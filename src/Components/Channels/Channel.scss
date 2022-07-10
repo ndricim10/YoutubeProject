@@ -1,9 +1,17 @@
 .channels {
 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   .search_video {
     .video {
       grid-template-columns: 1fr;
       gap: 10px;
     }
+  }
+
+  .subscribe{
+    border: unset;
   }
 }

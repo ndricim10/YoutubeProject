@@ -241,10 +241,10 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
 
         const uploadPlaylistId = items[0].contentDetails?.relatedPlaylists?.uploads
 
-        const {data} = await request(`playlistItems/`,{
+        const {data} = await request(`/playlistItems`,{
             params:{
                 part: 'contentDetails, snippet',
-                playlistId: id,
+                playlistId: uploadPlaylistId,
                 maxResults: 100
             }
         })
