@@ -10,24 +10,30 @@ export default function Sidebar({ size }) {
   return (
     <nav className="sidebar">
       <ul className="home-ul">
-        <Link to="/">
+        <Link to="/" className="a">
           <li>
             <MdHome size={size} />
             <span>Home</span>
           </li>
         </Link>
-        <li>
-          <MdSubscriptions size={size} />
-          <span>Subscriptions</span>
-        </li>
-        <li>
-          <MdThumbUp size={size} />
-          <span>Liked videos</span>
-        </li>
-        <li>
-          <MdHistory size={size} />
-          <span>History</span>
-        </li>
+        <Link to="/subscriptions" className="a">
+          <li>
+            <MdSubscriptions size={size} />
+            <span>Subscriptions</span>
+          </li>
+        </Link>
+        <Link to="/likedVideos" className="a">
+          <li>
+            <MdThumbUp size={size} />
+            <span>Liked videos</span>
+          </li>
+        </Link>
+        <Link to="/history" className="a">
+          <li>
+            <MdHistory size={size} />
+            <span>History</span>
+          </li>
+        </Link>
       </ul>
     </nav>
   );

@@ -5,11 +5,11 @@ import request from '../../../api'
 import moment from "moment";
 import '../../../index.scss'
 import {Link} from 'react-router-dom'
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function VideoHorizontal({
   video,
   imgUrl,
-  durationVideo,
   channelTitle,
   title,
   published
@@ -47,7 +47,7 @@ export default function VideoHorizontal({
     <Link to={`/watch/${_videoId}`} className='a'>
       <div className="video">
       <div className="video_top">
-        <img src={imgUrl} />
+        <LazyLoadImage effect='blur' src={imgUrl} />
         <span>{_duration}</span>
       </div>
       <div>

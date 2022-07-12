@@ -95,7 +95,7 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
     }
   }
 
-  export const getChannelById = (id) =>  async (dispatch) => {
+  export const getChannelById = (channelId) =>  async (dispatch) => {
     try{
         dispatch({
             type: selected_Channel_Request
@@ -103,7 +103,7 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
         const {data} = await request(`channels/`,{
             params:{
                 part: 'snippet,contentDetails,statistics',
-                id
+                id: channelId
             }
         })
 
@@ -131,7 +131,7 @@ export const getCategoryVideos = (keyword) => async (dispatch, getState) => {
              mine: true,
           },
           headers: {
-             Authorization: `Bearer ${getState().auth.accessToken}`,
+             Authorization: "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImVhNWY2NDYxMjA4Y2ZmMGVlYzgwZDFkYmI1MjgyZTkyMDY0MjAyNWEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTmRyaWNpbSBKYWhhaiIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHaTNLTkh3MEkxMFh5eHkxaUZlV21SU0w4VHZPb2xESjJfeFZjMmcybkU9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vamFoYWoteXQtcHJvamVjdCIsImF1ZCI6ImphaGFqLXl0LXByb2plY3QiLCJhdXRoX3RpbWUiOjE2NTc1Mjk5NjcsInVzZXJfaWQiOiJpVDJtNEV1aUZFUjR2dDY3T3BYa3NWbzk3VlIyIiwic3ViIjoiaVQybTRFdWlGRVI0dnQ2N09wWGtzVm85N1ZSMiIsImlhdCI6MTY1NzUyOTk2NywiZXhwIjoxNjU3NTMzNTY3LCJlbWFpbCI6ImphaGFqbmRyaWNpbUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMzk3Mzk1NDU3NDcxMjgwNDI3OSJdLCJlbWFpbCI6WyJqYWhham5kcmljaW1AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.qAog1_9uQnvvWEWjG9PQ61Nt0ItJG4U1daPTBb8c67QzRG4uChkbDZ5sqZW6Gh9Wmtw3V-xah-8Je50y5azsOqDEqf8xMlShtf23dK_sYbkArkHVTGroGb4_sc5e0jHTwaAJQAx7BUSI6VSbUTXKNuJS4quFaKRyoszP9H4Q5Q5y3glcTHhr2M_NKZQ3VuJ2LcK7sRKQGlru-A_4F1j5cyjsi61ElCYHts96kopmh8_dbdhYP4smatF-_PCJao5uIef8nV2OMUV60kSl5li7uQffiKLaV0MvbsPotskYZP7W4W_6_RryjyCDtevCAob5w-5AexU-fowZQ4vWSH80MA",
           },
        })
        console.log(data)

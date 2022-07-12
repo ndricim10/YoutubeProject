@@ -34,12 +34,6 @@ export default function LoginEmail() {
   const [visibility, setVisibility] = useState(false);
   const [toggleVisibility, setToggleVisibility] = useState(false);
 
-  const [eight, setEight] = useState(false);
-  const [lower, setLower] = useState(false);
-  const [upper, setUpper] = useState(false);
-  const [special, setSpecial] = useState(false);
-  const [number, setNumber] = useState(false);
-
   const login = async () => {
     try {
       dispatch({

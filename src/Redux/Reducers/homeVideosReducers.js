@@ -236,7 +236,7 @@ export const SubscribersReducer = (state={
     case Subscribers_Request:
     return {
       ...state,
-      loading: true
+      loading: false
     }
     case Subscribers_Success:
     return {
@@ -247,7 +247,7 @@ export const SubscribersReducer = (state={
     case Subscribers_Fail:
     return {
       ...state,
-      loading: true,
+      loading: false,
       channels: null,
       error: payload
     }

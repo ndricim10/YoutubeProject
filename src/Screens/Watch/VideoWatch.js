@@ -5,7 +5,7 @@ export default function VideoWatch({videoId}) {
     <>
       <div className="watch_video">
         <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
+        // src={`https://www.youtube.com/embed/${videoId}`}
         frameBorder={0}
           width="100%"
           title="My Video"

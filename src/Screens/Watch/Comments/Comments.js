@@ -47,7 +47,7 @@ export default function Comments() {
             <span className="comments_profile_details_first">
               {c.snippet?.topLevelComment?.snippet?.authorDisplayName}
             </span>
-            <span comments_profile_details_second>
+            <span className="comments_profile_details_second">
               {moment(c.snippet?.topLevelComment?.snippet?.publishedAt)
                 .startOf("day")
                 .fromNow()}

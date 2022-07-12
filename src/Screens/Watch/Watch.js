@@ -28,14 +28,16 @@ export default function Watch() {
   );
   const { videos } = useSelector((state) => state.relatedVideos);
 
-  const channelId = video?.snippet?.channelId;
+  // const channelId = video.snippet.channelId;
+
 
   useEffect(() => {
     dispatch(getVideoById(id));
-    dispatch(getChannelById(channelId));
+    dispatch(getChannelById(video?.snippet?.channelId));
     dispatch(getCommentsById(id));
-    dispatch(checkSubscriptionStatus(channelId));
+    dispatch(checkSubscriptionStatus(video?.snippet?.channelId));
     dispatch(getRelatedVideosById(id));
+    
   }, [dispatch, id]);
 
   return (
