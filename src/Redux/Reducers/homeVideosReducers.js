@@ -96,11 +96,11 @@ export const selectedChannelReducer = (state={
       channel: null,
       error: payload
     }
-    case selected_Subscription_Success:
-      return {
-        ...state,
-        subscriptionStatus: payload
-      }
+    // case selected_Subscription_Success:
+    //   return {
+    //     ...state,
+    //     subscriptionStatus: payload
+    //   }
 
     default:
       return state

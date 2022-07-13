@@ -136,28 +136,28 @@ export const getChannelById = (channelId) => async (dispatch) => {
   }
 };
 
-export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
-  try {
-    const { data } = await request("/subscriptions", {
-      params: {
-        part: "snippet",
-        forChannelId: id,
-        mine: true,
-      },
-      headers: {
-        Authorization: `Bearer ${getState().auth.accessToken} `,
-        Accept: "application/json",
-      },
-    });
-    console.log(data);
-    dispatch({
-      type: selected_Subscription_Success,
-      payload: data.items.length !== 0,
-    });
-  } catch (error) {
-    console.log(error.response.data);
-  }
-};
+// export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
+//   try {
+//     const { data } = await request("/subscriptions", {
+//       params: {
+//         part: "snippet",
+//         forChannelId: id,
+//         mine: true,
+//       },
+//       headers: {
+//         Authorization: `Bearer ${getState().auth.accessToken} `,
+//         Accept: "application/json",
+//       },
+//     });
+//     console.log(data);
+//     dispatch({
+//       type: selected_Subscription_Success,
+//       payload: data.items.length !== 0,
+//     });
+//   } catch (error) {
+//     console.log(error.response.data);
+//   }
+// };
 
 export const getCommentsById = (id) => async (dispatch) => {
   try {

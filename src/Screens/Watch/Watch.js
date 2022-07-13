@@ -23,10 +23,12 @@ export default function Watch() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { video, loading } = useSelector((state) => state.videoById);
-  const { channel, subscriptionStatus } = useSelector(
+  const { channel } = useSelector(
     (state) => state.channelById
   );
   const { videos } = useSelector((state) => state.relatedVideos);
+
+  const [subscriptionStatus, setSubscriptionStatus] = useState(false)
 
   // const channelId = video.snippet.channelId;
 
@@ -35,7 +37,7 @@ export default function Watch() {
     dispatch(getVideoById(id));
     dispatch(getChannelById(video?.snippet?.channelId));
     dispatch(getCommentsById(id));
-    dispatch(checkSubscriptionStatus(video?.snippet?.channelId));
+    // dispatch(checkSubscriptionStatus(video?.snippet?.channelId));
     dispatch(getRelatedVideosById(id));
     
   }, [dispatch, id]);
@@ -67,7 +69,7 @@ export default function Watch() {
                 {videos.map((v, i) => {
                   return (
                     <VideoHorizontal
-                      video={v}
+                      video={video}
                       imgUrl={v.snippet?.thumbnails?.default?.url}
                       channelTitle={v.snippet?.channelTitle}
                       title={v.snippet?.title}
