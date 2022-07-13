@@ -5,7 +5,6 @@ import request from '../../../api'
 import moment from "moment";
 import '../../../index.scss'
 import {Link} from 'react-router-dom'
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function VideoHorizontal({
   video,
@@ -15,39 +14,58 @@ export default function VideoHorizontal({
   published
 }) {
 
-
-  const [views, setViews] = useState(null);
-  const [duration, setDuration] = useState(null);
   const {
     id,
+    snippet: {
+       channelId,
+       resourceId,
+    },
     contentDetails,
-  } = video;
+ } = video
+  const [views, setViews] = useState(null)
+   const [duration, setDuration] = useState(null)
+   const [channelIcon, setChannelIcon] = useState(null)
 
-  const _videoId = id?.videoId || contentDetails?.videoId || id;
-  useEffect(() => {
-    const get_video_details = async () => {
-      const {
-        data: { items },
-      } = await request("/videos", {
-        params: {
-          part: "contentDetails,statistics",
-          id: _videoId,
-        },
-      });
-      setDuration(items[0].contentDetails.duration);
-      setViews(items[0].statistics.viewCount);
-    };
-    get_video_details();
-  }, [_videoId]);
+   const _videoId = id?.videoId || contentDetails?.videoId || id;
 
-  const seconds = moment.duration(duration).asSeconds();
-  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+   useEffect(() => {
+      const get_video_details = async () => {
+         const {
+            data: { items },
+         } = await request('/videos', {
+            params: {
+               part: 'contentDetails,statistics',
+               id: _videoId,
+            },
+         })
+         setDuration(items[0].contentDetails.duration)
+         setViews(items[0].statistics.viewCount)
+      }
+      get_video_details()
+   }, [id])
+
+   useEffect(() => {
+      const get_channel_icon = async () => {
+         const {
+            data: { items },
+         } = await request('/channels', {
+            params: {
+               part: 'snippet',
+               id: channelId,
+            },
+         })
+         setChannelIcon(items[0].snippet.thumbnails.default)
+      }
+      get_channel_icon()
+   }, [channelId])
+   const seconds = moment.duration(duration).asSeconds()
+   const _duration = moment.utc(seconds * 1000).format('mm:ss')
 
   return (
     <Link to={`/watch/${_videoId}`} className='a'>
       <div className="video">
       <div className="video_top">
-        <LazyLoadImage effect='blur' src={imgUrl} />
+        <img src={imgUrl} />
         <span>{_duration}</span>
       </div>
       <div>

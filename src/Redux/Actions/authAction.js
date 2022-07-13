@@ -10,24 +10,25 @@ export const login=()=>async dispatch=>{
         const provider = new GoogleAuthProvider()
         
         provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl")
+        provider.addScope("https://www.googleapis.com/auth/youtube.readonly")
         const res = await signInWithPopup(auth, provider)
-        console.log(res)
+        
         const accessToken = res.user.accessToken
         const profile = {
             fullName: res.user.displayName,
             email: res.user.email,
             photoUrl: res.user.photoURL,
-            emailVerified: res.user.emailVerified
+            emailVerified: res.user.emailVerified,
+            refreshToken: res.user.stsTokenManager.refreshToken
         }
-
         localStorage.setItem("yt-accessToken", accessToken)
         localStorage.setItem("yt-user", JSON.stringify(profile))
         
-
         dispatch({
             type: Login_success,
             payload: accessToken
         })
+        console.log(res)
         dispatch({
             type: load_profile,
             payload: profile

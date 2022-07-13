@@ -50,7 +50,7 @@ export const selectedVideoReducer =(state={
     case selected_Video_Request:
     return {
       ...state,
-      loading: true
+      loading: false
     }
     case selected_Video_Success:
     return {
@@ -61,7 +61,7 @@ export const selectedVideoReducer =(state={
     case selected_Video_Fail:
     return {
       ...state,
-      loading: true,
+      loading: false,
       video: null,
       error: payload
     }
