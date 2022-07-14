@@ -68,8 +68,9 @@ export default function Watch() {
               <Row className="related_template">
                 {videos.map((v, i) => {
                   return (
-                    <VideoHorizontal
-                      video={video}
+                    <div key={i}>
+                      <VideoHorizontal
+                      video={v}
                       imgUrl={v.snippet?.thumbnails?.default?.url}
                       channelTitle={v.snippet?.channelTitle}
                       title={v.snippet?.title}
@@ -77,6 +78,7 @@ export default function Watch() {
                         .startOf("day")
                         .fromNow()}
                     />
+                    </div>
                   );
                 })}
               </Row>
