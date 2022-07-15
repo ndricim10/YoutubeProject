@@ -49,7 +49,7 @@
 .comments {
 
   .first-comment{
-    @include margin-clamp(1, .5rem)
+    @include margin-clamp(1, .7rem)
   }
   img {
     height: 40px;
