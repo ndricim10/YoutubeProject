@@ -96,11 +96,11 @@ export const selectedChannelReducer = (state={
       channel: null,
       error: payload
     }
-    // case selected_Subscription_Success:
-    //   return {
-    //     ...state,
-    //     subscriptionStatus: payload
-    //   }
+    case selected_Subscription_Success:
+      return {
+        ...state,
+        subscriptionStatus: payload
+      }
 
     default:
       return state
@@ -217,7 +217,7 @@ export const channelVideosReducer = (state={
     case selected_VideoChannel_Fail:
     return {
       ...state,
-      loading: true,
+      loading: false,
       videos: null,
       error: payload
     }

@@ -23,14 +23,10 @@ export default function Watch() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { video, loading } = useSelector((state) => state.videoById);
-  const { channel } = useSelector(
+  const { channel, subscriptionStatus } = useSelector(
     (state) => state.channelById
   );
   const { videos } = useSelector((state) => state.relatedVideos);
-
-  const [subscriptionStatus, setSubscriptionStatus] = useState(false)
-
-  // const channelId = video.snippet.channelId;
 
 
   useEffect(() => {

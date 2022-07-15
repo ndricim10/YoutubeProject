@@ -64,12 +64,12 @@ export default function VideoCard({ video }) {
     <Link className="a" to={`watch/${_videoId}`}>
       <div className="video">
         <div className="video_top">
-        <LazyLoadImage effect='blur' src={medium.url} />
+        <img src={medium?.url} />
           <span>{_duration}</span>
         </div>
         <div className="video_channel_title">
           <Link className="a" to={`/channels/${channelId}`}>
-            <LazyLoadImage effect='blur'src={channelIcon?.url} />
+            <img src={channelIcon?.url} />
           </Link>
           <span>{title}</span>
         </div>

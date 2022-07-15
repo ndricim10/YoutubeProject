@@ -16,6 +16,7 @@ export default function VideoHorizontal({
   const { id } = video;
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
+  const [channel, setChannel] = useState(null);
 
   const _videoId = id?.videoId || id;
 
@@ -25,15 +26,17 @@ export default function VideoHorizontal({
         data: { items },
       } = await request("/videos", {
         params: {
-          part: "contentDetails,statistics",
+          part: "snippet, contentDetails,statistics",
           id: _videoId,
         },
       });
       setDuration(items[0].contentDetails?.duration);
       setViews(items[0].statistics?.viewCount);
+      setChannel(items[0].snippet?.channelId)
     };
     get_video_details();
-  }, [id]);
+  }, [id, channel]);
+  console.log(channel)
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
@@ -55,9 +58,12 @@ export default function VideoHorizontal({
         <div className="video_all_details">
           <div></div>
           <div>
+            <Link to={`/channels/${channel}`} className="a">
             <div className="video_channel">
               <span>{channelTitle}</span>
             </div>
+            </Link>
+
             <div className="video_details">
               <span> {numeral(views).format("0.a")} views</span>
               <li>

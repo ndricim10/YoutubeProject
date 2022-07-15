@@ -16,6 +16,7 @@ import {
   Like_True,
 } from "../../../Redux/Reducers/actionType";
 import { useNavigate } from "react-router-dom";
+import numeral from "numeral";
 
 export default function Likes({ size, video, videoId }) {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function Likes({ size, video, videoId }) {
     <div className="likes">
       <div className="like_element" onClick={changeLike}>
         {!Like ? <AiOutlineLike size={size} /> : <AiFillLike size={size} />}
-        <span>{millify(LikeCounter)}</span>
+        <span>{numeral(video?.statistics?.likeCount).format('0.a')}</span>
       </div>
       <div className="like_element" onClick={changeDisLike}>
         {!DisLike ? (
@@ -52,7 +53,7 @@ export default function Likes({ size, video, videoId }) {
         ) : (
           <AiFillDislike size={size} />
         )}{" "}
-        <span>{millify(DisLikeCounter)}</span>
+        <span>{numeral(DisLikeCounter).format('0.a')}</span>
       </div>
       <div className="like_element">
         <BiShare size={size} /> <span>Share</span>

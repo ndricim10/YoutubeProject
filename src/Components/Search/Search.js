@@ -12,7 +12,6 @@ export default function Search() {
   const dispatch = useDispatch();
   const { results, loading } = useSelector((state) => state.searchVideo);
 
-  console.log(results);
   useEffect(() => {
     dispatch(getSearchedVideos(query));
   }, [dispatch, query]);

@@ -13,6 +13,7 @@ import '../../index.scss'
 export default function LoginScreen() {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.accessToken);
+  const {video} = useSelector((state) => state.videoById);
   const darkMode = useSelector((state) => state.darkMode);
 
   const handleLogin = () => {
@@ -22,7 +23,10 @@ export default function LoginScreen() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (accessToken) {
+    if (accessToken && video?.kind ==="youtube#video") {
+      navigate(`../watch/${video?.id}`, { replace: true });
+    }
+    else if(accessToken){
       navigate("../", { replace: true });
     }
   }, [accessToken, navigate]);

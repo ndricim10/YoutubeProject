@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import VideoTemplate from "../../Components/VideoCard/VideoTemplate";
 import { Link } from "react-router-dom";
 
 export default function HomeScreen() {

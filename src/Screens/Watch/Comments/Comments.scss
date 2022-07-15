@@ -47,6 +47,10 @@
   }
 }
 .comments {
+
+  .first-comment{
+    @include margin-clamp(1, .5rem)
+  }
   img {
     height: 40px;
     width: 40px;

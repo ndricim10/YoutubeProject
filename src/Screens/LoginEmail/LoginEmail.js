@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import "../../index.scss";
 import DarkMode from "../DarkModeMUI/DarkMode";
 import { AiFillYoutube } from "react-icons/ai";
-import LoginFb from "../LoginScreen/LoginFb";
 import { auth } from "../../firebase";
 import {
   EmailAuthProvider,
@@ -156,7 +155,6 @@ export default function LoginEmail() {
               <div className="other-logins">
                 <span>Or Sign In using</span>
                 <div className="login-icons">
-                  <LoginFb />
                   <LoginScreen />
                 </div>
               </div>

@@ -66,7 +66,7 @@ export default function Comments() {
           <img
             src={c.snippet?.topLevelComment?.snippet?.authorProfileImageUrl}
           />
-          <span>{c.snippet?.topLevelComment?.snippet?.textOriginal}</span>
+          <span className="first-comment">{c.snippet?.topLevelComment?.snippet?.textOriginal}</span>
         </div>
       );
     }
