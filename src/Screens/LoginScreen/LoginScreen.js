@@ -5,7 +5,6 @@ import "./loginScreen.scss";
 import { useDispatch } from "react-redux/es/exports";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { FiLogIn } from "react-icons/fi";
 
 import { FcGoogle } from "react-icons/fc";
 import '../../index.scss'

@@ -36,7 +36,6 @@ export default function VideoHorizontal({
     };
     get_video_details();
   }, [id, channel]);
-  console.log(channel)
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");

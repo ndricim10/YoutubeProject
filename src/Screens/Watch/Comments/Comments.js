@@ -7,10 +7,11 @@ import {
   IoMdRemoveCircleOutline,
 } from "react-icons/io";
 import WindowSize from "../../../WindowSize";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
+import { addComment } from "../../../Redux/Actions/videosAction";
 
 
 export default function Comments() {
@@ -19,6 +20,7 @@ export default function Comments() {
 
   const { user } = useSelector((state) => state.auth);
   const userEmail = useSelector((state) => state.loginEmail.user);
+  const dispatch = useDispatch()
 
   const photoURL = () => {
     if (user) {
@@ -72,6 +74,8 @@ export default function Comments() {
     }
   });
 
+  const videoId = comments[0]?.id
+
   const { width } = WindowSize();
   const [showComments, setShowComments] = useState(false);
   const [comment, setComment] = useState(false);
@@ -107,6 +111,16 @@ export default function Comments() {
       setComment(false);
     }
   }, [text]);
+
+
+  const handleComment = e => {
+    e.preventDefault()
+    if (text.length === 0) return
+
+    dispatch(addComment(videoId, text))
+
+    setText('')
+ }
 
   return (
     <div className="all-comments">
@@ -167,6 +181,7 @@ export default function Comments() {
                       ? "add-comment-btn blue-bg"
                       : "add-comment-btn black-bg"
                   }
+                  onClick={handleComment}
                 >
                   Comment
                 </button>

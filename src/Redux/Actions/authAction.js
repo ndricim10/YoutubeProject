@@ -21,11 +21,10 @@ export const login = () => async (dispatch) => {
     });
     const provider = new GoogleAuthProvider();
 
-    provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
-    provider.addScope("https://www.googleapis.com/auth/youtube.readonly");
+    provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
+    provider.addScope('https://www.googleapis.com/auth/youtube.readonly');
 
     const res = await signInWithPopup(auth, provider);
-
     const accessToken = res.user.accessToken;
     const profile = {
       fullName: res.user.displayName,
@@ -40,8 +39,7 @@ export const login = () => async (dispatch) => {
     dispatch({
       type: Login_success,
       payload: accessToken,
-    });
-    console.log(res);
+    }); 
     dispatch({
       type: load_profile,
       payload: profile,

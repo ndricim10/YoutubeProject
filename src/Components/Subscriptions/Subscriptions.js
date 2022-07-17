@@ -9,6 +9,8 @@ import ReactLoading from "react-loading";
 
 export default function Subscriptions() {
 
+  const clientId = "827871983619-k27hkmbdtriftbsnrv749fnk87vpvnc8.apps.googleusercontent.com"
+
   const dispatch = useDispatch()
 
   useEffect(()=>{

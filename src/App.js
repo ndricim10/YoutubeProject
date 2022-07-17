@@ -74,7 +74,7 @@ export default function App() {
         }
       />
 
-<Route
+      <Route
         path="/channels/:channelId"
         element={
           <Layout>

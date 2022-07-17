@@ -1,4 +1,6 @@
 import {
+  CREATE_COMMENT_FAIL,
+  CREATE_COMMENT_SUCCESS,
   HOME_Videos_Fail,
   HOME_Videos_Request,
   HOME_Videos_Success,
@@ -22,7 +24,9 @@ import {
   selected_Video_Fail,
   selected_Video_Request,
   selected_Video_Success,
+  Subscribers_Fail,
   Subscribers_Request,
+  Subscribers_Success,
 } from "../Reducers/actionType";
 import request from "../../api";
 
@@ -271,9 +275,6 @@ export const getVideoChannelsById = (id) => async (dispatch) => {
 export const getMyChannels = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: Subscribers_Request });
-    // const access = `Bearer ${getState().auth.accessToken}` || `Bearer ${getState().auth.user.refreshToken}`
-
-    
     const { data } = await request("/subscriptions", {
       params: {
         part: "snippet, contentDetails",
@@ -281,16 +282,53 @@ export const getMyChannels = (id) => async (dispatch, getState) => {
       },
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
-        Accept: "application/json"
       },
     });
 
     console.log(data)
     dispatch({
-      type: selected_Subscription_Success,
+      type: Subscribers_Success,
       payload: data.items,
     });
   } catch (error) {
-    console.log(error.response.data.error);
+    dispatch({
+      type: Subscribers_Fail,
+      payload: error.response.data.error
+    })
   }
 };
+
+export const addComment = (id, text) => async (dispatch, getState) => {
+  try {
+     const obj = {
+        snippet: {
+           videoId: id,
+           topLevelComment: {
+              snippet: {
+                 textOriginal: text,
+              },
+           },
+        },
+     }
+
+     await request.post('/commentThreads', obj, {
+        params: {
+           part: 'snippet',
+        },
+        headers: {
+           Authorization: `Bearer ${getState().auth.accessToken}`,
+        },
+     })
+     dispatch({
+        type: CREATE_COMMENT_SUCCESS,
+     })
+
+     setTimeout(() => dispatch(getCommentsById(id)), 3000)
+  } catch (error) {
+     console.log(error.response.data)
+     dispatch({
+        type: CREATE_COMMENT_FAIL,
+        payload: error.response.data.message,
+     })
+  }
+}

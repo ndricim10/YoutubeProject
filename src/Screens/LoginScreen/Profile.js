@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import {faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./loginScreen.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,8 +9,6 @@ import {
   email_out,
 } from "../../Redux/Reducers/actionType";
 import ChangeLightMode from "../lightMode/lightMode";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {

@@ -130,3 +130,6 @@ export const Subscribers_Fail = "Subscribers_Fail"
 
 export const Subscribe_handle="subscribe_handle"
 export const Subscribe_false="subscribe_false"
+
+export const CREATE_COMMENT_SUCCESS = 'CREATE_COMMENT_SUCCESS'
+export const CREATE_COMMENT_FAIL = 'CREATE_COMMENT_FAIL'
