@@ -28,14 +28,12 @@ export default function Watch() {
   );
   const { videos } = useSelector((state) => state.relatedVideos);
 
-
   useEffect(() => {
     dispatch(getVideoById(id));
     dispatch(getChannelById(video?.snippet?.channelId));
     dispatch(getCommentsById(id));
     // dispatch(checkSubscriptionStatus(video?.snippet?.channelId));
     dispatch(getRelatedVideosById(id));
-    
   }, [dispatch, id]);
 
   return (
@@ -66,14 +64,14 @@ export default function Watch() {
                   return (
                     <div key={i}>
                       <VideoHorizontal
-                      video={v}
-                      imgUrl={v.snippet?.thumbnails?.default?.url}
-                      channelTitle={v.snippet?.channelTitle}
-                      title={v.snippet?.title}
-                      published={moment(v.snippet?.publishedAt)
-                        .startOf("day")
-                        .fromNow()}
-                    />
+                        video={v}
+                        imgUrl={v.snippet?.thumbnails?.default?.url}
+                        channelTitle={v.snippet?.channelTitle}
+                        title={v.snippet?.title}
+                        published={moment(v.snippet?.publishedAt)
+                          .startOf("day")
+                          .fromNow()}
+                      />
                     </div>
                   );
                 })}

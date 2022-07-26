@@ -33,13 +33,14 @@ export const login = () => async (dispatch) => {
       emailVerified: res.user.emailVerified,
       refreshToken: res.user.stsTokenManager.refreshToken,
     };
-    localStorage.setItem("yt-accessToken", accessToken);
-    localStorage.setItem("yt-user", JSON.stringify(profile));
+   
 
     dispatch({
       type: Login_success,
       payload: accessToken,
     }); 
+    localStorage.setItem("yt-accessToken", accessToken);
+    localStorage.setItem("yt-user", JSON.stringify(profile));
     dispatch({
       type: load_profile,
       payload: profile,

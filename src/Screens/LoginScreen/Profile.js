@@ -1,15 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./loginScreen.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   profile_false,
   Login_out,
   email_out,
+  theme_true,
 } from "../../Redux/Reducers/actionType";
 import ChangeLightMode from "../lightMode/lightMode";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { email, fullName, photoURL } from "../../profileDetails";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.auth);
@@ -30,41 +32,15 @@ export default function Profile() {
     navigate("../login", { replace: true });
   }
 
-  const photoURL = () => {
-    if (user) {
-      if (user.photoURL) {
-        return user.photoURL;
-      }
-      else if(userEmail){
-        if(user.photoUrl){
-          return user.photoUrl;
-        }
-      }
-       else {
-        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
-      }
-    }
-  };
+  const myUser = JSON.parse(localStorage.getItem("yt-user"));
 
-  const fullName = () => {
-    if (user) {
-      if (user.fullName) {
-        return user.fullName;
-      } else {
-        return "Default Name";
-      }
-    }
-  };
+  console.log(myUser);
 
-  const email = () => {
-    if (user) {
-      if (user.email) {
-        return user.email;
-      } else {
-        return "default email";
-      }
-    }
-  };
+
+  function Theme() {
+    dispatch(profile_false());
+    dispatch(theme_true());
+  }
 
   return (
     localStorage.getItem("yt-accessToken") && (
@@ -77,11 +53,14 @@ export default function Profile() {
           </div>
         </div>
         <div className="profile_settings">
+          <Link className="a" to="/profile">
+            <div onClick={() => dispatch(profile_false())}>My profile</div>
+          </Link>
           <div onClick={logOut}>
             <FontAwesomeIcon icon={faSignOut} />
             <span>Sign out</span>
           </div>
-          <ChangeLightMode />
+          <ChangeLightMode Theme={Theme} darkMode={darkMode} />
         </div>
       </div>
     )

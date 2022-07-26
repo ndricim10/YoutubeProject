@@ -41,7 +41,6 @@ export default function LoginEmail() {
 
       const provider = new GoogleAuthProvider();
       const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res);
       const profile = {
         fullName: res.user.displayName,
         email: res.user.email,
@@ -57,6 +56,7 @@ export default function LoginEmail() {
         type: email_success,
         payload: accessToken,
       });
+      console.log(profile)
       dispatch({
         type: load_email_profile,
         payload: profile,
@@ -115,6 +115,8 @@ export default function LoginEmail() {
             </div>
             <div className="login-email">
               <span className="loginSpan">Login</span>
+              
+              <form onSubmit={() => dispatch(login())}>
               <div>
                 <div className="username">
                   <span>Email</span>
@@ -149,8 +151,9 @@ export default function LoginEmail() {
                 </div>
                 <span className="forgot">Forgot password?</span>
               </div>
-              {error && <span className="error">Error email or password</span>}
+              {error && <span className="errorMessage">Error email or password</span>}
               <button onClick={() => dispatch(login())}>Login</button>
+              </form>
 
               <div className="other-logins">
                 <span>Or Sign In using</span>

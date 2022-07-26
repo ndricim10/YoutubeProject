@@ -20,6 +20,7 @@ import ThreeDots from "../../Screens/LoginScreen/ThreeDots";
 import "../../Screens/LoginScreen/loginScreen.scss";
 import DarkMode from "../../Screens/DarkModeMUI/DarkMode";
 import { FiLogIn } from "react-icons/fi";
+import { photoURL } from "../../profileDetails";
 
 export default function Header() {
   const userEmail = useSelector((state) => state.loginEmail.user);
@@ -62,20 +63,8 @@ export default function Header() {
   function hideSearch() {
     setSearch(false);
   }
+  const myUser = JSON.parse(localStorage.getItem("yt-user"));
 
-  const photoURL = () => {
-    if (user) {
-      if (user.photoURL) {
-        return user.photoURL;
-      } else if (userEmail) {
-        if (user.photoUrl) {
-          return user.photoUrl;
-        }
-      } else {
-        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
-      }
-    }
-  };
 
   function openProfile() {
     dispatch(profile_toggle());

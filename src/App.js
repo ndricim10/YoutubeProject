@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Header from "./Components/Header/Header";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Container } from "react-bootstrap";
@@ -6,18 +5,16 @@ import "./Screens/HomeScreen/app.scss";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import LoginEmail from "./Screens/LoginEmail/LoginEmail";
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
-  useNavigate,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
 import SignUp from "./Screens/SignUp/SignUp";
 import Watch from "./Screens/Watch/Watch";
 import Search from "./Components/Search/Search";
 import PageNotFound from "./Components/PageNotFound/PageNotFound";
 import Channels from "./Components/Channels/Channels";
 import Subscriptions from "./Components/Subscriptions/Subscriptions";
+import MyProfile from "./Screens/LoginScreen/MyProfile";
 
 function Layout({ children }) {
   return (
@@ -62,6 +59,14 @@ export default function App() {
         element={
           <Layout>
             <Subscriptions />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <MyProfile />
           </Layout>
         }
       />
