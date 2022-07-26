@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
 import "../../index.scss";
-import { email, fullName, photoURL } from "../../profileDetails";
 
 export default function MyProfile() {
   const { user } = useSelector((state) => state.auth);
@@ -14,6 +13,19 @@ export default function MyProfile() {
   const myUser = JSON.parse(localStorage.getItem("yt-user"));
   const { darkMode } = useSelector((state) => state);
 
+  const photoURL = () => {
+    if (user) {
+      return user.photoUrl;
+    }
+    else if (userEmail) {
+      if (isNaN(myUser.photoUrl)) {
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+        
+      } else {
+        return myUser.photoUrl;
+      }
+    } 
+  };
 
   //   function handlePhotoUrl() {
   //     getDownloadURL(ref(storage, myUser.email))
@@ -35,6 +47,27 @@ export default function MyProfile() {
   //       console.log("Uploaded a blob or file!");
   //     });
   //   }
+
+  const fullName = () => {
+    if (myUser) {
+      if (myUser.fullName) {
+        return myUser.fullName;
+      } else {
+        return "Default Name";
+      }
+    }
+  };
+
+  const email = () => {
+    if (myUser) {
+      if (myUser.email) {
+        return myUser.email;
+      } else {
+        return "default email";
+      }
+    }
+  };
+
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState(fullName);
 

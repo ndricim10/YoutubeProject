@@ -11,7 +11,6 @@ import {
 } from "../../Redux/Reducers/actionType";
 import ChangeLightMode from "../lightMode/lightMode";
 import { Link, useNavigate } from "react-router-dom";
-import { email, fullName, photoURL } from "../../profileDetails";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.auth);
@@ -35,7 +34,36 @@ export default function Profile() {
   const myUser = JSON.parse(localStorage.getItem("yt-user"));
 
   console.log(myUser);
+  const photoURL = () => {
+    if (myUser) {
+      if (isNaN(myUser.photoUrl)) {
+        return "https://flyclipart.com/thumb2/default-avatar-png-icon-free-download-518373.png";
+        
+      } else {
+        return myUser.photoUrl;
+      }
+    } 
+  };
 
+  const fullName = () => {
+    if (myUser) {
+      if (myUser.fullName) {
+        return myUser.fullName;
+      } else {
+        return "Default Name";
+      }
+    }
+  };
+
+  const email = () => {
+    if (myUser) {
+      if (myUser.email) {
+        return myUser.email;
+      } else {
+        return "default email";
+      }
+    }
+  };
 
   function Theme() {
     dispatch(profile_false());
